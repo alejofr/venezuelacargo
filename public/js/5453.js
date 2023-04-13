@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[5453],{5453:(e,t,n)=>{n.r(t),n.d(t,{default:()=>l});const s={name:"LoaderWhiteComponent"};const l=(0,n(1900).Z)(s,(function(){var e=this.$createElement;return(this._self._c||e)("div",{staticClass:"div-loader_white"})}),[],!1,null,null,null).exports}}]);
