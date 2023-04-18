@@ -97,6 +97,58 @@ class PrealertasController extends Controller
         ], 200);
     }
 
+    public function almacen()
+    {
+        $select = [
+            'almacenes.id_almacen',
+            'almacenes.warehouse',
+            'almacenes.tipo_envio', //Envio y Maritimo
+            'almacenes.estado',
+            'almacenes.status',
+            'almacenes.fecha_creado AS fecha_llegada',
+            'trackings.id_tracking',
+            'trackings.tracking',
+            'trackings.descripcion'
+        ];
+
+        extract(request()->only(['usuario_id', 'query', 'limit', 'page', 'orderBy', 'ascending']));
+
+        $limit = (isset($limit) && $limit != '') ? $limit : 8;
+        $page = (isset($page) && $page != 1) ? $page : 1;
+        $query = isset($query) ? json_decode($query) : null;
+
+        $records = Almacenes::select($select)
+        ->leftJoin('solicitudes_envios', 'solicitudes_envios.id_solicitud', '=', 'almacenes.id_solicitud')
+        ->leftJoin('trackings', 'trackings.id_solicitud', '=', 'solicitudes_envios.id_solicitud')
+        ->where('almacenes.activo', '=', true)
+        ->where('solicitudes_envios.usuario_id', '=', $usuario_id)
+        ->Where(function($query) {
+            $query->orWhere('almacenes.warehouse',  'LIKE', '%'.$this->search.'%')
+            ->orWhere('trackings.descripcion',  'LIKE', '%'.$this->search.'%');
+        });
+
+        $count = $records->count();
+        $records->limit($limit)
+            ->skip($limit * ($page - 1));
+
+        if (isset($orderBy)) {
+            $direction = $ascending == 1 ? 'ASC' : 'DESC';
+            $records->orderBy($orderBy, $direction);
+        }
+
+        $results = $records->get()->toArray();
+
+        return response()->json([
+            'status' => 200,
+            'results' => $results,
+            'pagination' => [
+                'numPage' => intval($page),
+                'resultPage' => count($results),
+                'totalResult' => $count
+            ]
+        ], 200);
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [

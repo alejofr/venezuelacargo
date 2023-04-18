@@ -138,6 +138,9 @@ Route::middleware('auth:api')->group(function() {
                 Route::resource('solicitudes', App\Http\Controllers\Client\PrealertasController::class);
                 Route::post('solicitudes-instruccion/{id}', 'App\Http\Controllers\Client\PrealertasController@save_instruccion');
 
+                //almacen
+                Route::get('almacen', 'App\Http\Controllers\Client\PrealertasController@almacen');
+
                 Route::get('shipments', 'App\Http\Controllers\Client\ShipmentsController@index');
                 Route::post('save-pago', 'App\Http\Controllers\Client\ShipmentsController@savePago');
                 

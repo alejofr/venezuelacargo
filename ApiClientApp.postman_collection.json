@@ -1,0 +1,672 @@
+{
+	"info": {
+		"_postman_id": "9bad03b1-82d6-464a-9352-e677e9427582",
+		"name": "ApiClientApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10352369",
+		"_collection_link": "https://grey-firefly-809472.postman.co/workspace/venezuelacargo~1971720b-f12b-409c-add6-d4aed5e4797d/collection/10352369-9bad03b1-82d6-464a-9352-e677e9427582?action=share&creator=10352369&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "GetEstados",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/estados",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"estados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUbicaciones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/ubigeos?search=barquisimeto",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"ubigeos"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "barquisimeto"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/login?email=client@client.com&password=admin123",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "client@client.com"
+						},
+						{
+							"key": "password",
+							"value": "admin123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ForgoutPassword",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/user/forgout_password?email=client@client.com",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"user",
+						"forgout_password"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "client@client.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/user/crear-cuenta?id_estado=a24a75ad-2693-407a-9b18-a6960a3d6988&id_ubigeo=e28062bc-abd6-4ed1-9c5c-cb3fdd290e95&nombre_usuario=alejofr&email=freitezabraham@gmail.com&password=123456&nombres=Abraham&apellidos=Freitez&telefono=04145153163&cedula=25795862&direccion=Ruezga",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"user",
+						"crear-cuenta"
+					],
+					"query": [
+						{
+							"key": "id_estado",
+							"value": "a24a75ad-2693-407a-9b18-a6960a3d6988"
+						},
+						{
+							"key": "id_ubigeo",
+							"value": "e28062bc-abd6-4ed1-9c5c-cb3fdd290e95"
+						},
+						{
+							"key": "nombre_usuario",
+							"value": "alejofr"
+						},
+						{
+							"key": "email",
+							"value": "freitezabraham@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "123456"
+						},
+						{
+							"key": "nombres",
+							"value": "Abraham"
+						},
+						{
+							"key": "apellidos",
+							"value": "Freitez"
+						},
+						{
+							"key": "telefono",
+							"value": "04145153163"
+						},
+						{
+							"key": "cedula",
+							"value": "25795862"
+						},
+						{
+							"key": "direccion",
+							"value": "Ruezga"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTransportsCompany",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "usuario_id",
+						"value": "f9610c9d-a292-43a9-9986-ec2260c0e777",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{URL_API}}/transport-companies?usuario_id=1ba186db-fa13-44c9-8b88-452d3e294511",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"transport-companies"
+					],
+					"query": [
+						{
+							"key": "usuario_id",
+							"value": "1ba186db-fa13-44c9-8b88-452d3e294511"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checkAuth",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/user",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StorePrealerta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usuario_id\": \"1ba186db-fa13-44c9-8b88-452d3e294511\",\r\n    \"trackings\" : [\r\n        {\r\n            \"id_empresa_transporte\": \"8338b061-4ceb-437e-96b9-3ee8b026c502\",\r\n            \"tracking\" : \"1937682540\",\r\n            \"descripcion\" : \"jabon\",\r\n            \"fecha_llegada\" : \"2022-12-16\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_API}}/solicitudes",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"solicitudes"
+					],
+					"query": [
+						{
+							"key": "usuario_id",
+							"value": "f9610c9d-a292-43a9-9986-ec2260c0e777",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IndexPrealertas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/solicitudes?usuario_id=1ba186db-fa13-44c9-8b88-452d3e294511&limit=8&page=1&orderBy=solicitudes_envios.fecha_llegada&ascending=0&query={\"search\":\"\",\"estado\":\"recibido\",\"fecha_inicio\":\"\",\"fecha_final\":\"\"}",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"solicitudes"
+					],
+					"query": [
+						{
+							"key": "usuario_id",
+							"value": "1ba186db-fa13-44c9-8b88-452d3e294511"
+						},
+						{
+							"key": "limit",
+							"value": "8"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "orderBy",
+							"value": "solicitudes_envios.fecha_llegada"
+						},
+						{
+							"key": "ascending",
+							"value": "0",
+							"description": "0 es descendiente y 1 ascendiente"
+						},
+						{
+							"key": "query",
+							"value": "{\"search\":\"\",\"estado\":\"recibido\",\"fecha_inicio\":\"\",\"fecha_final\":\"\"}",
+							"description": "para filtrar debe enviar el objeto query y adentro los parametros."
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ShowPrealertaId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/solicitudes/29b11774-54f6-4c3e-b1bf-43a1dd2d59b3?usuario_id=1ba186db-fa13-44c9-8b88-452d3e294511&estado=pendiente",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"solicitudes",
+						"29b11774-54f6-4c3e-b1bf-43a1dd2d59b3"
+					],
+					"query": [
+						{
+							"key": "usuario_id",
+							"value": "1ba186db-fa13-44c9-8b88-452d3e294511"
+						},
+						{
+							"key": "estado",
+							"value": "pendiente",
+							"description": "estados puede ser pendiente o recibido"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SaveIntruccionPaquete",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/solicitudes-instruccion/29b11774-54f6-4c3e-b1bf-43a1dd2d59b3?usuario_id=1ba186db-fa13-44c9-8b88-452d3e294511&tipo_envio=aereo&id_almacen=4556893c-2b9b-4fa6-8090-94fe6bf19dc3&id_tracking=5f59747a-0dab-4d3c-a678-5466a76a1830&reempaque=no&total_seguro=0.00",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"solicitudes-instruccion",
+						"29b11774-54f6-4c3e-b1bf-43a1dd2d59b3"
+					],
+					"query": [
+						{
+							"key": "usuario_id",
+							"value": "1ba186db-fa13-44c9-8b88-452d3e294511"
+						},
+						{
+							"key": "tipo_envio",
+							"value": "aereo",
+							"description": "enviar = aereo o maritimo"
+						},
+						{
+							"key": "id_almacen",
+							"value": "4556893c-2b9b-4fa6-8090-94fe6bf19dc3"
+						},
+						{
+							"key": "id_tracking",
+							"value": "5f59747a-0dab-4d3c-a678-5466a76a1830"
+						},
+						{
+							"key": "reempaque",
+							"value": "no",
+							"description": "si = con reempaque o no= no con reempaque"
+						},
+						{
+							"key": "total_seguro",
+							"value": "0.00",
+							"description": "en caso de no tener seguro debe enviarse 0.00. el parametro solo recibe numero flotantes con dos decimales"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getShipments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/shipments?limit=8&page=1&orderBy=facturas.nro_container&ascending=0&query={\"search\":\"\"}&usuario_id=1ba186db-fa13-44c9-8b88-452d3e294511",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"shipments"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "8"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "orderBy",
+							"value": "facturas.nro_container"
+						},
+						{
+							"key": "ascending",
+							"value": "0"
+						},
+						{
+							"key": "query",
+							"value": "{\"search\":\"\"}",
+							"description": "Busca por numero de warehouse, tracking, factura o container"
+						},
+						{
+							"key": "usuario_id",
+							"value": "1ba186db-fa13-44c9-8b88-452d3e294511"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerTasaEnVES",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/tasas-monedas?usuario_id=1ba186db-fa13-44c9-8b88-452d3e294511",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"tasas-monedas"
+					],
+					"query": [
+						{
+							"key": "usuario_id",
+							"value": "1ba186db-fa13-44c9-8b88-452d3e294511"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ShowShipement",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/shipments/91f47eae-d66d-4794-ae1d-306ced498b7a?usuario_id=1ba186db-fa13-44c9-8b88-452d3e294511",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"shipments",
+						"91f47eae-d66d-4794-ae1d-306ced498b7a"
+					],
+					"query": [
+						{
+							"key": "usuario_id",
+							"value": "1ba186db-fa13-44c9-8b88-452d3e294511"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PagoFactura",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "comprobante",
+							"type": "file",
+							"src": "/C:/Users/aleja/Downloads/paid-invoice.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL_API}}/save-pago?id_factura=3de6e504-312d-48ba-96f5-18caac3476b6&tipo_moneda=USD&usuario_id=1ba186db-fa13-44c9-8b88-452d3e294511&nro_comprobante=1656541&titular=Juanito Arimaña&tasa=16,50&total_ves=3843,52",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"save-pago"
+					],
+					"query": [
+						{
+							"key": "id_factura",
+							"value": "3de6e504-312d-48ba-96f5-18caac3476b6"
+						},
+						{
+							"key": "tipo_moneda",
+							"value": "USD",
+							"description": "USD o VES"
+						},
+						{
+							"key": "usuario_id",
+							"value": "1ba186db-fa13-44c9-8b88-452d3e294511"
+						},
+						{
+							"key": "nro_comprobante",
+							"value": "1656541"
+						},
+						{
+							"key": "titular",
+							"value": "Juanito Arimaña"
+						},
+						{
+							"key": "tasa",
+							"value": "16,50",
+							"description": "la tsas va como flotante donde el separador del decimal es la \",\" ( coma )"
+						},
+						{
+							"key": "total_ves",
+							"value": "3843,52"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserEdit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/edit-user/client?usuario_id=1ba186db-fa13-44c9-8b88-452d3e294511",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"edit-user",
+						"client"
+					],
+					"query": [
+						{
+							"key": "usuario_id",
+							"value": "1ba186db-fa13-44c9-8b88-452d3e294511"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUser",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/user/client/1ba186db-fa13-44c9-8b88-452d3e294511?nombre_usuario=alejofr98&usuario_id=1ba186db-fa13-44c9-8b88-452d3e294511&cedula=12345678",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"user",
+						"client",
+						"1ba186db-fa13-44c9-8b88-452d3e294511"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "client@client.com",
+							"disabled": true
+						},
+						{
+							"key": "nombres",
+							"value": "Juan",
+							"disabled": true
+						},
+						{
+							"key": "apellidos",
+							"value": "Rodriguez",
+							"disabled": true
+						},
+						{
+							"key": "telefono",
+							"value": "4245153163",
+							"disabled": true
+						},
+						{
+							"key": "nombre_usuario",
+							"value": "alejofr98"
+						},
+						{
+							"key": "usuario_id",
+							"value": "1ba186db-fa13-44c9-8b88-452d3e294511"
+						},
+						{
+							"key": "cedula",
+							"value": "12345678"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAlmacen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/almacen?usuario_id=e5d57e20-8187-460a-b99a-3a3b41ea2b6f&limit=8&page=1&orderBy=almacenes.fecha_creado&ascending=0",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"almacen"
+					],
+					"query": [
+						{
+							"key": "usuario_id",
+							"value": "e5d57e20-8187-460a-b99a-3a3b41ea2b6f"
+						},
+						{
+							"key": "limit",
+							"value": "8"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "orderBy",
+							"value": "almacenes.fecha_creado"
+						},
+						{
+							"key": "ascending",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5OGVjM2FkMC0zMWZkLTQxNjEtYWQ0Yi01NzZhNzZlZGYxM2MiLCJqdGkiOiJkZTEwMzcxMzQ3NTA0ZWZiYTE0YjgzMWJiMTA1YTgzMzU4ZmFmZjhlMTA1ZmRhNzZkYjc5YjFmMTY4NTVmYTkzYmExMmEyYTA3MTY4Yzg3NCIsImlhdCI6MTY4MTg1MzQ3OC4yMjI2ODUsIm5iZiI6MTY4MTg1MzQ3OC4yMjI2ODcsImV4cCI6MTcxMzQ3NTg3OC4yMTQ3MDQsInN1YiI6ImU1ZDU3ZTIwLTgxODctNDYwYS1iOTlhLTNhM2I0MWVhMmI2ZiIsInNjb3BlcyI6W119.G1qsXLxFL2MGvDOOkFlrGZTEkK5wRL0zJN30QpevcbynGbs5FOhumSe_cA8l1JYUk3l7mLUSsapPr-8mZjpo5dqGgBLq13NTMdtsJ7t7LvFydHZXewRHVC2lZqKuFszjlTmF0whQpuuX92NJ-i0S1NpAENlwwubZbafbhzUFmafCQJua7V4wCD3Wf9RcQHkP76SnOCOaTrK31a5EvxaTE1oioaluQVk0OpHJhfhu3EbHYntTY3myoVZhj7gpeJnY24Pg8-rWsSno2DUjstJUcd3C9PnI5aQpW2XIVGISzv_UrtDdbbEOrvxRtpqvCJE37Q7A7SlPfzJ_Ge_WFX5rj9fnAOLRNvpmKKnedOGvJDt3dOqLNHbqsH7otrTh_cVYoqj3YrJiNPW6fNElsmRON8c7wcJWxEr4oABtvYLfz9j0gXO9isgpEouQ4j6rRmxQ9l5hepJaPvcjYpMsRwIICiGqhTpSJnnswhH7NwMGWYzX2nslptFvwBzYBrKhxsFddNS-rGvB7cKhtMOhtbaadN39zQXjeetr9YvMX3_QnDADB_7SqEJusztgd7m0QAx-4tc5jCxoVsKovd35P627VeptQwYp59no5tlvVH8piur-C8mE0iaEFaeNu0Ul4OakEGe5-lRwQSkSHDp41JSfccdQiK23XdOVTi-tBy5F8lk",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL_API",
+			"value": "https://escritorio.venezuelacargo.com/api",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "URL_API",
+			"value": "http://127.0.0.1:8000/api",
+			"type": "string"
+		}
+	]
+}
