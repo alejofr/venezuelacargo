@@ -21,6 +21,9 @@ class ShipmentsController extends Controller
 {
     public $search = "";
     public $fecha_estimada = "";
+    public $fecha_inicio = "";
+    public $fecha_final = "";
+    
     
     public function index()
     {
@@ -52,6 +55,8 @@ class ShipmentsController extends Controller
         $this->search = ( $query != null && isset($query->search) && $query->search != '' ) ? $query->search : "";
        // $this->estado = ( $query != null && isset($query->estado) && $query->estado != '' ) ? $query->estado : "";
         $this->fecha_estimada = ( $query != null && isset($query->fecha_estimada) && $query->fecha_estimada != '' ) ? $query->fecha_estimada : "";
+        $this->fecha_inicio = ( $query != null && isset($query->fecha_inicio) && $query->fecha_inicio != '' ) ? $query->fecha_inicio : "";
+        $this->fecha_final = ( $query != null && isset($query->fecha_final) && $query->fecha_final != '' ) ? $query->fecha_final : "";
 
         
 
@@ -76,6 +81,13 @@ class ShipmentsController extends Controller
         if( $this->fecha_estimada != ''){
            
             $records = $records->where('envios.fecha_estimada', '=', $this->fecha_estimada);
+        }
+
+        if( $this->fecha_inicio != '' && $this->fecha_final != ''){
+            $this->fecha_inicio = ( $this->fecha_inicio == '' ) ? Carbon::now()->format('Y-m-d') : $this->fecha_inicio;
+            $this->fecha_final = (  $this->fecha_final == '' ) ? Carbon::now()->format('Y-m-d') :  $this->fecha_final;
+           
+            $records = $records->whereBetween('facturas.fecha_creado', [$this->fecha_inicio, $this->fecha_final]);
         }
 
         if (isset($orderBy)) {
