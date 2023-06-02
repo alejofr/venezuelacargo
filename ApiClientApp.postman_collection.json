@@ -624,6 +624,23 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "GetMethodsPayments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/methods-payments",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"methods-payments"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {

@@ -46,6 +46,65 @@ Route::middleware('auth:api')->group(function() {
         Route::get('print-invoice/{id}', 'App\Http\Controllers\Admin\FacturasController@print_invoice');
 
 
+        //method payment
+        Route::get('methods-payments', function() {
+                return response()->json([
+                        'status' => 200,
+                        'results' => [
+                                [
+                                        'type_payment' => 'VES',
+                                        'name' => 'BANCO BANESCO',
+                                        'account' => '0134 0869 6486 9302 5833',
+                                        'type' => 'CTA CORRIENTE',
+                                        'headline' => 'CARLOS EDUARDO RESTREPO RUIZ',
+                                        'id' => 'V-17.632.959',
+                                        'phone' => '(0412)1812469',
+                                        'email' => '',
+                                        'nota' => 'PAGOS POR TRANSFERENCIAS Y PAGO MÓVIL',
+                                        'extra' => []
+                                ],
+                                [
+                                        'type_payment' => 'USD',
+                                        'name' => 'BANK OF AMERICA',
+                                        'account' => '3340 6659 9986',
+                                        'type' => 'CTA CORRIENTE',
+                                        'headline' => '',
+                                        'id' => '',
+                                        'phone' => '',
+                                        'email' => '',
+                                        'nota' => 'NO COLOCAR NADA EN EL ASUNTO DE LA TRANSFERENCIA',
+                                        'extra' => [
+                                             'ABA ROUTING NUMBER' => '061000052'
+                                        ]
+                                ],
+                                [
+                                        'type_payment' => 'USD',
+                                        'name' => 'ZELLE',
+                                        'account' => '',
+                                        'type' => '',
+                                        'headline' => '',
+                                        'id' => '',
+                                        'phone' => '',
+                                        'email' => 'VENEZUELACARGO@ICLOUD.COM',
+                                        'nota' => '',
+                                        'extra' => []
+                                ],
+                                [
+                                        'type_payment' => 'USDT',
+                                        'name' => 'Binance',
+                                        'account' => '',
+                                        'type' => '',
+                                        'headline' => '',
+                                        'id' => '',
+                                        'phone' => '',
+                                        'email' => 'Importacionesreca@hotmail.com',
+                                        'nota' => '',
+                                        'extra' => []
+                                ],
+                        ],
+                ], 200);
+        });
+
         /**
          * Ruta Admin
          * 
