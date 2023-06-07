@@ -108,7 +108,8 @@ class PrealertasController extends Controller
             'almacenes.fecha_creado AS fecha_llegada',
             'trackings.id_tracking',
             'trackings.tracking',
-            'trackings.descripcion'
+            'trackings.descripcion',
+            'solicitudes_envios.id_solicitud'
         ];
 
         extract(request()->only(['usuario_id', 'query', 'limit', 'page', 'orderBy', 'ascending']));
