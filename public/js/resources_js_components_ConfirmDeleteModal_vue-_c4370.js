@@ -179,7 +179,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.container-preloader {\n    position: relative;\n    width: 100%;\n    height: 100%;\n    visibility: visible;\n    transition: all .4s;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    -webkit-animation-fill-mode: both;\n    animation-fill-mode: both;\n}\n.container-preloader.hidden{\n    -webkit-animation-duration: 1500ms;\n            animation-duration: 1500ms;\n    opacity: 0;\n    visibility: hidden;\n}\n.animsition-loading-1 {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%);\n}\n.preloader {\n    width: 56px;\n    height: 56px;\n    border: 4px solid #24298D;\n    border-radius: 50%;\n    position: relative;\n    -webkit-animation: loader-scale 1s ease-out infinite;\n            animation: loader-scale 1s ease-out infinite;\n    top: 50%;\n    margin: -28px auto 0 auto;\n}\n@-webkit-keyframes loader-scale {\n0% {\n    transform: scale(0);\n    opacity: 0;\n}\n50% {\n    opacity: 1;\n}\n100% {\n    transform: scale(1);\n    opacity: 0;\n}\n}\n@keyframes loader-scale {\n0% {\n    transform: scale(0);\n    opacity: 0;\n}\n50% {\n    opacity: 1;\n}\n100% {\n    transform: scale(1);\n    opacity: 0;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.container-preloader {\r\n    position: relative;\r\n    width: 100%;\r\n    height: 100%;\r\n    visibility: visible;\r\n    transition: all .4s;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    -webkit-animation-fill-mode: both;\r\n    animation-fill-mode: both;\n}\n.container-preloader.hidden{\r\n    -webkit-animation-duration: 1500ms;\r\n            animation-duration: 1500ms;\r\n    opacity: 0;\r\n    visibility: hidden;\n}\n.animsition-loading-1 {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    transform: translate(-50%, -50%);\n}\n.preloader {\r\n    width: 56px;\r\n    height: 56px;\r\n    border: 4px solid #24298D;\r\n    border-radius: 50%;\r\n    position: relative;\r\n    -webkit-animation: loader-scale 1s ease-out infinite;\r\n            animation: loader-scale 1s ease-out infinite;\r\n    top: 50%;\r\n    margin: -28px auto 0 auto;\n}\n@-webkit-keyframes loader-scale {\n0% {\r\n    transform: scale(0);\r\n    opacity: 0;\n}\n50% {\r\n    opacity: 1;\n}\n100% {\r\n    transform: scale(1);\r\n    opacity: 0;\n}\n}\n@keyframes loader-scale {\n0% {\r\n    transform: scale(0);\r\n    opacity: 0;\n}\n50% {\r\n    opacity: 1;\n}\n100% {\r\n    transform: scale(1);\r\n    opacity: 0;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -871,7 +871,7 @@ var render = function () {
                           },
                           [
                             _vm._v(
-                              "\n                                Cancelar\n                            "
+                              "\r\n                                Cancelar\r\n                            "
                             ),
                           ]
                         ),
@@ -890,7 +890,7 @@ var render = function () {
                           },
                           [
                             _vm._v(
-                              "\n                                Eliminar \n                            "
+                              "\r\n                                Eliminar \r\n                            "
                             ),
                           ]
                         ),

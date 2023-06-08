@@ -229,7 +229,7 @@ class ShipmentsController extends Controller
         $pago = [
             'tasa' => $request->tasa,
             'tipo_moneda' => $request->tipo_moneda,
-            'comprobante' => Storage::url($request->comprobante->store('public/images')),
+            'comprobante' => asset(Storage::url($request->comprobante->store('public/images'))),
             'nro_comprobante' => $request->nro_comprobante,
             'titular' => $request->titular,
         ];

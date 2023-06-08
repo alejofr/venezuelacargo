@@ -2091,12 +2091,12 @@ var render = function () {
                             _vm.id_usuario_info == ""
                               ? _c("span", [
                                   _vm._v(
-                                    "\n                                Guardar\n                            "
+                                    "\r\n                                Guardar\r\n                            "
                                   ),
                                 ])
                               : _c("span", [
                                   _vm._v(
-                                    "\n                                Actualizar\n                            "
+                                    "\r\n                                Actualizar\r\n                            "
                                   ),
                                 ]),
                           ]

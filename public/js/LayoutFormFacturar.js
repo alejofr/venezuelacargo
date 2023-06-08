@@ -1220,7 +1220,7 @@ var formatPrice = {
           });
           /*document.getElementById(fields[i].field).addEventListener('keyup', function(e) {
               let key = window.Event ? e.which : e.keyCod;
-                   if( key == 8 || key >= 96 && key <= 105 ){
+                    if( key == 8 || key >= 96 && key <= 105 ){
                   e.target.value = constructPrice(e.target.value, spdor_unid, spdor_decimal);
               }
               
@@ -3806,7 +3806,7 @@ var render = function () {
                                             },
                                             [
                                               _vm._v(
-                                                "\n                                                    Agregar\n                                                "
+                                                "\r\n                                                    Agregar\r\n                                                "
                                               ),
                                             ]
                                           ),
@@ -3847,7 +3847,7 @@ var render = function () {
                             [
                               _c("span", { staticClass: "me-2" }, [
                                 _vm._v(
-                                  "\n                                    Total WH\n                                "
+                                  "\r\n                                    Total WH\r\n                                "
                                 ),
                               ]),
                               _vm._v(" "),
@@ -3941,7 +3941,7 @@ var render = function () {
                                 [
                                   _c("span", { staticClass: "me-2" }, [
                                     _vm._v(
-                                      "\n                                    Total WH Reemp.\n                                "
+                                      "\r\n                                    Total WH Reemp.\r\n                                "
                                     ),
                                   ]),
                                   _vm._v(" "),
@@ -4035,7 +4035,7 @@ var render = function () {
                             [
                               _c("span", { staticClass: "me-2" }, [
                                 _vm._v(
-                                  "\n                                    Gastos Extras\n                                "
+                                  "\r\n                                    Gastos Extras\r\n                                "
                                 ),
                               ]),
                               _vm._v(" "),
@@ -4124,7 +4124,7 @@ var render = function () {
                             [
                               _c("span", { staticClass: "me-2" }, [
                                 _vm._v(
-                                  "\n                                    Total USD\n                                "
+                                  "\r\n                                    Total USD\r\n                                "
                                 ),
                               ]),
                               _vm._v(" "),
@@ -4136,9 +4136,9 @@ var render = function () {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                                    " +
+                                    "\r\n                                    " +
                                       _vm._s(_vm.total_usd) +
-                                      "\n                                "
+                                      "\r\n                                "
                                   ),
                                 ]
                               ),
@@ -4154,7 +4154,7 @@ var render = function () {
                             [
                               _c("span", { staticClass: "me-2" }, [
                                 _vm._v(
-                                  "\n                                    Total VES\n                                "
+                                  "\r\n                                    Total VES\r\n                                "
                                 ),
                               ]),
                               _vm._v(" "),
@@ -4166,9 +4166,9 @@ var render = function () {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                                    " +
+                                    "\r\n                                    " +
                                       _vm._s(_vm.total_ves) +
-                                      "\n                                "
+                                      "\r\n                                "
                                   ),
                                 ]
                               ),
@@ -4532,7 +4532,7 @@ var render = function () {
                 _vm._v(" "),
                 _c("div", { staticClass: "text-muted" }, [
                   _vm._v(
-                    "\n                    Para crear la factura, asegurate que los datos esten correctos...\n                "
+                    "\r\n                    Para crear la factura, asegurate que los datos esten correctos...\r\n                "
                   ),
                 ]),
               ]),
@@ -4554,7 +4554,7 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "\n                            Cancelar\n                        "
+                            "\r\n                            Cancelar\r\n                        "
                           ),
                         ]
                       ),
@@ -4570,14 +4570,14 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "\n                            " +
+                            "\r\n                            " +
                               _vm._s(
                                 "" +
                                   (_vm.type_form === "new"
                                     ? "Crear Factura"
                                     : "Actualizar")
                               ) +
-                              "\n                        "
+                              "\r\n                        "
                           ),
                         ]
                       ),

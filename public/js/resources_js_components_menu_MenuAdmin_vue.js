@@ -205,7 +205,7 @@ var render = function () {
             ),
             _vm._v(" "),
             _c("span", { staticClass: "nav-link-title" }, [
-              _vm._v("\n                Escritorio\n            "),
+              _vm._v("\r\n                Escritorio\r\n            "),
             ]),
           ]
         ),
@@ -235,7 +235,7 @@ var render = function () {
             ),
             _vm._v(" "),
             _c("span", { staticClass: "nav-link-title" }, [
-              _vm._v("\n                Clientes\n            "),
+              _vm._v("\r\n                Clientes\r\n            "),
             ]),
           ]
         ),
@@ -268,7 +268,7 @@ var render = function () {
             ),
             _vm._v(" "),
             _c("span", { staticClass: "nav-link-title" }, [
-              _vm._v("\n                Prealertas\n            "),
+              _vm._v("\r\n                Prealertas\r\n            "),
             ]),
           ]
         ),
@@ -298,7 +298,7 @@ var render = function () {
             ),
             _vm._v(" "),
             _c("span", { staticClass: "nav-link-title" }, [
-              _vm._v("\n                Almacén\n            "),
+              _vm._v("\r\n                Almacén\r\n            "),
             ]),
           ]
         ),
@@ -328,7 +328,7 @@ var render = function () {
             ),
             _vm._v(" "),
             _c("span", { staticClass: "nav-link-title" }, [
-              _vm._v("\n                Facturas\n            "),
+              _vm._v("\r\n                Facturas\r\n            "),
             ]),
           ]
         ),
@@ -358,7 +358,7 @@ var render = function () {
             ),
             _vm._v(" "),
             _c("span", { staticClass: "nav-link-title" }, [
-              _vm._v("\n                Envíos\n            "),
+              _vm._v("\r\n                Envíos\r\n            "),
             ]),
           ]
         ),
@@ -494,7 +494,7 @@ var staticRenderFns = [
         ),
         _vm._v(" "),
         _c("span", { staticClass: "nav-link-title" }, [
-          _vm._v("\n                Configuración\n            "),
+          _vm._v("\r\n                Configuración\r\n            "),
         ]),
       ]
     )

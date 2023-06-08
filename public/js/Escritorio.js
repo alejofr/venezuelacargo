@@ -552,7 +552,7 @@ var formatPrice = {
           });
           /*document.getElementById(fields[i].field).addEventListener('keyup', function(e) {
               let key = window.Event ? e.which : e.keyCod;
-                   if( key == 8 || key >= 96 && key <= 105 ){
+                    if( key == 8 || key >= 96 && key <= 105 ){
                   e.target.value = constructPrice(e.target.value, spdor_unid, spdor_decimal);
               }
               
@@ -952,9 +952,9 @@ var render = function () {
                         _c("td", { staticClass: "td-truncate text-muted" }, [
                           _c("div", { staticClass: "text-truncate" }, [
                             _vm._v(
-                              "\n                                    " +
+                              "\r\n                                    " +
                                 _vm._s(item.estado) +
-                                "\n                                "
+                                "\r\n                                "
                             ),
                           ]),
                         ]),
@@ -981,9 +981,9 @@ var render = function () {
                               },
                               [
                                 _vm._v(
-                                  "\n                                    " +
+                                  "\r\n                                    " +
                                     _vm._s(item.cant) +
-                                    "\n                                "
+                                    "\r\n                                "
                                 ),
                               ]
                             ),
@@ -1114,11 +1114,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col" }, [
       _c("div", { staticClass: "page-pretitle" }, [
-        _vm._v("\n                Visión general\n                "),
+        _vm._v("\r\n                Visión general\r\n                "),
       ]),
       _vm._v(" "),
       _c("h2", { staticClass: "page-title" }, [
-        _vm._v("\n                Tablero\n                "),
+        _vm._v("\r\n                Tablero\r\n                "),
       ]),
     ])
   },

@@ -578,7 +578,7 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "\n                            Guardar\n                        "
+                            "\r\n                            Guardar\r\n                        "
                           ),
                         ]
                       ),
@@ -691,7 +691,7 @@ var render = function () {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                                            Eliminar\n                                        "
+                                            "\r\n                                            Eliminar\r\n                                        "
                                           ),
                                         ]
                                       ),
@@ -730,7 +730,7 @@ var render = function () {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                                            " +
+                                            "\r\n                                            " +
                                               _vm._s(
                                                 "" +
                                                   (imagen.estado ===
@@ -738,7 +738,7 @@ var render = function () {
                                                     ? "No visible"
                                                     : "Visible")
                                               ) +
-                                              "\n                                        "
+                                              "\r\n                                        "
                                           ),
                                         ]
                                       ),

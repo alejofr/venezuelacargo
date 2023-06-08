@@ -269,7 +269,7 @@ var formatPrice = {
           });
           /*document.getElementById(fields[i].field).addEventListener('keyup', function(e) {
               let key = window.Event ? e.which : e.keyCod;
-                   if( key == 8 || key >= 96 && key <= 105 ){
+                    if( key == 8 || key >= 96 && key <= 105 ){
                   e.target.value = constructPrice(e.target.value, spdor_unid, spdor_decimal);
               }
               

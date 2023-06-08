@@ -633,11 +633,11 @@ var render = function () {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                                                " +
+                                      "\r\n                                                " +
                                         _vm._s(transporte.codigo) +
                                         " - " +
                                         _vm._s(transporte.nombre) +
-                                        "\n                                            "
+                                        "\r\n                                            "
                                     ),
                                   ]
                                 )
@@ -930,7 +930,7 @@ var render = function () {
                       },
                       [
                         _vm._v(
-                          "\n                                Enviar Solicitud\n                            "
+                          "\r\n                                Enviar Solicitud\r\n                            "
                         ),
                       ]
                     ),
