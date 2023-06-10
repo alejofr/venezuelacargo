@@ -118,7 +118,6 @@ class AlmacenesController extends Controller
 
     public function store(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'warehouse' => ['required','regex:/^[0-9]+$/', 'unique:almacenes'],
         ]);
@@ -160,6 +159,8 @@ class AlmacenesController extends Controller
             $tracking->pie_cubico = round( $tracking->pie_cubico * 100 ) /100;
             $tracking->pie_cubico = ( $tracking->pie_cubico > 1 ) ? $tracking->pie_cubico : 1;
             $tracking->ruta_image = asset(Storage::url($request->images[$track->id_tracking]->store('public/images')));
+                //$tracking->ruta_image = $tracking->ruta_image;
+            
 
             //$tracking->descripcion = $track->descripcion;
 
@@ -381,7 +382,7 @@ class AlmacenesController extends Controller
             $tracking->pie_cubico = ( $track->alto *  $track->largo * $track->ancho ) / 1728; //alto * largo * ancho / 1728
             $tracking->pie_cubico = round( $tracking->pie_cubico * 100 ) /100;
             $tracking->pie_cubico = ( $tracking->pie_cubico > 1 ) ? $tracking->pie_cubico : 1;
-            $tracking->ruta_image = asset(Storage::url($request->images[$track->id_tracking]->store('public/images')));
+            $tracking->ruta_image = asset( Storage::url($request->images[$track->tracking]->store('public/images')));
 
             $tracking->save();
             

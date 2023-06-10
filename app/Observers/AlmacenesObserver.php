@@ -42,9 +42,16 @@ class AlmacenesObserver
             'num_piezas' => $tracking->num_piezas,
         ];
 
-        $image = public_path($tracking->ruta_image);
 
-        Mail::to($solictudUsuario->email)->send(new NotificationPackageRegister($arreglo, $image));
+        $image = $tracking->ruta_image;
+
+        $domain = env('APP_URL');
+
+        $result = str_replace($domain,"", $image);
+
+        $result = public_path($result);
+
+        Mail::to($solictudUsuario->email)->send(new NotificationPackageRegister($arreglo, $result));
 
     }
 
