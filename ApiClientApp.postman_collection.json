@@ -212,7 +212,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"usuario_id\": \"1ba186db-fa13-44c9-8b88-452d3e294511\",\r\n    \"trackings\" : [\r\n        {\r\n            \"id_empresa_transporte\": \"8338b061-4ceb-437e-96b9-3ee8b026c502\",\r\n            \"tracking\" : \"1937682540\",\r\n            \"descripcion\" : \"jabon\",\r\n            \"fecha_llegada\" : \"2022-12-16\"\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"usuario_id\": \"968b1a94-a060-4f70-81f7-56111a411e43\",\r\n    \"trackings\" : [\r\n        {\r\n            \"id_empresa_transporte\": \"bd2b6ec3-c5c2-4303-a237-cadc279d0410\",\r\n            \"tracking\" : \"1937682540\",\r\n            \"descripcion\" : \"jabon\",\r\n            \"fecha_llegada\" : \"2022-12-16\"\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -244,7 +244,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URL_API}}/solicitudes?usuario_id=1ba186db-fa13-44c9-8b88-452d3e294511&limit=8&page=1&orderBy=solicitudes_envios.fecha_llegada&ascending=0&query={\"search\":\"\",\"estado\":\"recibido\",\"fecha_inicio\":\"\",\"fecha_final\":\"\"}",
+					"raw": "{{URL_API}}/solicitudes?usuario_id=968b1a94-a060-4f70-81f7-56111a411e43&limit=8&page=1&orderBy=solicitudes_envios.fecha_llegada&ascending=0&query={\"search\":\"\",\"estado\":\"recibido\",\"fecha_inicio\":\"\",\"fecha_final\":\"\"}",
 					"host": [
 						"{{URL_API}}"
 					],
@@ -254,7 +254,7 @@
 					"query": [
 						{
 							"key": "usuario_id",
-							"value": "1ba186db-fa13-44c9-8b88-452d3e294511"
+							"value": "968b1a94-a060-4f70-81f7-56111a411e43"
 						},
 						{
 							"key": "limit",
@@ -365,7 +365,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URL_API}}/shipments?limit=8&page=1&orderBy=facturas.nro_container&ascending=0&query={\"search\":\"\"}&usuario_id=1ba186db-fa13-44c9-8b88-452d3e294511",
+					"raw": "{{URL_API}}/shipments?limit=8&page=1&orderBy=facturas.nro_container&ascending=0&query={\"search\":\"\"}&usuario_id=9f1fba8a-cdd3-4509-b23c-1a2f8c9e173f",
 					"host": [
 						"{{URL_API}}"
 					],
@@ -396,7 +396,7 @@
 						},
 						{
 							"key": "usuario_id",
-							"value": "1ba186db-fa13-44c9-8b88-452d3e294511"
+							"value": "9f1fba8a-cdd3-4509-b23c-1a2f8c9e173f"
 						}
 					]
 				}
@@ -432,18 +432,18 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URL_API}}/shipments/91f47eae-d66d-4794-ae1d-306ced498b7a?usuario_id=1ba186db-fa13-44c9-8b88-452d3e294511",
+					"raw": "{{URL_API}}/shipments/50f3a4d4-67a0-447a-9ae8-3da2a03db459?usuario_id=9f1fba8a-cdd3-4509-b23c-1a2f8c9e173f",
 					"host": [
 						"{{URL_API}}"
 					],
 					"path": [
 						"shipments",
-						"91f47eae-d66d-4794-ae1d-306ced498b7a"
+						"50f3a4d4-67a0-447a-9ae8-3da2a03db459"
 					],
 					"query": [
 						{
 							"key": "usuario_id",
-							"value": "1ba186db-fa13-44c9-8b88-452d3e294511"
+							"value": "9f1fba8a-cdd3-4509-b23c-1a2f8c9e173f"
 						}
 					]
 				}
@@ -592,7 +592,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URL_API}}/almacen?usuario_id=e5d57e20-8187-460a-b99a-3a3b41ea2b6f&limit=8&page=1&orderBy=almacenes.fecha_creado&ascending=0",
+					"raw": "{{URL_API}}/almacen?usuario_id=968b1a94-a060-4f70-81f7-56111a411e43&limit=8&page=1&orderBy=almacenes.fecha_creado&ascending=0",
 					"host": [
 						"{{URL_API}}"
 					],
@@ -602,7 +602,7 @@
 					"query": [
 						{
 							"key": "usuario_id",
-							"value": "e5d57e20-8187-460a-b99a-3a3b41ea2b6f"
+							"value": "968b1a94-a060-4f70-81f7-56111a411e43"
 						},
 						{
 							"key": "limit",
@@ -641,6 +641,79 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "CountWarehouse",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/count-warehouse?usuario_id=9f1fba8a-cdd3-4509-b23c-1a2f8c9e173f&estado=recibido",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"count-warehouse"
+					],
+					"query": [
+						{
+							"key": "usuario_id",
+							"value": "9f1fba8a-cdd3-4509-b23c-1a2f8c9e173f"
+						},
+						{
+							"key": "estado",
+							"value": "recibido"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CountShipment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/count-shipment?usuario_id=9f1fba8a-cdd3-4509-b23c-1a2f8c9e173f",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"count-shipment"
+					],
+					"query": [
+						{
+							"key": "usuario_id",
+							"value": "9f1fba8a-cdd3-4509-b23c-1a2f8c9e173f"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CountInvoice",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/count-invoice?usuario_id=9f1fba8a-cdd3-4509-b23c-1a2f8c9e173f",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"count-invoice"
+					],
+					"query": [
+						{
+							"key": "usuario_id",
+							"value": "9f1fba8a-cdd3-4509-b23c-1a2f8c9e173f"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
@@ -648,7 +721,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5OGVjM2FkMC0zMWZkLTQxNjEtYWQ0Yi01NzZhNzZlZGYxM2MiLCJqdGkiOiJkZTEwMzcxMzQ3NTA0ZWZiYTE0YjgzMWJiMTA1YTgzMzU4ZmFmZjhlMTA1ZmRhNzZkYjc5YjFmMTY4NTVmYTkzYmExMmEyYTA3MTY4Yzg3NCIsImlhdCI6MTY4MTg1MzQ3OC4yMjI2ODUsIm5iZiI6MTY4MTg1MzQ3OC4yMjI2ODcsImV4cCI6MTcxMzQ3NTg3OC4yMTQ3MDQsInN1YiI6ImU1ZDU3ZTIwLTgxODctNDYwYS1iOTlhLTNhM2I0MWVhMmI2ZiIsInNjb3BlcyI6W119.G1qsXLxFL2MGvDOOkFlrGZTEkK5wRL0zJN30QpevcbynGbs5FOhumSe_cA8l1JYUk3l7mLUSsapPr-8mZjpo5dqGgBLq13NTMdtsJ7t7LvFydHZXewRHVC2lZqKuFszjlTmF0whQpuuX92NJ-i0S1NpAENlwwubZbafbhzUFmafCQJua7V4wCD3Wf9RcQHkP76SnOCOaTrK31a5EvxaTE1oioaluQVk0OpHJhfhu3EbHYntTY3myoVZhj7gpeJnY24Pg8-rWsSno2DUjstJUcd3C9PnI5aQpW2XIVGISzv_UrtDdbbEOrvxRtpqvCJE37Q7A7SlPfzJ_Ge_WFX5rj9fnAOLRNvpmKKnedOGvJDt3dOqLNHbqsH7otrTh_cVYoqj3YrJiNPW6fNElsmRON8c7wcJWxEr4oABtvYLfz9j0gXO9isgpEouQ4j6rRmxQ9l5hepJaPvcjYpMsRwIICiGqhTpSJnnswhH7NwMGWYzX2nslptFvwBzYBrKhxsFddNS-rGvB7cKhtMOhtbaadN39zQXjeetr9YvMX3_QnDADB_7SqEJusztgd7m0QAx-4tc5jCxoVsKovd35P627VeptQwYp59no5tlvVH8piur-C8mE0iaEFaeNu0Ul4OakEGe5-lRwQSkSHDp41JSfccdQiK23XdOVTi-tBy5F8lk",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5OTVjZTkzYi0yMDEyLTQxMjctYjljNS1jZGIyMDVlNDI0NGYiLCJqdGkiOiI2ODdlN2M2MmJjM2YzNTExNTZhNGViY2FjZjgwOTVmZmVkZjAzNGYyOWEwOTk4ZTdkN2UxNDJlZTg0M2NkNGZjYjk0ODc0MzU4MDdmMzBkMSIsImlhdCI6MTY4ODU5OTkwOS41MTQ2NDQsIm5iZiI6MTY4ODU5OTkwOS41MTQ2NDcsImV4cCI6MTcyMDIyMjMwOS40MjY1MjUsInN1YiI6IjlmMWZiYThhLWNkZDMtNDUwOS1iMjNjLTFhMmY4YzllMTczZiIsInNjb3BlcyI6W119.JsQNkYg6ahe2sZcDnaqaoPV24l-1FfTCUp1IxtpGfTZPz2Nw5RJTzV2nfpp2KN6hIME9r6HMCUYevn8yEOeDZyxRO2RuVjBbBYFgp4K9f-t_SHq-VfizfiRxXI98EcGPPp25MaHO6-UJWkQyHJ0Ji1IVVALixmF10WHGzncakNJQ7UeD9IUwiw5IToFboj_1mUyKH37HixCAqSW3Q0PbxY2qE9IMf4USzM_vGPBdE1sf2DqxUSaXrbT1AJxJ_LgR61ooHUQu0hspYiJpuUkHUewXj00vvnFAGmROOchE-TRfBPcNnyDSr-Tw7ns4IQebAzFBp-noyvpzE21WYjuBgQCM_dCWVab-gtT1Ogal0X8X8qOkeLgjTklJmSwVyqMOus_I9i3KwYxcL21FzVdNdQCcibfvZTC-V1ZjEl0ooZWesE8e0o07ZvK4ZLTfzjGEtOWm-eFFRK6OXKvNiMZNHLAomi4183E1fVrA_ATDBjyNGsWanBA6e-1q-3_9I_Bp4brha19d3DLa-ldnOcXpTzYYUXwrpCQKo0OmRrjVr_wA5s6fbA2_1oI5FNmzkREkKRS01XGeMwEDk-819PJJ8FrGyki19FFD7qZqstHnfNZktl2if5eZgZb3CFoGnpPzDiFX3JIE6Axz6flotmYmltWnmxYfjxHU4SqFOCRTfi0",
 				"type": "string"
 			}
 		]
@@ -676,7 +749,7 @@
 	"variable": [
 		{
 			"key": "URL_API",
-			"value": "https://escritorio.venezuelacargo.com/api",
+			"value": "https://test.venezuelacargo.com/api",
 			"type": "string",
 			"disabled": true
 		},

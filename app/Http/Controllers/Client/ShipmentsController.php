@@ -124,12 +124,22 @@ class ShipmentsController extends Controller
         $hasta = $limit * $page;
         $desde = $hasta - $limit;
         $results = [];
+
         for ($i=0; $i < count($new_results) ; $i++) { 
             if( $i >= $desde && $i < $hasta ){
                 array_push($results, $new_results[$i]);
             }   
         }
 
+        $statusShipment = $this->status_shipment();
+
+        for ($i=0; $i < count($results) ; $i++) { 
+            for ($j=0; $j <count($statusShipment) ; $j++) { 
+                if( $statusShipment[$j]['valor'] == $results[$i]['estado_envio'] ){
+                    $results[$i]['map'] = $statusShipment[$j]['map'];
+                }
+            }
+        }
     
 
         return response()->json([
@@ -244,6 +254,103 @@ class ShipmentsController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'Fue agregado el comprobante de pago de la factura: '.$factura->nro_factura
+        ], 200);
+    }
+
+    public function status_shipment()
+    {
+        return [
+            [
+                "title" => 'ALMACÉN MIAMI',
+                "valor" => 'FACTURADO',
+                "check" => true,
+            ],
+            [
+                "title" => 'ENVIADO HACIA VENEZUELA',
+                "valor" => 'ENVIO-VENEZUELA',
+                "map" => [
+                    "id" => "a",
+                    "position" => [ "lat" => 25.7745431, "lng" => -80.1708802 ],
+                ],
+                "check" => false,
+            ],
+            [
+                "title" => 'EN TRÁNSITO HACIA VENEZUELA',
+                "valor" => 'ENTRANSITO-VENEZUELA',
+                "map" => [
+                    "id" => "b",
+                    "position" => [ "lat" => 23.732230669979263, "lng" => -71.19582448995914 ],
+                ],
+                "check" => false,
+            ],
+            [
+                "title" => 'ADUANA DE VENEZUELA',
+                "valor" => 'ADUANA-VENEZUELA',
+                "map" => [
+                    "id" => "c",
+                    "position" => [ "lat" => 10.6012894, "lng" => -66.9466783 ],
+                ],
+                "check" => false,
+            ],
+            [
+                "title" => 'ALMACÉN VENEZUELA',
+                "valor" => 'ALMACEN-VENEZUELA',
+                "map" => [
+                    "id" => "d",
+                    "position" => [ "lat" => 10.5997551, "lng" => -66.954827 ],
+                ],
+                "check" => false,
+            ],
+            [
+                "title" => 'ENTREGADO',
+                "valor" => 'ENTREGADO',
+                "check" => false,
+            ]
+        ];
+    }
+
+    public function count_invoice(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'usuario_id' => ['required'],
+        ]);
+
+        if ( isset($validator) && $validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'message' => $validator->errors()->first(),
+            ], 422);
+        }
+
+        return response()->json([
+            'status' => 200,
+            'result' => Facturas::where([['usuario_id', $request->usuario_id], ['activo', true], ['estado', 'Pendiente']])->count()
+        ], 200);
+    }
+
+    public function count_shipment(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'usuario_id' => ['required'],
+        ]);
+
+        if ( isset($validator) && $validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'message' => $validator->errors()->first(),
+            ], 422);
+        }
+
+        $countShipment = Envios::leftJoin('facturas', 'facturas.id_factura', '=', 'envios.id_factura')
+        ->where('facturas.activo', '=', true)
+        ->where('facturas.usuario_id', '=', $request->usuario_id)
+        ->where('envios.estado', '<>', 'FACTURADO')
+        ->where('envios.estado', '<>', 'ENTREGADO')
+        ->count();
+
+        return response()->json([
+            'status' => 200,
+            'result' => $countShipment
         ], 200);
     }
 }

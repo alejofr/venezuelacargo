@@ -110,7 +110,14 @@ Route::middleware('auth:api')->group(function() {
          * 
          */
 
-       
+        // count warehouse ( almacen )
+        Route::get('count-warehouse', 'App\Http\Controllers\Client\PrealertasController@count_almacen');
+
+        // count shipment
+        Route::get('count-shipment', 'App\Http\Controllers\Client\ShipmentsController@count_shipment');
+
+        // count invoice
+        Route::get('count-invoice', 'App\Http\Controllers\Client\ShipmentsController@count_invoice');
 
         Route::middleware('validAdmin')->group(function() { 
                 //get user

@@ -97,6 +97,26 @@ class PrealertasController extends Controller
         ], 200);
     }
 
+    public function count_almacen(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'usuario_id' => ['required'],
+            'estado' => ['required', 'in:recibido,pendiente']
+        ]);
+
+        if ( isset($validator) && $validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'message' => $validator->errors()->first(),
+            ], 422);
+        }
+        
+        return response()->json([
+            'status' => 200,
+            'result' => SolicitudesEnvios::where([['usuario_id', $request->usuario_id], ['estado', $request->estado]])->count()
+        ], 200);
+    }
+
     public function almacen()
     {
         $select = [
