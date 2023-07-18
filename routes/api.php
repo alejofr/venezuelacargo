@@ -22,7 +22,7 @@ Route::post('user/change_password_user', 'App\Http\Controllers\Auth\ApiAuthContr
 
 Route::post('users-old', 'App\Http\Controllers\Admin\UsersOldController@store');
 
-
+Route::get('invoice/print', 'App\Http\Controllers\Client\ShipmentsController@print_invoice');
         
 Route::middleware('auth:api')->group(function() { 
 

@@ -101,7 +101,7 @@ class PrealertasController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'usuario_id' => ['required'],
-            'estado' => ['required', 'in:recibido,pendiente']
+            //'estado' => ['required', 'in:recibido,pendiente']
         ]);
 
         if ( isset($validator) && $validator->fails()) {
@@ -110,10 +110,16 @@ class PrealertasController extends Controller
                 'message' => $validator->errors()->first(),
             ], 422);
         }
+
+        $count = Almacenes::leftJoin('solicitudes_envios', 'solicitudes_envios.id_solicitud', '=', 'almacenes.id_solicitud')
+        ->where('almacenes.activo', '=', true)
+        ->where('almacenes.estado', '=', 'recibido')
+        ->where('solicitudes_envios.usuario_id', '=', $request->usuario_id)
+        ->count();
         
         return response()->json([
             'status' => 200,
-            'result' => SolicitudesEnvios::where([['usuario_id', $request->usuario_id], ['estado', $request->estado]])->count()
+            'result' => $count
         ], 200);
     }
 
@@ -143,6 +149,7 @@ class PrealertasController extends Controller
         ->leftJoin('trackings', 'trackings.id_solicitud', '=', 'solicitudes_envios.id_solicitud')
         ->where('almacenes.activo', '=', true)
         ->where('solicitudes_envios.usuario_id', '=', $usuario_id)
+        ->where('almacenes.estado', '=', 'recibido')
         ->Where(function($query) {
             $query->orWhere('almacenes.warehouse',  'LIKE', '%'.$this->search.'%')
             ->orWhere('trackings.descripcion',  'LIKE', '%'.$this->search.'%');
