@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Almacenes;
 use App\Models\Configuracion\GastosExtras;
 use App\Models\Configuracion\MonedasCambios;
 use App\Models\Configuracion\MonedasCambiosTasas;
@@ -11,6 +12,7 @@ use App\Models\Facturas\Facturas;
 use App\Models\Facturas\FacturasContent;
 use App\Models\Facturas\FacturasInfoExtras;
 use App\Models\Facturas\FacturasInfoTrackings;
+use App\Models\SolicitudesEnvios;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -311,10 +313,11 @@ class ShipmentsController extends Controller
         ];
     }
 
-    public function count_invoice(Request $request)
+    public function rastreo(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'usuario_id' => ['required'],
+            'nro_search' => ['required']
         ]);
 
         if ( isset($validator) && $validator->fails()) {
@@ -324,9 +327,124 @@ class ShipmentsController extends Controller
             ], 422);
         }
 
+        $usuario_id = $request->usuario_id;
+        $this->search = $request->nro_search;
+        $result = [
+            'module' => 'Solicitud',
+            'data' => null
+        ];
+
+        $selectAlmacen = [
+            'almacenes.id_almacen',
+            'almacenes.warehouse',
+            'almacenes.tipo_envio', //Envio y Maritimo
+            'almacenes.estado',
+            'almacenes.status',
+            'almacenes.fecha_creado AS fecha_llegada',
+            'trackings.id_tracking',
+            'trackings.tracking',
+            'trackings.descripcion',
+            'solicitudes_envios.id_solicitud'
+        ];
+
+        $selectFactAndEnvios = [
+            'facturas.id_factura',
+            'facturas.nro_factura',
+            'facturas.nro_container',
+            'facturas.tipo_envio',
+            'facturas.total_usd',
+            'facturas.reempaque',
+            'facturas.estado AS estado_pago',
+            'envios.id_envio',
+            'envios.historial_estado',
+            'envios.estado AS estado_envio', //FACTURADO - ENVIADO-VENEZUELA - EN-TRANSITO-VENEZUELA - ADUENA-VENEZUELA - ALMACEN-VENEZUELA - ENVIADO-CLINTE - ENTREGADO
+            'envios.fecha_estimada',
+            'envios.fecha_creado',
+            'envios.fecha_editado',
+        ];
+
+        $almacen = Almacenes::select($selectAlmacen)
+        ->leftJoin('solicitudes_envios', 'solicitudes_envios.id_solicitud', '=', 'almacenes.id_solicitud')
+        ->leftJoin('trackings', 'trackings.id_solicitud', '=', 'solicitudes_envios.id_solicitud')
+        ->where('almacenes.activo', '=', true)
+        ->where('solicitudes_envios.usuario_id', '=', $usuario_id)
+        ->Where(function($query) {
+            $query->orWhere('almacenes.warehouse',  '=', $this->search)
+            ->orWhere('trackings.descripcion',  '=', $this->search);
+        })->first();
+
+
+        if( $almacen != null  ){
+            $result['module'] = 'Almacen';
+            $result['data'] = $almacen;
+
+            $facturaAndEnvio = Envios::select($selectFactAndEnvios)
+            ->leftJoin('facturas', 'facturas.id_factura', '=', 'envios.id_factura')
+            ->leftJoin('facturas_info_trackings', 'facturas_info_trackings.id_factura', 'facturas.id_factura')
+            ->where('facturas.activo', '=', true)
+            ->where('facturas.usuario_id', '=', $usuario_id)
+            ->where('envios.estado', '<>', 'FACTURADO')
+            ->Where(function($query) {
+                $query->orWhere('facturas_info_trackings.tracking',  '=', $this->search)
+                    ->orWhere('facturas_info_trackings.warehouse',  '=', $this->search);
+            })->first();
+
+            if( $facturaAndEnvio != null ){
+                $result['module'] = 'Factura-Envio';
+                $result['data'] = $facturaAndEnvio;
+            }
+
+        }else{
+            $selectSolicEnvio = [
+                'solicitudes_envios.id_solicitud',
+                'solicitudes_envios.fecha_llegada',
+                'solicitudes_envios.estado',
+                'solicitudes_envios.fecha_creado',
+                'empresas_transportes.id_empresa_transporte',
+                'empresas_transportes.nombre',
+                'trackings.id_tracking',
+                'trackings.tracking',
+                'trackings.descripcion'
+            ];
+
+            $solicitudEnvio = SolicitudesEnvios::select($selectSolicEnvio)
+            ->leftJoin('trackings', 'trackings.id_solicitud', '=', 'solicitudes_envios.id_solicitud')
+            ->leftJoin('usuarios', 'usuarios.usuario_id', '=', 'solicitudes_envios.usuario_id')
+            ->leftJoin('empresas_transportes', 'empresas_transportes.id_empresa_transporte', '=', 'solicitudes_envios.id_empresa_transporte')
+            ->where('solicitudes_envios.activo', '=', true)
+            ->where('usuarios.usuario_id', '=', $usuario_id)
+            ->Where('trackings.tracking', '=', $this->search)
+            ->first();
+
+            $result['data'] = $solicitudEnvio;
+        }
+
         return response()->json([
             'status' => 200,
-            'result' => Facturas::where([['usuario_id', $request->usuario_id], ['activo', true], ['estado', 'Pendiente']])->count()
+            'result' => $result
+        ], 200);
+
+    }
+
+    public function count_invoice(Request $request)
+    {
+        
+
+        if ( isset($validator) && $validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'message' => $validator->errors()->first(),
+            ], 422);
+        }
+
+        $countInvoice = Facturas::leftJoin('envios', 'envios.id_factura', '=', 'facturas.id_factura')
+        ->where([['usuario_id', $request->usuario_id], ['activo', true]])
+        ->where('envios.estado', '<>', 'FACTURADO')
+        ->count();
+
+        return response()->json([
+            'status' => 200,
+            'result' => $countInvoice
         ], 200);
     }
 

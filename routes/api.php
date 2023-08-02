@@ -190,7 +190,8 @@ Route::middleware('auth:api')->group(function() {
         });
        
 
-        
+        // rastreo de tracking o wh
+        Route::get('rastreo', 'App\Http\Controllers\Client\ShipmentsController@rastreo');
 
 
         /**
@@ -216,6 +217,8 @@ Route::middleware('auth:api')->group(function() {
 
                 Route::get('edit-user/client', 'App\Http\Controllers\Auth\ApiAuthController@editClient');
                 Route::put('user/client/{id}', 'App\Http\Controllers\Auth\ApiAuthController@updateClient');
+
+                
         });
        
 });

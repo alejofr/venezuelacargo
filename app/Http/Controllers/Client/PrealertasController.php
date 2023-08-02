@@ -143,6 +143,7 @@ class PrealertasController extends Controller
         $limit = (isset($limit) && $limit != '') ? $limit : 8;
         $page = (isset($page) && $page != 1) ? $page : 1;
         $query = isset($query) ? json_decode($query) : null;
+        $this->search = ( $query != null && isset($query->search) && $query->search != '' ) ? $query->search : "";
 
         $records = Almacenes::select($select)
         ->leftJoin('solicitudes_envios', 'solicitudes_envios.id_solicitud', '=', 'almacenes.id_solicitud')
