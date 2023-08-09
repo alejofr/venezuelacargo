@@ -370,7 +370,7 @@ class ShipmentsController extends Controller
         ->where('solicitudes_envios.usuario_id', '=', $usuario_id)
         ->Where(function($query) {
             $query->orWhere('almacenes.warehouse',  '=', $this->search)
-            ->orWhere('trackings.descripcion',  '=', $this->search);
+            ->orWhere('trackings.tracking',  '=', $this->search);
         })->first();
 
 
