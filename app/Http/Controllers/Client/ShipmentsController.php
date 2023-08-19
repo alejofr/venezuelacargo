@@ -449,6 +449,29 @@ class ShipmentsController extends Controller
         ], 200);
     }
 
+    public function count_invoice_two(Request $request)
+    {
+        
+
+        if ( isset($validator) && $validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'message' => $validator->errors()->first(),
+            ], 422);
+        }
+
+        $countInvoice = Facturas::leftJoin('envios', 'envios.id_factura', '=', 'facturas.id_factura')
+        ->where([['usuario_id', $request->usuario_id], ['activo', true]])
+        ->where('envios.estado', '<>', 'FACTURADO')
+        ->where('facturas.estado', '=', 'Pendiente')
+        ->count();
+
+        return response()->json([
+            'status' => 200,
+            'result' => $countInvoice
+        ], 200);
+    }
+
     public function count_shipment(Request $request)
     {
         $validator = Validator::make($request->all(), [

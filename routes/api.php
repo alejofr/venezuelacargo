@@ -119,6 +119,9 @@ Route::middleware('auth:api')->group(function() {
         // count invoice
         Route::get('count-invoice', 'App\Http\Controllers\Client\ShipmentsController@count_invoice');
 
+        //count_invoice_two
+        Route::get('count-invoice-marly', 'App\Http\Controllers\Client\ShipmentsController@count_invoice_two');
+
         Route::middleware('validAdmin')->group(function() { 
                 //get user
                 Route::get('edit-user', 'App\Http\Controllers\Auth\ApiAuthController@edit');
