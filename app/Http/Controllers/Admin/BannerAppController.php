@@ -14,6 +14,7 @@ class BannerAppController extends Controller
     {
         return response()->json([
             'status' => 200,
+            'url' => env('APP_URL'),
             'results' => BannerApp::all(),
         ], 200);
     }
@@ -32,7 +33,7 @@ class BannerAppController extends Controller
         }
 
         BannerApp::create([
-            'ruta_image' => asset(Storage::url($request->image->store('public/images')))
+            'ruta_image' => Storage::url($request->image->store('public/images'))
         ]);
 
         return response()->json([

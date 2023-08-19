@@ -89,6 +89,7 @@ class PrealertasController extends Controller
         return response()->json([
             'status' => 200,
             'results' => $results,
+            'url' => env('APP_URL'),
             'pagination' => [
                 'numPage' => intval($page),
                 'resultPage' => count($results),
@@ -170,6 +171,7 @@ class PrealertasController extends Controller
         return response()->json([
             'status' => 200,
             'results' => $results,
+            'url' => env('APP_URL'),
             'pagination' => [
                 'numPage' => intval($page),
                 'resultPage' => count($results),
@@ -336,6 +338,7 @@ class PrealertasController extends Controller
         return response()->json([
             'status' => 200,
             'results' => $result,
+            'url' => env('APP_URL'),
         ], 200);
     }
 

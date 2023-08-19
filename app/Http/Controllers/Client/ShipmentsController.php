@@ -440,6 +440,7 @@ class ShipmentsController extends Controller
         $countInvoice = Facturas::leftJoin('envios', 'envios.id_factura', '=', 'facturas.id_factura')
         ->where([['usuario_id', $request->usuario_id], ['activo', true]])
         ->where('envios.estado', '<>', 'FACTURADO')
+        ->where('facturas.estado', '=', 'Pendiente')
         ->count();
 
         return response()->json([
