@@ -13,7 +13,7 @@
                                 <div class="form-floating mt-2">
                                 <input type="text"   class="form-control dropdown-toggle" data-bs-toggle="dropdown" v-model="ubicacion" value="" id="ubicacion" name="ubicacion" @keyup="inputSearch($event)" aria-expanded="false" v-validate="'required'" data-vv-validate-on="change" :class="{'is-invalid': errors.first('ubicacion')}">
                                 <label for="ubicacion">Buscar por zona o codigo postal</label>
-                                <ul class="dropdown-menu input-result-search" id="ubicacion" style="max-height: 220px;overflow: overlay;">
+                                <ul class="dropdown-menu input-result-search" id="ubicacion" :class="datos.length > 0 && 'show'" style="max-height: 220px;overflow: overlay;">
                                     <li v-if="datos.length == 0">No se encontraron resultados</li>
                                     <li v-for="(data, index) in datos" :key="index">
                                         <label class="form-check" :for="index">

@@ -309,6 +309,7 @@ class ShipmentsController extends Controller
                 "title" => 'ENTREGADO',
                 "valor" => 'ENTREGADO',
                 "check" => false,
+                "map" => []
             ]
         ];
     }

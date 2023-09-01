@@ -1498,6 +1498,7 @@ var render = function () {
                             "ul",
                             {
                               staticClass: "dropdown-menu input-result-search",
+                              class: _vm.datos.length > 0 && "show",
                               staticStyle: {
                                 "max-height": "220px",
                                 overflow: "overlay",

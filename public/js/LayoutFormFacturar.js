@@ -430,10 +430,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           if (volumen < 1) {
             volumen = 1;
           }
+          /* if( pie_cubico < 1.37 ){
+               pie_cubico = 1.37
+           } */
 
-          if (pie_cubico < 1.37) {
-            pie_cubico = 1.37;
-          }
 
           _this.dato.volumen = volumen.toFixed(2);
           _this.dato.pie_cubico = pie_cubico.toFixed(2);

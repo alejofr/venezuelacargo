@@ -150,6 +150,7 @@ class ApiAuthController extends Controller
             'status' => 200,
             'user' => $request->user(),
             'role' => $request->user()->getRoleNames()[0],
+            'user_info' => UsuariosInfo::where('usuario_id', '=', $request->user()->usuario_id)->first(),
             'permissions' => $permissions
         ]);
 

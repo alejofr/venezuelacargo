@@ -82,7 +82,8 @@ class PrealertasController extends Controller
 		if( $this->estado == 'recibido' ){
             for ($i=0; $i <count($results) ; $i++) { 
                $almacen = Almacenes::select(['status'])->where('id_solicitud', '=', $results[$i]['id_solicitud'])->first();
-               $results[$i]['status_instruct'] = $almacen->status;
+               if( $almacen != null )
+                $results[$i]['status_instruct'] = $almacen->status;
             }
         }
 
