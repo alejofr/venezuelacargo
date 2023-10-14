@@ -22,3 +22,24 @@
 </body>
     <script src="{{ asset('js/tabler.min.js') }}"></script>
 </html>
+
+<?php 
+    /*use Carbon\Carbon;
+
+    $date = Carbon::now();
+    $fecha_actual = $date->format('Y-m-d');
+    $dia_semana = date('w', strtotime($fecha_actual));
+
+    $hora = $date->toTimeString();
+    $horaSta = strtotime($hora);
+
+    echo $hora;
+    echo "<br>";
+    echo $horaSta;
+    echo "<br>";
+    echo $dia_semana;
+
+    if( $horaSta > strtotime('15:00:00')  ){
+        echo "es mayor";
+    }*/
+?>

@@ -406,18 +406,19 @@ class PrealertasController extends Controller
         $fecha_actual = $date->format('Y-m-d');
         $dia_semana = date('w', strtotime($fecha_actual));
 
-        if( $request->reempaque == 'si' && $dia_semana != 6 && $dia_semana != 7 && $dia_semana != 3 && $dia_semana != 2 && $dia_semana != 1 ){
+        if( $request->reempaque == 'si' && $dia_semana != 6 && $dia_semana != 7 && $dia_semana != 2 && $dia_semana != 1 ){
 			return response()->json([
 				'status' => 403,
-				'message' => 'Error, Para las instrucciones de envio con REEMPAQUE, son de Sabados a Miercoles hasta la 12:00 PM',
+				'message' => 'Error, Para las instrucciones de envio con REEMPAQUE, son de Sabados a Martes hasta la 04:30 PM',
 			], 403);
         }
 		
 		$hora = $date->toTimeString();
-		if( $request->reempaque == 'si' && $dia_semana == 3 && $hora > '12:00:00'  ){
+        $hora = strtotime($hora);
+		if( $request->reempaque == 'si' && $dia_semana == 2 && $hora > strtotime('16:30:00')  ){
 			return response()->json([
 				'status' => 403,
-				'message' => 'Error, Para las instrucciones de envio con REEMPAQUE, son de Sabados a Miercoles hasta la 12:00 PM',
+				'message' => 'Error, Para las instrucciones de envio con REEMPAQUE, son de Sabados a Martes hasta la 04:30 PM',
 			], 403);
 		}
 

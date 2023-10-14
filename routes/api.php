@@ -45,7 +45,6 @@ Route::middleware('auth:api')->group(function() {
         //Imprimir factura o descargar 
         Route::get('print-invoice/{id}', 'App\Http\Controllers\Admin\FacturasController@print_invoice');
 
-
         //method payment
         Route::get('methods-payments', function() {
                 return response()->json([
@@ -53,11 +52,11 @@ Route::middleware('auth:api')->group(function() {
                         'results' => [
                                 [
                                         'type_payment' => 'VES',
-                                        'name' => 'BANCO BANESCO',
-                                        'account' => '0134 0869 6486 9302 5833',
+                                        'name' => 'Banca Amiga',
+                                        'account' => '0172-0802-17-8025350409',
                                         'type' => 'CTA CORRIENTE',
-                                        'headline' => 'CARLOS EDUARDO RESTREPO RUIZ',
-                                        'id' => 'V-17.632.959',
+                                        'headline' => 'Venezuela Cargo C.A',
+                                        'id' => 'J-501734542',
                                         'phone' => '(0412)1812469',
                                         'email' => '',
                                         'nota' => 'PAGOS POR TRANSFERENCIAS Y PAGO MÓVIL',
