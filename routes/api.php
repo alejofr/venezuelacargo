@@ -59,7 +59,19 @@ Route::middleware('auth:api')->group(function() {
                                         'id' => 'J-501734542',
                                         'phone' => '(0412)1812469',
                                         'email' => '',
-                                        'nota' => 'PAGOS POR TRANSFERENCIAS Y PAGO MÓVIL',
+                                        'nota' => 'PAGOS POR TRANSFERENCIAS',
+                                        'extra' => []
+                                ],
+                                [
+                                        'type_payment' => 'VES',
+                                        'name' => 'Banca Amiga',
+                                        'account' => '',
+                                        'type' => '',
+                                        'headline' => 'Venezuela Cargo C.A',
+                                        'id' => 'J-501734542',
+                                        'phone' => '(0412)1812469',
+                                        'email' => '',
+                                        'nota' => 'PAGO MÓVIL',
                                         'extra' => []
                                 ],
                                 [

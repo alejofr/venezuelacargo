@@ -130,14 +130,20 @@
                                         <h3 class="card-title">BINANCE USDT</h3>
                                         <p><strong>CORREO ELECTRÓNICO:</strong> Importacionesreca@hotmail.com</p>
                                     </div>
+
                                     <div v-show="pago.tipo_pago == 'ves'">
+                                        <h3 class="card-title">Banca Amiga</h3>
+                                        <p><strong>Rif:</strong> J501734542</p>
+                                        <p><strong>TELÉFONO: </strong> (0412)1812469 </p>
+                                        <p><strong>Nota:</strong>PAGO MÓVIL</p>
+                                        <br>
                                         <h3 class="card-title">Banca Amiga</h3>
                                         <p><strong>NRO DE CUENTA:</strong> 0172-0802-17-8025350409</p>
                                         <p><strong>TIPO:</strong>CTA CORRIENTE</p>
                                         <p><strong>TITULAR: </strong> Venezuela Cargo C.A </p>
                                         <p><strong>Rif:</strong> J501734542</p>
                                         <p><strong>TELÉFONO: </strong> (0412)1812469 </p>
-                                        <p><strong>Nota:</strong> PAGOS POR TRANSFERENCIAS Y PAGO MÓVIL</p>
+                                        <p><strong>Nota:</strong> PAGOS POR TRANSFERENCIAS</p>
                                     </div>
                                 </div>
                             </div>
