@@ -487,7 +487,7 @@ class FacturasController extends Controller
 
             //body content
             for ($j=0; $j <count($data_content) ; $j++) { 
-                if( $j !== $memory_indice_content && $data_content[$j]['warehouse'] != ''){
+                if( $data_content[$j]['warehouse'] != ''){
                     $factura_content = new FacturasContent;
                     $factura_content->id_factura_tracking = $factura_wh_father->id_factura_tracking;
                     $factura_content->id_factura = $factura->id_factura;
@@ -500,11 +500,18 @@ class FacturasController extends Controller
                     $factura_content->sub_total = $data_content[$j]['sub_total'];
                     $factura_content->save();
                     
-                    $memory_indice_content = $j;
+                    unset($data_content[$j]);
 
                     break 1;
                 }
             }
+
+            $aux_content = [];
+            foreach ($data_content as $value) {
+                array_push($aux_content, $value);
+            }
+
+            $data_content = $aux_content;
         }
 
         for ($j=0; $j <count($data_content) ; $j++) { 
@@ -731,6 +738,7 @@ class FacturasController extends Controller
         }
 
         return $contents;
+
     }
 
     public function print_invoice($id)

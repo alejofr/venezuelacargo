@@ -17,7 +17,7 @@
         <br>
         <strong>NAME:</strong>primer nombre + Código<br>
         <strong>LASTNAME:</strong>VzlaCargo<br>
-        <strong>ADDRESS:</strong>8601 nw 72nd st<br>
+        <strong>ADDRESS:</strong>6994 NW 82 Ave<br>
         <strong>CITY:</strong>Miami<br>
         <strong>ZIP CODE:</strong>33166<br>
         <strong>PHONE:</strong>7868720552<br>

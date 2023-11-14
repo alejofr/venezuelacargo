@@ -301,6 +301,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2375,7 +2381,7 @@ var render = function () {
                             },
                             [
                               _c("h3", { staticClass: "card-title" }, [
-                                _vm._v("BANCO BANESCO"),
+                                _vm._v("Banca Amiga"),
                               ]),
                               _vm._v(" "),
                               _vm._m(6),
@@ -2384,11 +2390,23 @@ var render = function () {
                               _vm._v(" "),
                               _vm._m(8),
                               _vm._v(" "),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c("h3", { staticClass: "card-title" }, [
+                                _vm._v("Banca Amiga"),
+                              ]),
+                              _vm._v(" "),
                               _vm._m(9),
                               _vm._v(" "),
                               _vm._m(10),
                               _vm._v(" "),
                               _vm._m(11),
+                              _vm._v(" "),
+                              _vm._m(12),
+                              _vm._v(" "),
+                              _vm._m(13),
+                              _vm._v(" "),
+                              _vm._m(14),
                             ]
                           ),
                         ]),
@@ -2454,7 +2472,7 @@ var render = function () {
                   Array.isArray(_vm.accion.create) &&
                   _vm.accion.create.length != 0
                     ? _c("div", { staticClass: "dropdown" }, [
-                        _vm._m(12),
+                        _vm._m(15),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -2547,7 +2565,7 @@ var render = function () {
                   Array.isArray(_vm.accion.delete) &&
                   _vm.accion.delete.length != 0
                     ? _c("div", { staticClass: "dropdown" }, [
-                        _vm._m(13),
+                        _vm._m(16),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -2882,9 +2900,30 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("p", [_c("strong", [_vm._v("Rif:")]), _vm._v(" J501734542")])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("strong", [_vm._v("TELÉFONO: ")]),
+      _vm._v(" (0412)1812469 "),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_c("strong", [_vm._v("Nota:")]), _vm._v("PAGO MÓVIL")])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("p", [
       _c("strong", [_vm._v("NRO DE CUENTA:")]),
-      _vm._v(" 0134 0869 6486 9302 5833"),
+      _vm._v(" 0172-0802-17-8025350409"),
     ])
   },
   function () {
@@ -2899,14 +2938,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", [
       _c("strong", [_vm._v("TITULAR: ")]),
-      _vm._v(" CARLOS EDUARDO RESTREPO RUIZ"),
+      _vm._v(" Venezuela Cargo C.A "),
     ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", [_c("strong", [_vm._v("C.I:")]), _vm._v("V-17.632.959")])
+    return _c("p", [_c("strong", [_vm._v("Rif:")]), _vm._v(" J501734542")])
   },
   function () {
     var _vm = this
@@ -2923,7 +2962,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", [
       _c("strong", [_vm._v("Nota:")]),
-      _vm._v(" PAGOS POR TRANSFERENCIAS Y PAGO MÓVIL"),
+      _vm._v(" PAGOS POR TRANSFERENCIAS"),
     ])
   },
   function () {

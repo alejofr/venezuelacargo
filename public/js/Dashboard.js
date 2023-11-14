@@ -428,7 +428,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", [
       _vm._v("Address: "),
-      _c("strong", [_vm._v("8601 NW 72nd ST")]),
+      _c("strong", [_vm._v("6994 NW 82 Ave")]),
       _vm._v(". City: "),
       _c("strong", [_vm._v("MIAMI")]),
     ])

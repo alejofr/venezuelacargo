@@ -229,7 +229,7 @@
                             <tr>
                                 <td style="font-size: 11; line-height: 0.6em; padding-left: 10px">
                                     <p>venezuelacargo.com</p>
-                                    <p>8601 NW 72nd Miami, FL - 33166</p>
+                                    <p>6994 NW 82 Ave. Miami, FL 33166</p>
                                     <p>+ 58 (412) 181 2469</p>
 
                                 </td>
@@ -447,6 +447,7 @@
                             </p>
                         </td>
                     </tr>
+
                 @endforeach
                 <tr style="font-size: 11; text-align: center; line-height: 1.2em;">
                     <td style="text-align: center; border-right:1px solid #ccc !important; border-top:1px solid #ccc !important;">
