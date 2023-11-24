@@ -610,21 +610,22 @@
     <footer style="margin-top:1cm !important;">
         <hr style="">
         <table>
+
             <tr>
                 <td valign="top" style="text-align: left; padding-left: 10px;">
                     <li class="fcolor"
                         style="text-align: left; font-size: 6;  line-height: 1.2em; list-style-type: none;">
                         <strong>MÉTODOS DE PAGO</strong></li>
                     <li style="text-align: left; padding-left: 10px; font-size: 6; line-height: 1.2em"><strong>TITULAR:
-                            Carlos Eduardo Restrepo Ruiz - CI: V-17.632.959 - TELÉFONO: (0412)1812469</strong></li>
+                        Venezuela Cargo C.A - CI: J-501734542 - TELÉFONO: (0412)1812469</strong></li>
                     <hr style="color: #ccc; line-height: 0.5em">
                     <li class="fcolor"
                         style="text-align: left; font-size: 6;  line-height: 1.2em; list-style-type: none;">
                         <strong>BANCOS VENEZOLANOS (PAGOS EN BOLÍVARES)</strong></li>
-                    <li style="text-align: left; padding-left: 10px; font-size: 6; line-height: 1.2em">BANCO BANESCO
+                    <li style="text-align: left; padding-left: 10px; font-size: 6; line-height: 1.2em">BANCA AMIGA
                     </li>
                     <li style="text-align: left; padding-left: 10px; font-size: 6; line-height: 1.2em">NRO DE CUENTA:
-                        0134 0869 6486 9302 5833 TIPO: CTA CORRIENTE</li>
+                        0172-0802-17-8025350409 TIPO: CTA CORRIENTE</li>
                     <li style="text-align: left; padding-left: 10px; font-size: 6; line-height: 1.2em">NOTAS: PAGOS POR
                         TRANSFERENCIAS Y PAGO MÓVIL</li>
                     <hr style="color: #ccc; line-height: 0.5em">

@@ -99,7 +99,7 @@ export default {
             estados_select: [],
             change_estado: '',
             id: '',
-            active_fecha: false,
+            active_fecha: true,
             fech_estimada: '',
             alert: {}
         };
@@ -111,12 +111,18 @@ export default {
                 this.axios.get(`envios/${this.$route.params.id}/edit`,)
                 .then( (response) => {
                     console.log(response.data);
-                    const { id_envio, historial_estado, estado } = response.data.result;
+                    const { id_envio, historial_estado, estado, fecha_estimada } = response.data.result;
                     let h_estados = [];
                     this.id = this.$route.params.id;
 
                     if( historial_estado != null  )
                         h_estados = [...historial_estado.historial];
+
+                    if( fecha_estimada != null ){
+                        this.fech_estimada = fecha_estimada;
+                    }
+
+                    this.change_estado = estado;
 
 
                     const estado_actual = estados.filter((item) => item.valor == estado)[0];
@@ -136,7 +142,10 @@ export default {
 
                     let active = false;
                     for (let i = 0; i < estados.length; i++) {
-                        if( estados[i].check == false ){
+                        const { title, valor } = estados[i];
+                        this.estados_select.push({title, valor});
+
+                        /*if( estados[i].check == false ){
                             if( active == false ){
                                 const { title, valor } = estados[i];
                                 if( estados[i].valor == 'ENVIO-VENEZUELA' ){
@@ -145,7 +154,7 @@ export default {
                                 this.estados_select.push({title, valor})
                                 break;
                             }
-                        }
+                        }*/
                         
                     }
 
@@ -172,12 +181,22 @@ export default {
             
             if( this.change_estado != '' ){
                 let historial = [];
-                for (let i = 0; i < estados.length; i++) {
+
+                const indiceCurrent = estados.findIndex(item => item.valor == this.change_estado);
+
+               
+
+                for (let i = indiceCurrent; i >= 0  ; i--) {
+                    const { title, valor } = estados[i];
+                    historial.push({title,valor});
+                }
+
+                /*for (let i = 0; i < estados.length; i++) {
                     if( estados[i].check == true ){
                         const { title, valor } = estados[i];
                         historial.push({title,valor})
                     }
-                }
+                }*/
 
                 let estadoEnvio = {
                     estado: this.change_estado,

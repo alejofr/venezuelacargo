@@ -160,7 +160,7 @@ var estados = [{
       estados_select: [],
       change_estado: '',
       id: '',
-      active_fecha: false,
+      active_fecha: true,
       fech_estimada: '',
       alert: {}
     };
@@ -179,10 +179,17 @@ var estados = [{
                   var _response$data$result = response.data.result,
                       id_envio = _response$data$result.id_envio,
                       historial_estado = _response$data$result.historial_estado,
-                      estado = _response$data$result.estado;
+                      estado = _response$data$result.estado,
+                      fecha_estimada = _response$data$result.fecha_estimada;
                   var h_estados = [];
                   _this.id = _this.$route.params.id;
                   if (historial_estado != null) h_estados = _toConsumableArray(historial_estado.historial);
+
+                  if (fecha_estimada != null) {
+                    _this.fech_estimada = fecha_estimada;
+                  }
+
+                  _this.change_estado = estado;
                   var estado_actual = estados.filter(function (item) {
                     return item.valor == estado;
                   })[0];
@@ -200,24 +207,25 @@ var estados = [{
                   var active = false;
 
                   for (var _i = 0; _i < estados.length; _i++) {
-                    if (estados[_i].check == false) {
-                      if (active == false) {
-                        var _estados$_i = estados[_i],
-                            title = _estados$_i.title,
-                            valor = _estados$_i.valor;
+                    var _estados$_i = estados[_i],
+                        title = _estados$_i.title,
+                        valor = _estados$_i.valor;
 
-                        if (estados[_i].valor == 'ENVIO-VENEZUELA') {
-                          _this.active_fecha = true;
+                    _this.estados_select.push({
+                      title: title,
+                      valor: valor
+                    });
+                    /*if( estados[i].check == false ){
+                        if( active == false ){
+                            const { title, valor } = estados[i];
+                            if( estados[i].valor == 'ENVIO-VENEZUELA' ){
+                                this.active_fecha = true;
+                            }
+                            this.estados_select.push({title, valor})
+                            break;
                         }
+                    }*/
 
-                        _this.estados_select.push({
-                          title: title,
-                          valor: valor
-                        });
-
-                        break;
-                      }
-                    }
                   }
 
                   _this.estados = estados;
@@ -246,18 +254,26 @@ var estados = [{
 
       if (this.change_estado != '') {
         var historial = [];
+        var indiceCurrent = estados.findIndex(function (item) {
+          return item.valor == _this2.change_estado;
+        });
 
-        for (var i = 0; i < estados.length; i++) {
-          if (estados[i].check == true) {
-            var _estados$i = estados[i],
-                title = _estados$i.title,
-                valor = _estados$i.valor;
-            historial.push({
-              title: title,
-              valor: valor
-            });
-          }
+        for (var i = indiceCurrent; i >= 0; i--) {
+          var _estados$i = estados[i],
+              title = _estados$i.title,
+              valor = _estados$i.valor;
+          historial.push({
+            title: title,
+            valor: valor
+          });
         }
+        /*for (let i = 0; i < estados.length; i++) {
+            if( estados[i].check == true ){
+                const { title, valor } = estados[i];
+                historial.push({title,valor})
+            }
+        }*/
+
 
         var estadoEnvio = {
           estado: this.change_estado,
