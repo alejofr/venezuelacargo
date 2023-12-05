@@ -108,10 +108,11 @@ class EnviosController extends Controller
     public function update($id, Request $request)
     {
         $envio = Envios::find($id);
-        if( $envio->estado != 'ENTREGADO' ){
+        //if( $envio->estado != 'ENTREGADO' ){
             $validator = Validator::make($request->all(), [
                 'estado' => ['required'],
                 'h' => ['required'],
+                'fech_estimada' => ['required'],
             ]);
     
             if ( isset($validator) && $validator->fails()) {
@@ -127,21 +128,9 @@ class EnviosController extends Controller
            
             $envio->historial_estado = json_encode($request->h);
             $envio->estado = $estado;
+            $envio->fecha_estimada = $request->fech_estimada;
     
-            if( $estado == 'ENVIO-VENEZUELA' ){
-                $valid = Validator::make($request->all(), [
-                    'fech_estimada' => ['required'],
-                ]);
-    
-                if ( isset($valid) && $valid->fails()) {
-                    return response()->json([
-                        'status' => 422,
-                        'message' => $valid->errors()->first(),
-                    ], 422);
-                }
-    
-                $envio->fecha_estimada = $request->fech_estimada;
-            }
+
     
             $envio->update();
     
@@ -149,12 +138,12 @@ class EnviosController extends Controller
                 'status' => 200,
                 'message' => 'El estado del envio fue actualizado con exito',
             ], 200);
-        }else{
+        /*}else{
             return response()->json([
                 'status' => 422,
                 'message' => 'Ya este envio fue entregado.',
             ], 422);
-        }
+        }*/
 
         
     }
