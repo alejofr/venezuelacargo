@@ -205,6 +205,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1880,6 +1888,76 @@ var render = function () {
                                                                 (!_vm.almacen_status
                                                                   ? "N/A"
                                                                   : item.reempaque)
+                                                            )
+                                                          ),
+                                                        ]),
+                                                      ]),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "dropdown-item disabled",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "small text-muted me-1",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "Con Reempaque:"
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("div", [
+                                                        _c("strong", [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              " " +
+                                                                (!_vm.almacen_status
+                                                                  ? "N/A"
+                                                                  : item.reempaque)
+                                                            )
+                                                          ),
+                                                        ]),
+                                                      ]),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "dropdown-item disabled",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "small text-muted me-1",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "Fecha instruccion:"
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("div", [
+                                                        _c("strong", [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              " " +
+                                                                (!_vm.almacen_status
+                                                                  ? "N/A"
+                                                                  : item.fecha_editado)
                                                             )
                                                           ),
                                                         ]),

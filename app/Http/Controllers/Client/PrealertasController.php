@@ -423,6 +423,7 @@ class PrealertasController extends Controller
 		}
 
         
+        
 
         $tracking->reempaque =  $request->reempaque;
         $tracking->total_seguro = $request->total_seguro;

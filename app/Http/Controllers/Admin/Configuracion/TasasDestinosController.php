@@ -213,6 +213,21 @@ class TasasDestinosController extends Controller
         ], 200);
     }
 
+    public function destroy($id)
+    {
+        $tasa_destino = TasasDestinos::where('activo', '=', true)->where('id_tasa_destino', '=', $id)->first();
+
+        if( $tasa_destino != null ){
+          
+            $tasa_destino->delete();
+        }
+
+        return response()->json([
+            'status' => 200,
+            'results' => $tasa_destino
+        ], 200);
+    }
+
     public function calculadora(Request $request)
     {
         $validator = Validator::make($request->all(), [

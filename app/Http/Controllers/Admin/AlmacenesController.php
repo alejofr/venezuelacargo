@@ -516,6 +516,7 @@ class AlmacenesController extends Controller
             ->leftJoin('geo_ubigeo', 'geo_ubigeo.id_ubigeo', '=', 'usuarios_info.id_ubigeo')
             ->leftJoin('config_tasas_destinos_estados', 'config_tasas_destinos_estados.id_estado', '=', 'geo_estados.id_estado')
             ->leftJoin('config_tasas_destinos', 'config_tasas_destinos.id_tasa_destino', '=', 'config_tasas_destinos_estados.id_tasa_destino')
+            ->where('config_tasas_destinos_estados.activo', '=', true)
             ->where('usuarios_info.usuario_id', '=', $usuario_id)->first();
 
             $results['cliente'] = $cliente;

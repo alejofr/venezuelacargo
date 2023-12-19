@@ -97,6 +97,14 @@
                                                                     <span class="small text-muted me-1">Con Reempaque:</span>
                                                                     <div> <strong>{{ ` ${ !almacen_status ? 'N/A' : item.reempaque }`  }}</strong></div>
                                                                 </div>
+                                                                <div class="dropdown-item disabled"> 
+                                                                    <span class="small text-muted me-1">Con Reempaque:</span>
+                                                                    <div> <strong>{{ ` ${ !almacen_status ? 'N/A' : item.reempaque }`  }}</strong></div>
+                                                                </div>
+                                                                <div class="dropdown-item disabled"> 
+                                                                    <span class="small text-muted me-1">Fecha instruccion:</span>
+                                                                    <div> <strong>{{ ` ${ !almacen_status ? 'N/A' : item.fecha_editado }`  }}</strong></div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

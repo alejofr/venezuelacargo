@@ -59,6 +59,11 @@ class Trackings extends Model
 
     const CREATED_AT = 'fecha_creado';
     const UPDATED_AT = 'fecha_editado';
+
+    protected $casts = [
+        'fecha_editado' => 'datetime:Y-m-d',
+    ];
+    
     
     public static function boot()
     {
