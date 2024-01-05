@@ -32,6 +32,9 @@
                     <span class="avatar bg-green-lt status-vzla"> {{ item.estado }}</span>
                 </td>
                 <td>
+                    <span class="" v-show="item.status == 1"> {{ item.fecha_editado }}</span>
+                </td>
+                <td>
                     <div class="btn-list flex-nowrap m-0-all" style="align-items: center;">
                         <router-link style="margin-bottom: 0 !important;" :to="{ name: 'InstructAlmacen', params:{id: item.id_solicitud}, query: { estado: item.estado_prealerta } }"  class="btn semaforo-btn align-text-top me-2" :class="{'btn-danger': item.status == 0, 'btn-success': item.status == 1 }" :title="(item.status == 0 ? 'Por Asignar' : 'Asigando')" v-title></router-link>
                         <router-link  

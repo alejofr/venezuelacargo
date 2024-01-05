@@ -85,6 +85,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 var reItemAlmacen = function reItemAlmacen() {
   var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var id = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
@@ -460,6 +463,23 @@ var render = function () {
           _c("span", { staticClass: "avatar bg-green-lt status-vzla" }, [
             _vm._v(" " + _vm._s(item.estado)),
           ]),
+        ]),
+        _vm._v(" "),
+        _c("td", [
+          _c(
+            "span",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: item.status == 1,
+                  expression: "item.status == 1",
+                },
+              ],
+            },
+            [_vm._v(" " + _vm._s(item.fecha_editado))]
+          ),
         ]),
         _vm._v(" "),
         _c("td", [

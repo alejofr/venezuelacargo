@@ -46,6 +46,7 @@ export default {
                     {name: 'tipo de Envio'},
                     {name: 'Envio'},
                     {name: 'Estado'},
+                    {name: 'Fecha instruccion'},
                     {name: ''}
                 ],
                 columns: [

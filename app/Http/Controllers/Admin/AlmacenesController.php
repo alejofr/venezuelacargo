@@ -43,6 +43,7 @@ class AlmacenesController extends Controller
             'trackings.volumen',
             'trackings.pie_cubico',
             'trackings.reempaque',
+            'trackings.fecha_editado',
             'usuarios_info.usuario_id',
             'usuarios_info.nombres', 
             'usuarios_info.apellidos',

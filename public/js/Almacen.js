@@ -72,6 +72,8 @@ var request = function request() {
         }, {
           name: 'Estado'
         }, {
+          name: 'Fecha instruccion'
+        }, {
           name: ''
         }],
         columns: [{
