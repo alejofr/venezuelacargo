@@ -478,7 +478,7 @@ var render = function () {
                 },
               ],
             },
-            [_vm._v(" " + _vm._s(item.fecha_editado))]
+            [_vm._v(" " + _vm._s(item.fecha_editado_tracking))]
           ),
         ]),
         _vm._v(" "),

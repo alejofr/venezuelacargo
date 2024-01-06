@@ -32,7 +32,7 @@
                     <span class="avatar bg-green-lt status-vzla"> {{ item.estado }}</span>
                 </td>
                 <td>
-                    <span class="" v-show="item.status == 1"> {{ item.fecha_editado }}</span>
+                    <span class="" v-show="item.status == 1"> {{ item.fecha_editado_tracking }}</span>
                 </td>
                 <td>
                     <div class="btn-list flex-nowrap m-0-all" style="align-items: center;">
