@@ -154,11 +154,11 @@ class AlmacenesController extends Controller
             $tracking->num_piezas =  $track->num_piezas;
             $tracking->volumen = ( $track->alto *  $track->largo * $track->ancho ) / 166; //alto * largo * ancho / 166
             $tracking->volumen = round( $tracking->volumen * 100 ) / 100;
-            $tracking->volumen = ( $tracking->volumen >= 1 ) ? $tracking->volumen : 1;
+            $tracking->volumen = ( $tracking->volumen >= 5 ) ? $tracking->volumen : 5;
 
             $tracking->pie_cubico = ( $track->alto *  $track->largo * $track->ancho ) / 1728; //alto * largo * ancho / 1728
             $tracking->pie_cubico = round( $tracking->pie_cubico * 100 ) /100;
-            $tracking->pie_cubico = ( $tracking->pie_cubico > 1.37 ) ? $tracking->pie_cubico : 1.37;
+            $tracking->pie_cubico = ( $tracking->pie_cubico > 1.25 ) ? $tracking->pie_cubico : 1.25;
             $tracking->ruta_image = Storage::url($request->images[$track->id_tracking]->store('public/images'));
                 //$tracking->ruta_image = $tracking->ruta_image;
             
@@ -287,11 +287,11 @@ class AlmacenesController extends Controller
                 $tracking->num_piezas =  $track->num_piezas;
                 $tracking->volumen = ( $track->alto *  $track->largo * $track->ancho ) / 166; //alto * largo * ancho / 166
                 $tracking->volumen = round( $tracking->volumen * 100 ) / 100;
-                $tracking->volumen = ( $tracking->volumen >= 1 ) ? $tracking->volumen : 1;
+                $tracking->volumen = ( $tracking->volumen >= 5 ) ? $tracking->volumen : 5;
 
                 $tracking->pie_cubico = ( $track->alto *  $track->largo * $track->ancho ) / 1728; //alto * largo * ancho / 1728
                 $tracking->pie_cubico = round( $tracking->pie_cubico * 100 ) /100;
-                $tracking->pie_cubico = ( $tracking->pie_cubico > 1.37 ) ? $tracking->pie_cubico : 1.37;
+                $tracking->pie_cubico = ( $tracking->pie_cubico > 1.25 ) ? $tracking->pie_cubico : 1.25;
 
                 if( $request->images != null ){
                     $tracking->ruta_image = Storage::url($request->images[$track->id_tracking]->store('public/images'));
@@ -378,11 +378,11 @@ class AlmacenesController extends Controller
             $tracking->num_piezas =  $track->num_piezas;
             $tracking->volumen = ( $track->alto *  $track->largo * $track->ancho ) / 166; //alto * largo * ancho / 166
             $tracking->volumen = round( $tracking->volumen * 100 ) / 100;
-            $tracking->volumen = ( $tracking->volumen >= 1 ) ? $tracking->volumen : 1;
+            $tracking->volumen = ( $tracking->volumen >= 5 ) ? $tracking->volumen : 5;
 
             $tracking->pie_cubico = ( $track->alto *  $track->largo * $track->ancho ) / 1728; //alto * largo * ancho / 1728
             $tracking->pie_cubico = round( $tracking->pie_cubico * 100 ) /100;
-            $tracking->pie_cubico = ( $tracking->pie_cubico > 1.37 ) ? $tracking->pie_cubico : 1.37;
+            $tracking->pie_cubico = ( $tracking->pie_cubico > 1.25 ) ? $tracking->pie_cubico : 1.25;
             $tracking->ruta_image = Storage::url($request->images[$track->tracking]->store('public/images'));
 
             $tracking->save();

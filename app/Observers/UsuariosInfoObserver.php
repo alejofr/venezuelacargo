@@ -29,6 +29,7 @@ class UsuariosInfoObserver
 
             $admin = "venezuelacargo058@gmail.com";
             //$admin = "marlibyv@gmail.com";
+            // $admin = 'jamtechus@gmail.com';
 
     
             Mail::to($admin)->send(new NotificationAdminRegisterUser($details));
