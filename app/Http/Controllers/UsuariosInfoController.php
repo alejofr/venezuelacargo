@@ -14,11 +14,21 @@ class UsuariosInfoController extends Controller
 
         $this->search = $request->search;
 
+        if( strpos($this->search, ' ') ){
+            $this->search = explode(" ", $this->search);
+        }
+
+
         $results = UsuariosInfo::where('usuarios_info.activo', '=', true)
         ->Where(function($query) {
-            $query->orWhere('usuarios_info.nombres',  'LIKE', '%'.$this->search.'%')
+            if( is_array($this->search) ){
+                $query->where('usuarios_info.nombres',  'LIKE', '%'.$this->search[0].'%')
+                ->where('usuarios_info.apellidos',  'LIKE', '%'.$this->search[1].'%');
+            }else{
+                $query->orWhere('usuarios_info.nombres',  'LIKE', '%'.$this->search.'%')
             ->orWhere('usuarios_info.apellidos',  'LIKE', '%'.$this->search.'%')
             ->orWhere('usuarios_info.cod_usuario',  'LIKE', '%'.$this->search.'%');
+            }
         })->get()->toArray();
 
         return response()->json([

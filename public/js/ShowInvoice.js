@@ -427,12 +427,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           volumen = (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(alto) * (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(ancho) * (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(largo) / 166;
           pie_cubico = (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(alto) * (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(ancho) * (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(largo) / 1728;
 
-          if (volumen < 1) {
-            volumen = 1;
+          if (volumen < 5) {
+            volumen = 5;
           }
 
-          if (pie_cubico < 1.37) {
-            pie_cubico = 1.37;
+          if (pie_cubico < 1.25) {
+            pie_cubico = 1.25;
           }
 
           _this.dato.volumen = volumen.toFixed(2);
@@ -1617,14 +1617,14 @@ var calc_cost_env_aereo = function calc_cost_env_aereo() {
   });
 
   if (envio === 'directo') {
-    total_lb = total_lb <= 3.33 ? 3.33 : total_lb;
+    total_lb = total_lb <= 5 ? 5 : total_lb;
   } else {
-    if (vol > peso && vol > 3.33) {
+    if (vol > peso && vol > 5) {
       total_lb = vol;
-    } else if (peso > vol && peso > 3.33) {
+    } else if (peso > vol && peso > 5) {
       total_lb = peso;
     } else {
-      total_lb = 3.33;
+      total_lb = 5;
     }
   }
 

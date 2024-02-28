@@ -725,14 +725,14 @@ var calc_cost_env_aereo = function calc_cost_env_aereo() {
   });
 
   if (envio === 'directo') {
-    total_lb = total_lb <= 3.33 ? 3.33 : total_lb;
+    total_lb = total_lb <= 5 ? 5 : total_lb;
   } else {
-    if (vol > peso && vol > 3.33) {
+    if (vol > peso && vol > 5) {
       total_lb = vol;
-    } else if (peso > vol && peso > 3.33) {
+    } else if (peso > vol && peso > 5) {
       total_lb = peso;
     } else {
-      total_lb = 3.33;
+      total_lb = 5;
     }
   }
 

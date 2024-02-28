@@ -14,7 +14,7 @@ const request = () => {
     name: 'IndexPrealertas',
     url: 'prealertas',
     params: {
-        limit : 8,
+        limit : 16,
         page : 1,
         orderBy : 'solicitudes_envios.fecha_llegada',
         ascending : 0,

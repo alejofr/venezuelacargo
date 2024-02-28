@@ -161,6 +161,7 @@ class AlmacenesController extends Controller
             $tracking->pie_cubico = ( $tracking->pie_cubico > 1.25 ) ? $tracking->pie_cubico : 1.25;
             $tracking->ruta_image = Storage::url($request->images[$track->id_tracking]->store('public/images'));
                 //$tracking->ruta_image = $tracking->ruta_image;
+
             
 
             //$tracking->descripcion = $track->descripcion;
