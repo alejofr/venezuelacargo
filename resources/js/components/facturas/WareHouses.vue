@@ -246,8 +246,8 @@ export default {
                         volumen = 5;
                     }
 
-                    if( pie_cubico < 1.25 ){
-                        pie_cubico = 1.25
+                    if( pie_cubico < 1.67 ){
+                        pie_cubico = 1.67;
                     }
 
                     this.dato.volumen = volumen.toFixed(2);

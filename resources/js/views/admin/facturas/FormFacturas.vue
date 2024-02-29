@@ -684,7 +684,7 @@ export default {
                     let volumen = tracking.volumen;
                     let pie_cubico = tracking.pie_cubico;
                     let vol = 5;
-                    let pie = 1.25;
+                    let pie = 1.67;
                     let peso = tracking.peso;
                     let reempaque = 0;
                     let seguro = tracking.seguro;
