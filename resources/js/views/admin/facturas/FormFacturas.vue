@@ -507,8 +507,8 @@ export default {
                             let cost_x_tracking = 0;
                             let volumen = newTrancking[i].volumen;
                             let pie_cubico = newTrancking[i].pie_cubico;
-                            let vol = 3.33;
-                            let pie = 1.37;
+                            let vol = 5;
+                            let pie = 1.67;
                             let peso = newTrancking[i].peso;
                             let reempaque = 0;
                             let seguro = 0;

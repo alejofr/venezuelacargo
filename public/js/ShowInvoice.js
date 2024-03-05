@@ -427,12 +427,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           volumen = (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(alto) * (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(ancho) * (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(largo) / 166;
           pie_cubico = (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(alto) * (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(ancho) * (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(largo) / 1728;
 
-          if (volumen < 5) {
-            volumen = 5;
+          if (volumen < 7.5) {
+            volumen = 7.5;
           }
 
-          if (pie_cubico < 1.25) {
-            pie_cubico = 1.25;
+          if (pie_cubico < 1.67) {
+            pie_cubico = 1.67;
           }
 
           _this.dato.volumen = volumen.toFixed(2);
