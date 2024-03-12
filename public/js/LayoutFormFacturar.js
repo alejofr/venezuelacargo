@@ -1561,23 +1561,31 @@ var data_contents = function data_contents() {
   var data = [];
   var costo_envio = _formatPrice__WEBPACK_IMPORTED_MODULE_0__.formatPrice.desctPrice(tarifa, ',');
   costo_envio = parseNum(costo_envio);
+  console.log("ver tipo de envio", envio, type_envio);
   wh.forEach(function (element) {
     var ft = 0,
         vol = 0,
         secure = 0,
         sub_total = 0,
-        cost_env = 0;
+        cost_env = 0,
+        pieFt = 0;
     var pie_cubico = element.pie_cubico,
         volumen = element.volumen,
         seguro = element.seguro,
         warehouse = element.warehouse,
         peso = element.peso;
     ft = parseNum(pie_cubico);
+    pieFt = parseNum(pie_cubico);
     vol = parseNum(volumen);
     secure = _formatPrice__WEBPACK_IMPORTED_MODULE_0__.formatPrice.desctPrice(seguro, ',');
     secure = parseNum(secure);
 
     if (type_envio === 'maritimo') {
+      if (envio == 'directo' && 1.67 > ft) {
+        ft = 1.67;
+        pieFt = 1.67;
+      }
+
       cost_env = costo_envio * ft;
     }
 
@@ -1587,7 +1595,7 @@ var data_contents = function data_contents() {
     sub_total = _formatPrice__WEBPACK_IMPORTED_MODULE_0__.formatPrice.constPrice("".concat(sub_total.toFixed(2)), ',', '.');
     data.push({
       warehouse: warehouse,
-      pie_cubico: pie_cubico,
+      pie_cubico: pieFt,
       volumen: volumen,
       peso: peso,
       total_lb: '',
@@ -1625,14 +1633,14 @@ var calc_cost_env_aereo = function calc_cost_env_aereo() {
   });
 
   if (envio === 'directo') {
-    total_lb = total_lb <= 5 ? 5 : total_lb;
+    total_lb = total_lb <= 7.5 ? 7.5 : total_lb;
   } else {
-    if (vol > peso && vol > 5) {
+    if (vol > peso && vol > 7.5) {
       total_lb = vol;
-    } else if (peso > vol && peso > 5) {
+    } else if (peso > vol && peso > 7.5) {
       total_lb = peso;
     } else {
-      total_lb = 5;
+      total_lb = 7.5;
     }
   }
 

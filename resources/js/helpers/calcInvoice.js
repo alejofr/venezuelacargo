@@ -154,17 +154,28 @@ const data_contents = (wh = [], type_envio = 'aereo', tarifa = '0.00', envio = '
     let costo_envio = formatPrice.desctPrice(tarifa, ',');
         costo_envio = parseNum(costo_envio);
 
+        console.log("ver tipo de envio", envio, type_envio);
+
     wh.forEach((element) => {
-        let ft = 0, vol = 0, secure = 0, sub_total = 0, cost_env = 0;
+        let ft = 0, vol = 0, secure = 0, sub_total = 0, cost_env = 0, pieFt = 0;
         const { pie_cubico, volumen, seguro, warehouse, peso } = element;
 
         ft = parseNum(pie_cubico);
+        pieFt = parseNum(pie_cubico);
         vol = parseNum(volumen);
         secure = formatPrice.desctPrice(seguro, ',');
         secure = parseNum(secure);
 
         if( type_envio === 'maritimo' ){
+
+            if( envio == 'directo' && 1.67 > ft  ){
+                ft = 1.67;
+                pieFt = 1.67;
+            }
+                
+
             cost_env = costo_envio * ft;
+
         }
 
         sub_total = cost_env + secure;
@@ -174,7 +185,7 @@ const data_contents = (wh = [], type_envio = 'aereo', tarifa = '0.00', envio = '
 
         data.push({
             warehouse,
-            pie_cubico,
+            pie_cubico: pieFt,
             volumen,
             peso,
             total_lb: '',
@@ -207,14 +218,14 @@ const calc_cost_env_aereo = (data = [], envio = 'directo', costo_envio = 0) => {
     });
 
     if( envio === 'directo' ){
-        total_lb = ( total_lb <= 5 ) ? 5 : total_lb;
+        total_lb = ( total_lb <= 7.5 ) ? 7.5 : total_lb;
     }else{
-        if( vol > peso && vol > 5 ){
+        if( vol > peso && vol > 7.5 ){
             total_lb = vol;
-        }else if( peso > vol && peso > 5 ){
+        }else if( peso > vol && peso > 7.5 ){
             total_lb = peso;
         }else{
-            total_lb = 5;
+            total_lb = 7.5;
         }
     }
 
