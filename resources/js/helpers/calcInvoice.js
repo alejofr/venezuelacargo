@@ -168,9 +168,9 @@ const data_contents = (wh = [], type_envio = 'aereo', tarifa = '0.00', envio = '
 
         if( type_envio === 'maritimo' ){
 
-            if( envio == 'directo' && 1.67 > ft  ){
-                ft = 1.67;
-                pieFt = 1.67;
+            if( envio == 'directo' && 1.72 > ft  ){
+                ft = 1.72;
+                pieFt = 1.72;
             }
                 
 
