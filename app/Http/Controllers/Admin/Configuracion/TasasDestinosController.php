@@ -269,7 +269,7 @@ class TasasDestinosController extends Controller
 
         $pie_cubico = ( $alto *  $largo * $ancho ) / 1728; //alto * largo * ancho / 1728
         $pie_cubico = round( $pie_cubico * 100 ) / 100;
-        $pie_cubico = ( $pie_cubico > 1.37 ) ? $pie_cubico : 1.37;
+        $pie_cubico = ( $pie_cubico > 1.72 ) ? $pie_cubico : 1.72;
         $pie_cubico = round( $pie_cubico * 100 ) / 100;
         $xTarifa = 0;
         $msg = 'La tarifa de envío, es de '.$tarifa.' USD. El Volumen calculado es de '.$volumen.' y el pie cúbico es de '.$pie_cubico.'.';

@@ -14,7 +14,7 @@
                                 <div class="mb-3">
                                     <div class="form-floating mb-3">
                                         <input type="text" v-model="categoria.estado" name="estado" v-validate="'required'" class="form-control" :class="{'is-invalid': errors.first('estado')}" id="estado"  >
-                                        <label for="estado">Còdigo Postal</label>
+                                        <label for="estado">Estado</label>
                                         <div v-if="errors.has('estado')" class="invalid-feedback">{{errors.first('estado')}}</div>
                                     </div>
                                     <div class="form-floating">
