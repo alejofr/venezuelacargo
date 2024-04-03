@@ -160,6 +160,12 @@ export const routesAdmin = [
 				component:  () => import(/* webpackChunkName: "Admin" */ '../views/admin/Admin.vue'),
 				children: [
 					{
+						name: 'GeolocalizacionCrear',
+						meta: { title: 'Crear Ubicación', requireAuth: true },
+						path: 'crear',
+						component: () => import(/* webpackChunkName: "AddGeolocalizacion" */ '../views/admin/configuracion/ubigeo/AddGeolocalizacion.vue')
+					},
+					{
 						name: 'GeolocalizacionIndex',
 						path: 'all',
 						meta: { title: 'Geolocalización', requireAuth: true  },

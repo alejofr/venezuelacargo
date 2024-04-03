@@ -41,5 +41,6 @@
     "/js/AlertMessageComponent.js": "/js/AlertMessageComponent.js",
     "/js/TableAdminComponent.js": "/js/TableAdminComponent.js",
     "/js/FilterComponent.js": "/js/FilterComponent.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/js/AddGeolocalizacion.js": "/js/AddGeolocalizacion.js"
 }

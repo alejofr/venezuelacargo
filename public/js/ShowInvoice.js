@@ -431,8 +431,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             volumen = 7.5;
           }
 
-          if (pie_cubico < 1.67) {
-            pie_cubico = 1.67;
+          if (pie_cubico < 1.72) {
+            pie_cubico = 1.72;
           }
 
           _this.dato.volumen = volumen.toFixed(2);
@@ -1573,9 +1573,9 @@ var data_contents = function data_contents() {
     secure = parseNum(secure);
 
     if (type_envio === 'maritimo') {
-      if (envio == 'directo' && 1.67 > ft) {
-        ft = 1.67;
-        pieFt = 1.67;
+      if (envio == 'directo' && 1.72 > ft) {
+        ft = 1.72;
+        pieFt = 1.72;
       }
 
       cost_env = costo_envio * ft;

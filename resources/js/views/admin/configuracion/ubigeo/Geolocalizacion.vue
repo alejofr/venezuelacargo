@@ -43,6 +43,7 @@ export default {
                     {name: 'Estado'},
                     {name: 'Zona'},                    
                     {name: 'Codigo Postal'},
+                    {name: ''},
                 ],
                 columns: [
                     {name: 'Estado', value: 'geo_estados.estado'},
@@ -52,7 +53,7 @@ export default {
             },
             view: 'GeoDataTableComponent',
             accion: {
-               create: '',
+               create: 'GeolocalizacionCrear',
                edit: 'GeolocalizacionEditar',
                delete: 'geolocalizacion'
             },

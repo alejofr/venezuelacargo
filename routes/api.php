@@ -146,6 +146,7 @@ Route::middleware('auth:api')->group(function() {
         
                 //ruta geolocalizacion
                 Route::resource('geolocalizacion', App\Http\Controllers\Admin\Configuracion\GeolocalizacionController::class);
+                Route::post('geolocalizacion-store', 'App\Http\Controllers\Admin\Configuracion\GeolocalizacionController@store');
                 //get estados all
                 Route::get('estados-usuarios', 'App\Http\Controllers\Admin\Configuracion\GeolocalizacionController@state');
                 //get_ubigeo

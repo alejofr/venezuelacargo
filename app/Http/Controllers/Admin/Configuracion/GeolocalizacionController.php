@@ -155,6 +155,46 @@ class GeolocalizacionController extends Controller
 
     }
 
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'estado' => ['required'],
+            'zona' => ['required'],
+            'codigo_postal' => ['required'],
+            'activo' => ['required'],
+        ]);
+
+        if ( isset($validator) && $validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'message' => $validator->errors()->first(),
+            ], 422);
+        }
+
+        if( Estados::where('estado', '=', $request->estado)->count() > 0 ){
+            return response()->json([
+                'status' => 422,
+                'message' => 'El valor de estado, ya se encuentra en uso',
+            ], 422);
+        }
+
+        $estado = Estados::create(['estado' =>  $request->estado]);
+
+        $ubigeo = new Ubigeo();
+        $ubigeo->id_estado = $estado->id_estado;
+        $ubigeo->zona = $request->zona;
+        $ubigeo->codigo_postal = $request->codigo_postal;
+        $ubigeo->activo = ( $request->activo == 1 ) ? true : false;
+        $ubigeo->save();
+
+           
+        return response()->json([
+            'status' => 200,
+            'message' => 'La Ubicación ha sido creada',
+        ], 200);
+
+    }
+
     public function update($id, Request $request)
     {
         $ubigeo = Ubigeo::find($id);

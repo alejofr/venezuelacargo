@@ -77,6 +77,8 @@ var request = function request() {
           name: 'Zona'
         }, {
           name: 'Codigo Postal'
+        }, {
+          name: ''
         }],
         columns: [{
           name: 'Estado',
@@ -91,7 +93,7 @@ var request = function request() {
       },
       view: 'GeoDataTableComponent',
       accion: {
-        create: '',
+        create: 'GeolocalizacionCrear',
         edit: 'GeolocalizacionEditar',
         "delete": 'geolocalizacion'
       },
