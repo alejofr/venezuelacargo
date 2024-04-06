@@ -242,9 +242,9 @@ export default {
                     volumen = (parseNum(alto) * parseNum(ancho) * parseNum(largo)) / 166;
                     pie_cubico = (parseNum(alto) * parseNum(ancho) * parseNum(largo)) / 1728;
 
-                    if( volumen < 7.5 ){
+                    /*if( volumen < 7.5 ){
                         volumen = 7.5;
-                    }
+                    }*/
 
                     if( pie_cubico < 1.72 ){
                         pie_cubico = 1.72;

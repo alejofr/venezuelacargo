@@ -26,6 +26,7 @@
     "/js/Facturas.js": "/js/Facturas.js",
     "/js/LayoutFormFacturar.js": "/js/LayoutFormFacturar.js",
     "/js/Envios.js": "/js/Envios.js",
+    "/js/AddGeolocalizacion.js": "/js/AddGeolocalizacion.js",
     "/js/IndexGeolocalizacion.js": "/js/IndexGeolocalizacion.js",
     "/js/EditGeolocalizacion.js": "/js/EditGeolocalizacion.js",
     "/js/TasasDestino.js": "/js/TasasDestino.js",
@@ -41,6 +42,5 @@
     "/js/AlertMessageComponent.js": "/js/AlertMessageComponent.js",
     "/js/TableAdminComponent.js": "/js/TableAdminComponent.js",
     "/js/FilterComponent.js": "/js/FilterComponent.js",
-    "/css/app.css": "/css/app.css",
-    "/js/AddGeolocalizacion.js": "/js/AddGeolocalizacion.js"
+    "/css/app.css": "/css/app.css"
 }

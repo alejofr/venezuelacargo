@@ -448,7 +448,7 @@ var render = function () {
                           }),
                           _vm._v(" "),
                           _c("label", { attrs: { for: "estado" } }, [
-                            _vm._v("Còdigo Postal"),
+                            _vm._v("Estado"),
                           ]),
                           _vm._v(" "),
                           _vm.errors.has("estado")
