@@ -9,6 +9,9 @@
     </div>
 </template>
 <script>
+
+import { shippingStates } from '../../../helpers/shippingStates.js';
+
 const request = () => {
    return {
     name: 'IndexEnvios',
@@ -68,32 +71,7 @@ export default {
                             name: 'title',
                             value: 'valor'
                         },
-                        data: [
-                            {
-                                title: 'ALMACÉN MIAMI',
-                                valor: 'FACTURADO'
-                            },
-                            {
-                                title: 'ENVIADO HACIA VENEZUELA',
-                                valor: 'ENVIO-VENEZUELA'
-                            },
-                            {
-                                title: 'EN TRÁNSITO HACIA VENEZUELA',
-                                valor: 'ENTRANSITO-VENEZUELA'
-                            },
-                            {
-                                title: 'ADUANA DE VENEZUELA',
-                                valor: 'ADUANA-VENEZUELA'
-                            },
-                            {
-                                title: 'ALMACÉN VENEZUELA',
-                                valor: 'ALMACEN-VENEZUELA'
-                            },
-                            {
-                                title: 'ENTREGADO',
-                                valor: 'ENTREGADO'
-                            },
-                        ]
+                        data: shippingStates
                        
                     },
                     {

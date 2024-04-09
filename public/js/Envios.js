@@ -42,6 +42,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_BtnVolver_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../components/BtnVolver.vue */ "./resources/js/components/BtnVolver.vue");
+/* harmony import */ var _helpers_shippingStates_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../helpers/shippingStates.js */ "./resources/js/helpers/shippingStates.js");
 
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -119,37 +120,8 @@ var AlertMessageComponent = function AlertMessageComponent() {
 };
 
 
-var estados = [{
-  title: 'ALMACÉN MIAMI',
-  valor: 'FACTURADO',
-  check: true,
-  active: false
-}, {
-  title: 'ENVIADO HACIA VENEZUELA',
-  valor: 'ENVIO-VENEZUELA',
-  check: false,
-  active: false
-}, {
-  title: 'EN TRÁNSITO HACIA VENEZUELA',
-  valor: 'ENTRANSITO-VENEZUELA',
-  check: false,
-  active: false
-}, {
-  title: 'ADUANA DE VENEZUELA',
-  valor: 'ADUANA-VENEZUELA',
-  check: false,
-  active: false
-}, {
-  title: 'ALMACÉN VENEZUELA',
-  valor: 'ALMACEN-VENEZUELA',
-  check: false,
-  active: false
-}, {
-  title: 'ENTREGADO',
-  valor: 'ENTREGADO',
-  check: false,
-  active: false
-}];
+
+var estados = _helpers_shippingStates_js__WEBPACK_IMPORTED_MODULE_2__.shippingStates;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'ChangeEstadoEnvio',
   data: function data() {
@@ -336,6 +308,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _helpers_shippingStates_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../helpers/shippingStates.js */ "./resources/js/helpers/shippingStates.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -352,6 +325,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+
+
 var request = function request() {
   return {
     name: 'IndexEnvios',
@@ -423,25 +398,7 @@ var request = function request() {
             name: 'title',
             value: 'valor'
           },
-          data: [{
-            title: 'ALMACÉN MIAMI',
-            valor: 'FACTURADO'
-          }, {
-            title: 'ENVIADO HACIA VENEZUELA',
-            valor: 'ENVIO-VENEZUELA'
-          }, {
-            title: 'EN TRÁNSITO HACIA VENEZUELA',
-            valor: 'ENTRANSITO-VENEZUELA'
-          }, {
-            title: 'ADUANA DE VENEZUELA',
-            valor: 'ADUANA-VENEZUELA'
-          }, {
-            title: 'ALMACÉN VENEZUELA',
-            valor: 'ALMACEN-VENEZUELA'
-          }, {
-            title: 'ENTREGADO',
-            valor: 'ENTREGADO'
-          }]
+          data: _helpers_shippingStates_js__WEBPACK_IMPORTED_MODULE_0__.shippingStates
         }, {
           name: 'tipo_envio',
           type: 'select',
@@ -486,6 +443,114 @@ var request = function request() {
 
 /***/ }),
 
+/***/ "./resources/js/helpers/shippingStates.js":
+/*!************************************************!*\
+  !*** ./resources/js/helpers/shippingStates.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "shippingStates": () => (/* binding */ shippingStates)
+/* harmony export */ });
+var shippingStates = [{
+  title: 'ALMACÉN MIAMI',
+  valor: 'FACTURADO',
+  check: true,
+  active: false
+}, {
+  title: 'PENDIENTE POR PAGO',
+  valor: 'ENVIO-VENEZUELA',
+  map: {
+    id: "a",
+    position: {
+      lat: 25.7745431,
+      lng: -80.1708802
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'EN TRÁNSITO HACIA VENEZUELA',
+  valor: 'ENTRANSITO-VENEZUELA',
+  map: {
+    id: "b",
+    position: {
+      lat: 23.732230669979263,
+      lng: -71.19582448995914
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'EN PUERTO VENEZOLANO',
+  valor: 'PUERTO-VENEZOLANO',
+  map: {
+    id: "c",
+    position: {
+      lat: 10.601428576954985,
+      lng: -66.96054375984357
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'HACIENDO ADUANA VENEZUELA',
+  valor: 'ADUANA-VENEZUELA',
+  map: {
+    id: "d",
+    position: {
+      lat: 10.6012894,
+      lng: -66.9466783
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'ALMACEN EXTERNO ADUANA',
+  valor: 'ALMACEN-EXTERNO-ADUANA',
+  map: {
+    id: "e",
+    position: {
+      lat: 10.601428576954985,
+      lng: -66.96054375984357
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'ALMACÉN VENEZUELA CARGO LA GUAIRA',
+  valor: 'ALMACEN-VENEZUELA',
+  map: {
+    id: "h",
+    position: {
+      lat: 10.5997551,
+      lng: -66.954827
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'EN RUTA NACIONAL',
+  valor: 'EN-RUTA-NACIONAL',
+  map: {
+    id: "i",
+    position: {
+      lat: 10.458737617888016,
+      lng: -66.91349306300683
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'ENTREGADO',
+  valor: 'ENTREGADO',
+  check: false,
+  active: false
+}];
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/envios/ChangeEstadoEnvio.vue?vue&type=style&index=0&lang=css&":
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/admin/envios/ChangeEstadoEnvio.vue?vue&type=style&index=0&lang=css& ***!
@@ -502,7 +567,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.process{\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n.process_item{\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n}\n.process_icon{\n    width: 80px;\n    height: 80px;\n    border-radius: 50%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n.process_text{\n    height: 100%;\n    display: flex;\n    align-items: center;\n}\n.process_text-title{\n    font-size: 16px;\n    font-weight: 600;\n    text-transform: uppercase;\n}\n.process_icon i{font-size: 28px;}\n.process_disabled{\n    border: 3px solid rgba(98, 105, 118, 0.16);\n}\n.process_text.process_disabled, .process_text.process_check {border: none;}\n.process_icon.process_disabled i, .process_text.process_disabled .process_text-title{\n    color: rgba(98, 105, 118, 0.30);\n}\n.process_check{\n    border: 3px solid #0ca678;\n}\n.process_icon.process_check i, .process_text.process_check .process_text-title{\n    color: #0ca678;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.process{\n    /*display: flex;\n    align-items: center;\n    justify-content: center;*/\n}\n.process_item{\n    /*display: flex;\n    flex-direction: row;\n    align-items: center;*/\n}\n.process_icon{\n    width: 80px;\n    height: 80px;\n    border-radius: 50%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n.process_text{\n    height: 100%;\n    display: flex;\n    align-items: center;\n}\n.process_text-title{\n    font-size: 16px;\n    font-weight: 600;\n    text-transform: uppercase;\n}\n.process_icon i{font-size: 28px;}\n.process_disabled{\n    border: 3px solid rgba(98, 105, 118, 0.16);\n}\n.process_text.process_disabled, .process_text.process_check {border: none;}\n.process_icon.process_disabled i, .process_text.process_disabled .process_text-title{\n    color: rgba(98, 105, 118, 0.30);\n}\n.process_check{\n    border: 3px solid #0ca678;\n}\n.process_icon.process_check i, .process_text.process_check .process_text-title{\n    color: #0ca678;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1211,7 +1276,7 @@ var render = function () {
                           "div",
                           {
                             key: index,
-                            staticClass: "process_item col-md-2 col-12",
+                            staticClass: "process_item col-md-3 col-12 mb-3",
                           },
                           [
                             _c(

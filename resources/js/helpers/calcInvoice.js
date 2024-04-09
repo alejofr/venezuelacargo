@@ -195,7 +195,38 @@ const data_contents = (wh = [], type_envio = 'aereo', tarifa = '0.00', envio = '
         });
     });
 
+    if( type_envio === 'maritimo' &&  envio != 'directo' & data.length > 0 ){
+        data = calc_cost_reempaque_maritimo(data, costo_envio);
+    }
+
     return type_envio == 'aereo' && data.length > 0 ? calc_cost_env_aereo(data, envio, costo_envio) : data;
+}
+
+const calc_cost_reempaque_maritimo = (data = [], costo_envio = 0) => {
+    let pie_cubico = 0, cost_env = 0, sub_total = 0;
+
+    data.forEach((element) => {
+        pie_cubico = pie_cubico + parseNum(element.pie_cubico);
+    });
+
+    if( 1.72  > pie_cubico ){
+        pie_cubico = 1.72;
+    }
+
+    cost_env = pie_cubico * costo_envio;
+    sub_total = cost_env;
+    cost_env = formatPrice.constPrice(`${cost_env.toFixed(2)}`, ',', '.');
+    sub_total = formatPrice.constPrice(`${sub_total.toFixed(2)}`, ',', '.');
+
+    data.push({
+        ...dataContentAereo,
+        pie_cubico,
+        cost_env,
+        sub_total
+    })
+
+    return data;
+
 }
 
 const calc_cost_env_aereo = (data = [], envio = 'directo', costo_envio = 0) => {

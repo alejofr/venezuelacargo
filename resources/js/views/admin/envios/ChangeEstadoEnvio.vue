@@ -7,7 +7,7 @@
                     <div class="card-body">
                         <div class="w-100 mb-3" v-if="activeComponent != ''"><component :is='activeComponent' v-bind:alert="alert"></component></div>
                         <div class="w-100 process mb-3 mt-3 row">
-                             <div class="process_item col-md-2 col-12" v-for="(item, index) in estados" :key="index">
+                             <div class="process_item col-md-3 col-12 mb-3" v-for="(item, index) in estados" :key="index">
                                 <div class="process_text" :class="{'process_disabled':item.check == false, 'process_check':item.check == true}">
                                     <p class="process_text-title">{{item.title}}</p>
                                 </div>
@@ -50,44 +50,11 @@ const Error404 = () => import('../../../components/Error404Component.vue');
 const AlertMessageComponent = () => import('../../../components/AlertMessageComponent.vue');
 
 import BtnVolver from '../../../components/BtnVolver.vue';
-let estados = [
-    {
-        title: 'ALMACÉN MIAMI',
-        valor: 'FACTURADO',
-        check: true,
-        active: false,
-    },
-    {
-        title: 'ENVIADO HACIA VENEZUELA',
-        valor: 'ENVIO-VENEZUELA',
-        check: false,
-        active: false,
-    },
-    {
-        title: 'EN TRÁNSITO HACIA VENEZUELA',
-        valor: 'ENTRANSITO-VENEZUELA',
-        check: false,
-        active: false,
-    },
-    {
-        title: 'ADUANA DE VENEZUELA',
-        valor: 'ADUANA-VENEZUELA',
-        check: false,
-        active: false,
-    },
-    {
-        title: 'ALMACÉN VENEZUELA',
-        valor: 'ALMACEN-VENEZUELA',
-        check: false,
-        active: false,
-    },
-    {
-        title: 'ENTREGADO',
-        valor: 'ENTREGADO',
-        check: false,
-        active: false,
-    },
-]
+import { shippingStates } from '../../../helpers/shippingStates.js';
+
+
+let estados = shippingStates; 
+
 export default {
     name: 'ChangeEstadoEnvio',
 
@@ -261,14 +228,14 @@ export default {
 </script>
 <style>
     .process{
-        display: flex;
+        /*display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: center;*/
     }
     .process_item{
-        display: flex;
+        /*display: flex;
         flex-direction: row;
-        align-items: center;
+        align-items: center;*/
     }
     .process_icon{
         width: 80px;

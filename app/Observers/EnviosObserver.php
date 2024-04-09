@@ -206,7 +206,7 @@ class EnviosObserver
 
     public function reStatus($valor)
     {
-        $status = $this->status;
+        $status = Envios::shippingStates();
 
         for ($i=0; $i < count($status) ; $i++) { 
             if( $status[$i]['valor'] == $valor ){

@@ -20,8 +20,9 @@
                 <span class="avatar status-vzla" :class="{'bg-red-lt': item.estado_pago == 'Pendiente', 'bg-yellow-lt': item == 'Verificacion-Pago', 'bg-teal-lt': item.estado_pago == 'Pago-Verificado'}">{{ `${item.estado_pago == 'Pendiente'? 'Pendiente por Pago' : item.estado_pago == 'Verificacion-Pago' ? 'Verificando Pago' : 'Pago Verificado'}`  }}</span>
             </td>
             <td>
-                 <span class="" style="text-transform: uppercase;" v-if="item.estado_envio == 'ENVIO-VENEZUELA'"> ENVIADO A VENEZUELA </span>
+                <span class="" style="text-transform: uppercase;" v-if="item.estado_envio == 'ENVIO-VENEZUELA'"> PENDIENTE POR PAGO </span>
                 <span class="" style="text-transform: uppercase;" v-else-if="item.estado_envio == 'ENTRANSITO-VENEZUELA'"> EN TRÁNSITO HACIA VENEZUELA </span>
+                <span class="" style="text-transform: uppercase;" v-else-if="item.estado_envio == 'PUERTO-VENEZOLANO'"> EN PUERTO VENEZOLANO </span>
                 <span class="" style="text-transform: uppercase;" v-else-if="item.estado_envio == 'ADUANA-VENEZUELA'"> ADUANA DE VENEZUELA </span>
                 <span class="" style="text-transform: uppercase;" v-else-if="item.estado_envio == 'ALMACEN-VENEZUELA'"> EN ALMACÉN DE VENEZUELA </span>
                 <span class="" style="text-transform: uppercase;" v-else-if="item.estado_envio == 'ENTREGADO'"> ENTREGADO </span>
@@ -181,55 +182,9 @@ const AlertMessageComponent = () => import('../../AlertMessageComponent.vue');
 
 import { formatPrice } from '../../../formatPrice';
 import { parseNum } from '../../../helpers/calcInvoice';
+import { shippingStates } from '../../../helpers/shippingStates';
 
-let estados = [
-    {
-        title: 'ALMACÉN MIAMI',
-        valor: 'FACTURADO',
-        check: true,
-    },
-    {
-        title: 'ENVIADO HACIA VENEZUELA',
-        valor: 'ENVIO-VENEZUELA',
-        map: {
-            id: "a",
-            position: { lat: 25.7745431, lng: -80.1708802 },
-        },
-        check: false,
-    },
-    {
-        title: 'EN TRÁNSITO HACIA VENEZUELA',
-        valor: 'ENTRANSITO-VENEZUELA',
-        map: {
-            id: "b",
-            position: { lat: 23.732230669979263, lng: -71.19582448995914 },
-        },
-        check: false,
-    },
-    {
-        title: 'ADUANA DE VENEZUELA',
-        valor: 'ADUANA-VENEZUELA',
-        map: {
-            id: "c",
-            position: { lat: 10.6012894, lng: -66.9466783 },
-        },
-        check: false,
-    },
-    {
-        title: 'ALMACÉN VENEZUELA',
-        valor: 'ALMACEN-VENEZUELA',
-        map: {
-            id: "d",
-            position: { lat: 10.5997551, lng: -66.954827 },
-        },
-        check: false,
-    },
-    {
-        title: 'ENTREGADO',
-        valor: 'ENTREGADO',
-        check: false,
-    },
-]
+let estados = shippingStates;
 
 export default {
     name: 'EnviosClientDataTable',

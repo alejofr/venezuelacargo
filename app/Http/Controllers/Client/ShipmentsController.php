@@ -263,55 +263,7 @@ class ShipmentsController extends Controller
 
     public function status_shipment()
     {
-        return [
-            [
-                "title" => 'ALMACÉN MIAMI',
-                "valor" => 'FACTURADO',
-                "check" => true,
-            ],
-            [
-                "title" => 'ENVIADO HACIA VENEZUELA',
-                "valor" => 'ENVIO-VENEZUELA',
-                "map" => [
-                    "id" => "a",
-                    "position" => [ "lat" => 25.7745431, "lng" => -80.1708802 ],
-                ],
-                "check" => false,
-            ],
-            [
-                "title" => 'EN TRÁNSITO HACIA VENEZUELA',
-                "valor" => 'ENTRANSITO-VENEZUELA',
-                "map" => [
-                    "id" => "b",
-                    "position" => [ "lat" => 23.732230669979263, "lng" => -71.19582448995914 ],
-                ],
-                "check" => false,
-            ],
-            [
-                "title" => 'ADUANA DE VENEZUELA',
-                "valor" => 'ADUANA-VENEZUELA',
-                "map" => [
-                    "id" => "c",
-                    "position" => [ "lat" => 10.6012894, "lng" => -66.9466783 ],
-                ],
-                "check" => false,
-            ],
-            [
-                "title" => 'ALMACÉN VENEZUELA',
-                "valor" => 'ALMACEN-VENEZUELA',
-                "map" => [
-                    "id" => "d",
-                    "position" => [ "lat" => 10.5997551, "lng" => -66.954827 ],
-                ],
-                "check" => false,
-            ],
-            [
-                "title" => 'ENTREGADO',
-                "valor" => 'ENTREGADO',
-                "check" => false,
-                "map" => []
-            ]
-        ];
+        return Envios::shippingStates();
     }
 
     public function rastreo(Request $request)

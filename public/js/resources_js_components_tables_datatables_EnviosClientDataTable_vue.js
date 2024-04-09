@@ -258,6 +258,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map_TravelMap_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../map/TravelMap.vue */ "./resources/js/components/map/TravelMap.vue");
 /* harmony import */ var _formatPrice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../formatPrice */ "./resources/js/formatPrice.js");
 /* harmony import */ var _helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/calcInvoice */ "./resources/js/helpers/calcInvoice.js");
+/* harmony import */ var _helpers_shippingStates__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../helpers/shippingStates */ "./resources/js/helpers/shippingStates.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -276,6 +277,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -467,59 +469,8 @@ var AlertMessageComponent = function AlertMessageComponent() {
 
 
 
-var estados = [{
-  title: 'ALMACÉN MIAMI',
-  valor: 'FACTURADO',
-  check: true
-}, {
-  title: 'ENVIADO HACIA VENEZUELA',
-  valor: 'ENVIO-VENEZUELA',
-  map: {
-    id: "a",
-    position: {
-      lat: 25.7745431,
-      lng: -80.1708802
-    }
-  },
-  check: false
-}, {
-  title: 'EN TRÁNSITO HACIA VENEZUELA',
-  valor: 'ENTRANSITO-VENEZUELA',
-  map: {
-    id: "b",
-    position: {
-      lat: 23.732230669979263,
-      lng: -71.19582448995914
-    }
-  },
-  check: false
-}, {
-  title: 'ADUANA DE VENEZUELA',
-  valor: 'ADUANA-VENEZUELA',
-  map: {
-    id: "c",
-    position: {
-      lat: 10.6012894,
-      lng: -66.9466783
-    }
-  },
-  check: false
-}, {
-  title: 'ALMACÉN VENEZUELA',
-  valor: 'ALMACEN-VENEZUELA',
-  map: {
-    id: "d",
-    position: {
-      lat: 10.5997551,
-      lng: -66.954827
-    }
-  },
-  check: false
-}, {
-  title: 'ENTREGADO',
-  valor: 'ENTREGADO',
-  check: false
-}];
+
+var estados = _helpers_shippingStates__WEBPACK_IMPORTED_MODULE_4__.shippingStates;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'EnviosClientDataTable',
   props: ['data'],
@@ -1001,7 +952,38 @@ var data_contents = function data_contents() {
       sub_total: sub_total
     });
   });
+
+  if (type_envio === 'maritimo' && envio != 'directo' & data.length > 0) {
+    data = calc_cost_reempaque_maritimo(data, costo_envio);
+  }
+
   return type_envio == 'aereo' && data.length > 0 ? calc_cost_env_aereo(data, envio, costo_envio) : data;
+};
+
+var calc_cost_reempaque_maritimo = function calc_cost_reempaque_maritimo() {
+  var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var costo_envio = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var pie_cubico = 0,
+      cost_env = 0,
+      sub_total = 0;
+  data.forEach(function (element) {
+    pie_cubico = pie_cubico + parseNum(element.pie_cubico);
+  });
+
+  if (1.72 > pie_cubico) {
+    pie_cubico = 1.72;
+  }
+
+  cost_env = pie_cubico * costo_envio;
+  sub_total = cost_env;
+  cost_env = _formatPrice__WEBPACK_IMPORTED_MODULE_0__.formatPrice.constPrice("".concat(cost_env.toFixed(2)), ',', '.');
+  sub_total = _formatPrice__WEBPACK_IMPORTED_MODULE_0__.formatPrice.constPrice("".concat(sub_total.toFixed(2)), ',', '.');
+  data.push(_objectSpread(_objectSpread({}, dataContentAereo), {}, {
+    pie_cubico: pie_cubico,
+    cost_env: cost_env,
+    sub_total: sub_total
+  }));
+  return data;
 };
 
 var calc_cost_env_aereo = function calc_cost_env_aereo() {
@@ -1252,6 +1234,115 @@ var mapSettings = {
   maxZoom: 17
 };
 
+
+/***/ }),
+
+/***/ "./resources/js/helpers/shippingStates.js":
+/*!************************************************!*\
+  !*** ./resources/js/helpers/shippingStates.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "shippingStates": () => (/* binding */ shippingStates)
+/* harmony export */ });
+var shippingStates = [{
+  title: 'ALMACÉN MIAMI',
+  valor: 'FACTURADO',
+  check: true,
+  active: false
+}, {
+  title: 'PENDIENTE POR PAGO',
+  valor: 'ENVIO-VENEZUELA',
+  map: {
+    id: "a",
+    position: {
+      lat: 25.7745431,
+      lng: -80.1708802
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'EN TRÁNSITO HACIA VENEZUELA',
+  valor: 'ENTRANSITO-VENEZUELA',
+  map: {
+    id: "b",
+    position: {
+      lat: 23.732230669979263,
+      lng: -71.19582448995914
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'EN PUERTO VENEZOLANO',
+  valor: 'PUERTO-VENEZOLANO',
+  map: {
+    id: "c",
+    position: {
+      lat: 10.601428576954985,
+      lng: -66.96054375984357
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'HACIENDO ADUANA VENEZUELA',
+  valor: 'ADUANA-VENEZUELA',
+  map: {
+    id: "d",
+    position: {
+      lat: 10.6012894,
+      lng: -66.9466783
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'ALMACEN EXTERNO ADUANA',
+  valor: 'ALMACEN-EXTERNO-ADUANA',
+  map: {
+    id: "e",
+    position: {
+      lat: 10.601428576954985,
+      lng: -66.96054375984357
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'ALMACÉN VENEZUELA CARGO LA GUAIRA',
+  valor: 'ALMACEN-VENEZUELA',
+  map: {
+    id: "h",
+    position: {
+      lat: 10.5997551,
+      lng: -66.954827
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'EN RUTA NACIONAL',
+  valor: 'EN-RUTA-NACIONAL',
+  map: {
+    id: "i",
+    position: {
+      lat: 10.458737617888016,
+      lng: -66.91349306300683
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'ENTREGADO',
+  valor: 'ENTREGADO',
+  check: false,
+  active: false
+}];
 
 /***/ }),
 
@@ -3264,11 +3355,15 @@ var render = function () {
           _c("td", [
             item.estado_envio == "ENVIO-VENEZUELA"
               ? _c("span", { staticStyle: { "text-transform": "uppercase" } }, [
-                  _vm._v(" ENVIADO A VENEZUELA "),
+                  _vm._v(" PENDIENTE POR PAGO "),
                 ])
               : item.estado_envio == "ENTRANSITO-VENEZUELA"
               ? _c("span", { staticStyle: { "text-transform": "uppercase" } }, [
                   _vm._v(" EN TRÁNSITO HACIA VENEZUELA "),
+                ])
+              : item.estado_envio == "PUERTO-VENEZOLANO"
+              ? _c("span", { staticStyle: { "text-transform": "uppercase" } }, [
+                  _vm._v(" EN PUERTO VENEZOLANO "),
                 ])
               : item.estado_envio == "ADUANA-VENEZUELA"
               ? _c("span", { staticStyle: { "text-transform": "uppercase" } }, [

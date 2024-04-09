@@ -430,9 +430,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               volumen = 7.5;
           }*/
 
-          if (pie_cubico < 1.72) {
-            pie_cubico = 1.72;
-          }
+          /*if( pie_cubico < 1.72 ){
+              pie_cubico = 1.72;
+          }*/
 
           _this.dato.volumen = volumen.toFixed(2);
           _this.dato.pie_cubico = pie_cubico.toFixed(2);
@@ -1595,7 +1595,38 @@ var data_contents = function data_contents() {
       sub_total: sub_total
     });
   });
+
+  if (type_envio === 'maritimo' && envio != 'directo' & data.length > 0) {
+    data = calc_cost_reempaque_maritimo(data, costo_envio);
+  }
+
   return type_envio == 'aereo' && data.length > 0 ? calc_cost_env_aereo(data, envio, costo_envio) : data;
+};
+
+var calc_cost_reempaque_maritimo = function calc_cost_reempaque_maritimo() {
+  var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var costo_envio = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var pie_cubico = 0,
+      cost_env = 0,
+      sub_total = 0;
+  data.forEach(function (element) {
+    pie_cubico = pie_cubico + parseNum(element.pie_cubico);
+  });
+
+  if (1.72 > pie_cubico) {
+    pie_cubico = 1.72;
+  }
+
+  cost_env = pie_cubico * costo_envio;
+  sub_total = cost_env;
+  cost_env = _formatPrice__WEBPACK_IMPORTED_MODULE_0__.formatPrice.constPrice("".concat(cost_env.toFixed(2)), ',', '.');
+  sub_total = _formatPrice__WEBPACK_IMPORTED_MODULE_0__.formatPrice.constPrice("".concat(sub_total.toFixed(2)), ',', '.');
+  data.push(_objectSpread(_objectSpread({}, dataContentAereo), {}, {
+    pie_cubico: pie_cubico,
+    cost_env: cost_env,
+    sub_total: sub_total
+  }));
+  return data;
 };
 
 var calc_cost_env_aereo = function calc_cost_env_aereo() {
