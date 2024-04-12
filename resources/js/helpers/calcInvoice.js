@@ -166,7 +166,7 @@ const data_contents = (wh = [], type_envio = 'aereo', tarifa = '0.00', envio = '
         secure = formatPrice.desctPrice(seguro, ',');
         secure = parseNum(secure);
 
-        if( type_envio === 'maritimo' ){
+        /*if( type_envio === 'maritimo' ){
 
             if( envio == 'directo' && 1.72 > ft  ){
                 ft = 1.72;
@@ -176,7 +176,7 @@ const data_contents = (wh = [], type_envio = 'aereo', tarifa = '0.00', envio = '
 
             cost_env = costo_envio * ft;
 
-        }
+        }*/
 
         sub_total = cost_env + secure;
         cost_env = formatPrice.constPrice(`${cost_env.toFixed(2)}`, ',', '.');
@@ -195,14 +195,14 @@ const data_contents = (wh = [], type_envio = 'aereo', tarifa = '0.00', envio = '
         });
     });
 
-    if( type_envio === 'maritimo' &&  envio != 'directo' & data.length > 0 ){
-        data = calc_cost_reempaque_maritimo(data, costo_envio);
+    if( type_envio === 'maritimo' &&  data.length > 0 ){
+        data = calc_cost_maritimo(data, costo_envio);
     }
 
     return type_envio == 'aereo' && data.length > 0 ? calc_cost_env_aereo(data, envio, costo_envio) : data;
 }
 
-const calc_cost_reempaque_maritimo = (data = [], costo_envio = 0) => {
+const calc_cost_maritimo = (data = [], costo_envio = 0) => {
     let pie_cubico = 0, cost_env = 0, sub_total = 0;
 
     data.forEach((element) => {

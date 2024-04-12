@@ -426,13 +426,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               largo = _this$dato.largo;
           volumen = (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(alto) * (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(ancho) * (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(largo) / 166;
           pie_cubico = (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(alto) * (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(ancho) * (0,_helpers_calcInvoice__WEBPACK_IMPORTED_MODULE_2__.parseNum)(largo) / 1728;
-          /*if( volumen < 7.5 ){
-              volumen = 7.5;
-          }*/
 
-          /*if( pie_cubico < 1.72 ){
-              pie_cubico = 1.72;
-          }*/
+          if (volumen < 1) {
+            volumen = 1;
+          }
+
+          if (pie_cubico < 1) {
+            pie_cubico = 1;
+          }
 
           _this.dato.volumen = volumen.toFixed(2);
           _this.dato.pie_cubico = pie_cubico.toFixed(2);
@@ -1570,15 +1571,14 @@ var data_contents = function data_contents() {
     vol = parseNum(volumen);
     secure = _formatPrice__WEBPACK_IMPORTED_MODULE_0__.formatPrice.desctPrice(seguro, ',');
     secure = parseNum(secure);
-
-    if (type_envio === 'maritimo') {
-      if (envio == 'directo' && 1.72 > ft) {
-        ft = 1.72;
-        pieFt = 1.72;
-      }
-
-      cost_env = costo_envio * ft;
-    }
+    /*if( type_envio === 'maritimo' ){
+          if( envio == 'directo' && 1.72 > ft  ){
+            ft = 1.72;
+            pieFt = 1.72;
+        }
+            
+          cost_env = costo_envio * ft;
+      }*/
 
     sub_total = cost_env + secure;
     cost_env = _formatPrice__WEBPACK_IMPORTED_MODULE_0__.formatPrice.constPrice("".concat(cost_env.toFixed(2)), ',', '.');
@@ -1596,14 +1596,14 @@ var data_contents = function data_contents() {
     });
   });
 
-  if (type_envio === 'maritimo' && envio != 'directo' & data.length > 0) {
-    data = calc_cost_reempaque_maritimo(data, costo_envio);
+  if (type_envio === 'maritimo' && data.length > 0) {
+    data = calc_cost_maritimo(data, costo_envio);
   }
 
   return type_envio == 'aereo' && data.length > 0 ? calc_cost_env_aereo(data, envio, costo_envio) : data;
 };
 
-var calc_cost_reempaque_maritimo = function calc_cost_reempaque_maritimo() {
+var calc_cost_maritimo = function calc_cost_maritimo() {
   var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var costo_envio = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
   var pie_cubico = 0,
