@@ -242,13 +242,13 @@ export default {
                     volumen = (parseNum(alto) * parseNum(ancho) * parseNum(largo)) / 166;
                     pie_cubico = (parseNum(alto) * parseNum(ancho) * parseNum(largo)) / 1728;
 
-                    if( volumen < 1 ){
+                    /*if( volumen < 1 ){
                         volumen = 1;
                     }
 
                     if( pie_cubico < 1 ){
                         pie_cubico = 1;
-                    }
+                    }*/
 
                     this.dato.volumen = volumen.toFixed(2);
                     this.dato.pie_cubico = pie_cubico.toFixed(2);
