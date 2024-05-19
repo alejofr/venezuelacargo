@@ -141,6 +141,7 @@ class ShipmentsController extends Controller
             for ($j=0; $j <count($statusShipment) ; $j++) { 
                 if( $statusShipment[$j]['valor'] == $results[$i]['estado_envio'] ){
                     $results[$i]['map'] = $statusShipment[$j]['map'];
+                    $results[$i]['shipment_status'] = $statusShipment[$j];
                 }
             }
         }
