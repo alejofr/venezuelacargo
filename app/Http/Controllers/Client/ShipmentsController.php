@@ -264,8 +264,8 @@ class ShipmentsController extends Controller
 
     public function status_shipment()
     {
-        //return Envios::shippingStates();
-        return [
+        return Envios::shippingStates();
+       /*return [
             [
                 "title" => 'ALMACÉN MIAMI',
                 "valor" => 'FACTURADO',
@@ -313,7 +313,7 @@ class ShipmentsController extends Controller
                 "check" => false,
                 "map" => []
             ]
-        ];
+        ];*/
     }
 
     public function rastreo(Request $request)
