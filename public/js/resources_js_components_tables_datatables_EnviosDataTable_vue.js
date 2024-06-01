@@ -11,6 +11,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _helpers_shippingStates__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../helpers/shippingStates */ "./resources/js/helpers/shippingStates.js");
 //
 //
 //
@@ -56,10 +57,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'EnviosDataTable',
   props: ['data'],
@@ -68,12 +66,133 @@ __webpack_require__.r(__webpack_exports__);
       getId: ''
     };
   },
+  methods: {
+    showStateTitle: function showStateTitle(valueState) {
+      var state = _helpers_shippingStates__WEBPACK_IMPORTED_MODULE_0__.shippingStates.find(function (value) {
+        return value.valor === valueState;
+      });
+
+      if (state) {
+        return state.title;
+      }
+
+      return valueState;
+    }
+  },
   watch: {
     getId: function getId() {
       this.$emit('getId', this.getId);
     }
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/helpers/shippingStates.js":
+/*!************************************************!*\
+  !*** ./resources/js/helpers/shippingStates.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "shippingStates": () => (/* binding */ shippingStates)
+/* harmony export */ });
+var shippingStates = [{
+  title: 'ALMACÉN MIAMI',
+  valor: 'FACTURADO',
+  check: true,
+  active: false
+}, {
+  title: 'PENDIENTE POR PAGO',
+  valor: 'ENVIO-VENEZUELA',
+  map: {
+    id: "a",
+    position: {
+      lat: 25.7745431,
+      lng: -80.1708802
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'EN TRÁNSITO HACIA VENEZUELA',
+  valor: 'ENTRANSITO-VENEZUELA',
+  map: {
+    id: "b",
+    position: {
+      lat: 23.732230669979263,
+      lng: -71.19582448995914
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'EN PUERTO VENEZOLANO',
+  valor: 'PUERTO-VENEZOLANO',
+  map: {
+    id: "c",
+    position: {
+      lat: 10.601428576954985,
+      lng: -66.96054375984357
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'HACIENDO ADUANA VENEZUELA',
+  valor: 'ADUANA-VENEZUELA',
+  map: {
+    id: "d",
+    position: {
+      lat: 10.6012894,
+      lng: -66.9466783
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'ALMACEN EXTERNO ADUANA',
+  valor: 'ALMACEN-EXTERNO-ADUANA',
+  map: {
+    id: "e",
+    position: {
+      lat: 10.601428576954985,
+      lng: -66.96054375984357
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'ALMACÉN VENEZUELA CARGO LA GUAIRA',
+  valor: 'ALMACEN-VENEZUELA',
+  map: {
+    id: "h",
+    position: {
+      lat: 10.5997551,
+      lng: -66.954827
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'EN RUTA NACIONAL',
+  valor: 'EN-RUTA-NACIONAL',
+  map: {
+    id: "i",
+    position: {
+      lat: 10.458737617888016,
+      lng: -66.91349306300683
+    }
+  },
+  check: false,
+  active: false
+}, {
+  title: 'ENTREGADO',
+  valor: 'ENTREGADO',
+  check: false,
+  active: false
+}];
 
 /***/ }),
 
@@ -213,27 +332,9 @@ var render = function () {
         ]),
         _vm._v(" "),
         _c("td", [
-          item.estado == "ENVIO-VENEZUELA"
-            ? _c("span", { staticStyle: { "text-transform": "uppercase" } }, [
-                _vm._v(" ENVIADO A VENEZUELA "),
-              ])
-            : item.estado == "ENTRANSITO-VENEZUELA"
-            ? _c("span", { staticStyle: { "text-transform": "uppercase" } }, [
-                _vm._v(" EN TRÁNSITO HACIA VENEZUELA "),
-              ])
-            : item.estado == "ADUANA-VENEZUELA"
-            ? _c("span", { staticStyle: { "text-transform": "uppercase" } }, [
-                _vm._v(" ADUANA DE VENEZUELA "),
-              ])
-            : item.estado == "ALMACEN-VENEZUELA"
-            ? _c("span", { staticStyle: { "text-transform": "uppercase" } }, [
-                _vm._v(" EN ALMACÉN DE VENEZUELA "),
-              ])
-            : item.estado == "ENTREGADO"
-            ? _c("span", { staticStyle: { "text-transform": "uppercase" } }, [
-                _vm._v(" ENTREGADO "),
-              ])
-            : _vm._e(),
+          _c("span", { staticStyle: { "text-transform": "uppercase" } }, [
+            _vm._v(" " + _vm._s(_vm.showStateTitle(item.estado)) + " "),
+          ]),
         ]),
         _vm._v(" "),
         _c("td", [_c("span", {}, [_vm._v(" " + _vm._s(item.fecha_editado))])]),

@@ -137,7 +137,7 @@ class EnviosObserver
      
         }
 
-        if( $envios->estado != 'ENVIO-VENEZUELA' && $envios->estado != 'FACTURADO' && $envios->estado != 'ENTREGADO' ){
+        if( $envios->estado != 'FACTURADO' && $envios->estado != 'ENTREGADO' ){
             $factura = Facturas::find($envios->id_factura);
             $client = json_decode($factura->cliente);
             $user = User::find($factura->usuario_id);

@@ -482,18 +482,19 @@ var shippingStates = [{
   },
   check: false,
   active: false
-},
-/*{
-    title: 'EN PUERTO VENEZOLANO',
-    valor: 'PUERTO-VENEZOLANO',
-    map: {
-        id: "c",
-        position: { lat: 10.601428576954985, lng: -66.96054375984357 },
-    },
-    check: false,
-    active: false,
-},*/
-{
+}, {
+  title: 'EN PUERTO VENEZOLANO',
+  valor: 'PUERTO-VENEZOLANO',
+  map: {
+    id: "c",
+    position: {
+      lat: 10.601428576954985,
+      lng: -66.96054375984357
+    }
+  },
+  check: false,
+  active: false
+}, {
   title: 'HACIENDO ADUANA VENEZUELA',
   valor: 'ADUANA-VENEZUELA',
   map: {
@@ -505,18 +506,19 @@ var shippingStates = [{
   },
   check: false,
   active: false
-},
-/* {
-     title: 'ALMACEN EXTERNO ADUANA',
-     valor: 'ALMACEN-EXTERNO-ADUANA',
-     map: {
-         id: "e",
-         position: { lat: 10.601428576954985, lng: -66.96054375984357 },
-     },
-     check: false,
-     active: false,
- },*/
-{
+}, {
+  title: 'ALMACEN EXTERNO ADUANA',
+  valor: 'ALMACEN-EXTERNO-ADUANA',
+  map: {
+    id: "e",
+    position: {
+      lat: 10.601428576954985,
+      lng: -66.96054375984357
+    }
+  },
+  check: false,
+  active: false
+}, {
   title: 'ALMACÉN VENEZUELA CARGO LA GUAIRA',
   valor: 'ALMACEN-VENEZUELA',
   map: {
@@ -528,18 +530,19 @@ var shippingStates = [{
   },
   check: false,
   active: false
-},
-/*{
-    title: 'EN RUTA NACIONAL',
-    valor: 'EN-RUTA-NACIONAL',
-    map: {
-        id: "i",
-        position: { lat: 10.458737617888016, lng: -66.91349306300683 },
-    },
-    check: false,
-    active: false,
-},*/
-{
+}, {
+  title: 'EN RUTA NACIONAL',
+  valor: 'EN-RUTA-NACIONAL',
+  map: {
+    id: "i",
+    position: {
+      lat: 10.458737617888016,
+      lng: -66.91349306300683
+    }
+  },
+  check: false,
+  active: false
+}, {
   title: 'ENTREGADO',
   valor: 'ENTREGADO',
   check: false,

@@ -17,11 +17,7 @@
                 <span class="" style="text-transform: uppercase;"> {{ item.tipo_envio }}</span>
             </td>
             <td>
-                <span class="" style="text-transform: uppercase;" v-if="item.estado == 'ENVIO-VENEZUELA'"> ENVIADO A VENEZUELA </span>
-                <span class="" style="text-transform: uppercase;" v-else-if="item.estado == 'ENTRANSITO-VENEZUELA'"> EN TRÁNSITO HACIA VENEZUELA </span>
-                <span class="" style="text-transform: uppercase;" v-else-if="item.estado == 'ADUANA-VENEZUELA'"> ADUANA DE VENEZUELA </span>
-                <span class="" style="text-transform: uppercase;" v-else-if="item.estado == 'ALMACEN-VENEZUELA'"> EN ALMACÉN DE VENEZUELA </span>
-                <span class="" style="text-transform: uppercase;" v-else-if="item.estado == 'ENTREGADO'"> ENTREGADO </span>
+                <span class="" style="text-transform: uppercase;"> {{ showStateTitle(item.estado)  }} </span>
             </td>
              <td>
                 <span class=""> {{ item.fecha_editado}}</span>
@@ -48,6 +44,8 @@
 </template>
 
 <script>
+import { shippingStates } from '../../../helpers/shippingStates';
+
 
 export default {
     name: 'EnviosDataTable',
@@ -55,6 +53,17 @@ export default {
     data(){
         return {
             getId: '',
+        }
+    },
+    methods: {
+        showStateTitle: function(valueState){
+            const state = shippingStates.find(value => value.valor === valueState);
+
+            if( state ){
+                return state.title;
+            }
+
+            return valueState;
         }
     },
     watch: {
