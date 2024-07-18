@@ -255,6 +255,7 @@ class TasasDestinosController extends Controller
         ])
         ->leftJoin('config_tasas_destinos', 'config_tasas_destinos.id_tasa_destino', 'config_tasas_destinos_estados.id_tasa_destino')
         ->where('config_tasas_destinos_estados.id_estado', '=', $request->estado_id)
+        ->where('config_tasas_destinos_estados.activo', '=', true)
         ->first();
 
         $tarifa = ( $request->tipo_envio === 'aereo' ) ? $tasa_destino->tarifa_aereo : $tasa_destino->tarifa_maritimo;
