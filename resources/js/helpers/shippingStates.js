@@ -25,7 +25,7 @@ export const shippingStates = [
         check: false,
         active: false,
     },
-    {
+    /*{
         title: 'EN PUERTO VENEZOLANO',
         valor: 'PUERTO-VENEZOLANO',
         map: {
@@ -34,7 +34,7 @@ export const shippingStates = [
         },
         check: false,
         active: false,
-    },
+    },*/
     {
         title: 'HACIENDO ADUANA VENEZUELA',
         valor: 'ADUANA-VENEZUELA',
@@ -45,7 +45,7 @@ export const shippingStates = [
         check: false,
         active: false,
     },
-    {
+    /*{
         title: 'ALMACEN EXTERNO ADUANA',
         valor: 'ALMACEN-EXTERNO-ADUANA',
         map: {
@@ -54,7 +54,7 @@ export const shippingStates = [
         },
         check: false,
         active: false,
-    },
+    },*/
     {
         title: 'ALMACÉN VENEZUELA CARGO LA GUAIRA',
         valor: 'ALMACEN-VENEZUELA',
@@ -65,7 +65,7 @@ export const shippingStates = [
         check: false,
         active: false,
     },
-    {
+    /*{
         title: 'EN RUTA NACIONAL',
         valor: 'EN-RUTA-NACIONAL',
         map: {
@@ -74,7 +74,7 @@ export const shippingStates = [
         },
         check: false,
         active: false,
-    },
+    },*/
     {
         title: 'ENTREGADO',
         valor: 'ENTREGADO',
