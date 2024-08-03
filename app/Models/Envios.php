@@ -100,7 +100,7 @@ class Envios extends Model
               'check' => false,
               'active' => false,
             ],
-            /*[
+            [
               'title' => 'EN PUERTO VENEZOLANO',
               'valor' => 'PUERTO-VENEZOLANO',
               'map' => [
@@ -112,7 +112,7 @@ class Envios extends Model
               ],
               'check' => false,
               'active' => false,
-            ],*/
+            ],
             [
               'title' => 'HACIENDO ADUANA VENEZUELA',
               'valor' => 'ADUANA-VENEZUELA',
@@ -126,7 +126,7 @@ class Envios extends Model
               'check' => false,
               'active' => false,
             ],
-            /*[
+            [
               'title' => 'ALMACEN EXTERNO ADUANA',
               'valor' => 'ALMACEN-EXTERNO-ADUANA',
               'map' => [
@@ -138,7 +138,7 @@ class Envios extends Model
               ],
               'check' => false,
               'active' => false,
-            ],*/
+            ],
             [
               'title' => 'ALMACÉN VENEZUELA CARGO LA GUAIRA',
               'valor' => 'ALMACEN-VENEZUELA',
@@ -152,7 +152,7 @@ class Envios extends Model
               'check' => false,
               'active' => false,
             ],
-            /*[
+            [
               'title' => 'EN RUTA NACIONAL',
               'valor' => 'EN-RUTA-NACIONAL',
               'map' => [
@@ -164,7 +164,7 @@ class Envios extends Model
               ],
               'check' => false,
               'active' => false,
-            ],*/
+            ],
             [
               'title' => 'ENTREGADO',
               'valor' => 'ENTREGADO',
