@@ -17,6 +17,8 @@ use Spatie\Permission\Models\Role;
 class ClientesController extends Controller
 {
     public $search = "";
+    public $nombres = "";
+    public $apellidos = "";
     public $fecha_inicio = "";
     public $fecha_final = "";
     public $cod_user = "0";
@@ -49,6 +51,8 @@ class ClientesController extends Controller
 
         $id_estado = ( $query != null && isset($query->id_estado) && $query->id_estado != '' ) ? $query->id_estado : 'all';
         $this->search = ( $query != null && isset($query->search) && $query->search != '' ) ? $query->search : "";
+        $this->nombres = $this->search;
+        $this->apellidos = $this->search;
         $this->fecha_inicio = ( $query != null && isset($query->fecha_inicio) && $query->fecha_inicio != '' ) ? $query->fecha_inicio : "";
         $this->fecha_final = ( $query != null && isset($query->fecha_final) && $query->fecha_final != '' ) ? $query->fecha_final : "";
         $this->cod_user = ( $query != null && isset($query->cod_user) && $query->cod_user != '' ) ? $query->cod_user : "0";
@@ -57,6 +61,22 @@ class ClientesController extends Controller
             $estado = DB::table('geo_estados')->orderBy('estado', 'ASC')->select('id_estado')->first();
             $id_estado = $estado->id_estado;
         }//cod_user
+
+        if( strpos($this->search, " ") ){
+            $arrSearch = explode(" ", $this->search);
+
+            if( count($arrSearch) == 2 ){
+                $this->nombres = $arrSearch[0];
+                $this->apellidos = $arrSearch[1];
+            }elseif( count($arrSearch) > 2 ){
+                $this->nombres = $arrSearch[0].' '.$arrSearch[1];
+                $this->apellidos = $arrSearch[3];
+
+                if( count($arrSearch) > 3 ){
+                    $this->apellidos = $this->apellidos.' '.$arrSearch[4];
+                }
+            }
+        }
 
         $records = User::select($select)
         ->leftJoin('usuarios_info', 'usuarios_info.usuario_id', '=', 'usuarios.usuario_id')
@@ -69,8 +89,8 @@ class ClientesController extends Controller
         }
 
         $records = $records->Where(function($query) {
-            $query->orWhere('usuarios_info.nombres',  'LIKE', '%'.$this->search.'%')
-                ->orWhere('usuarios_info.apellidos',  'LIKE', '%'.$this->search.'%')
+            $query->orWhere('usuarios_info.nombres',  'LIKE', '%'.$this->nombres.'%')
+                ->orWhere('usuarios_info.apellidos',  'LIKE', '%'.$this->apellidos.'%')
                 ->orWhere('usuarios_info.cedula',  'LIKE', '%'.$this->search.'%')
                 ->orWhere('usuarios_info.cod_usuario',  'LIKE', '%'.$this->search.'%')
                 ->orWhere('usuarios.email',  'LIKE', '%'.$this->search.'%');
