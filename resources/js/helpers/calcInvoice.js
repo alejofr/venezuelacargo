@@ -249,14 +249,14 @@ const calc_cost_env_aereo = (data = [], envio = 'directo', costo_envio = 0) => {
     });
 
     if( envio === 'directo' ){
-        total_lb = ( total_lb <= 7.5 ) ? 7.5 : total_lb;
+        total_lb = ( total_lb <= 8.5 ) ? 8.5 : total_lb;
     }else{
-        if( vol > peso && vol > 7.5 ){
+        if( vol > peso && vol > 8.5 ){
             total_lb = vol;
-        }else if( peso > vol && peso > 7.5 ){
+        }else if( peso > vol && peso > 8.5 ){
             total_lb = peso;
         }else{
-            total_lb = 7.5;
+            total_lb = 8.5;
         }
     }
 
@@ -358,7 +358,7 @@ const add_box = (listCajas = [], id_gasto_extra = '', nombre = '', monto_gasto_e
 const parseNum = (val) => val % 1 == 0 ? parseInt(val) : parseFloat(val);
 
 const  generateRandomString = (num) => {
-    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345678.59';
     let result1='';
     const charactersLength = characters.length;
     for ( let i = 0; i < num; i++ ) {

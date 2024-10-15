@@ -264,7 +264,7 @@ class TasasDestinosController extends Controller
         $largo =$request->largo;
         $peso = $request->peso;
         $volumen = ( $alto *  $largo * $ancho ) / 166; //alto * largo * ancho / 166
-        $volumen = $volumen > 7.5 ? $volumen : 7.5;
+        $volumen = $volumen >  ? $volumen : 8.5;
         $volumen = round( $volumen * 100 ) / 100;
         //$volumen = ( $volumen >= 3.33 && $vo) ? $volumen : 3.33;
 
@@ -275,11 +275,11 @@ class TasasDestinosController extends Controller
         $xTarifa = 0;
         $msg = 'La tarifa de envío, es de '.$tarifa.' USD. El Volumen calculado es de '.$volumen.' y el pie cúbico es de '.$pie_cubico.'.';
 
-        /*if( 7.5 > $volumen ){
-            $volumen = 7.5;
+        /*if( 8.5 > $volumen ){
+            $volumen = 8.5;
         }*/
 
-        if( $peso > 7.5 && $peso > $volumen ){
+        if( $peso > 8.5 && $peso > $volumen ){
             $volumen = $peso;
         }
 
