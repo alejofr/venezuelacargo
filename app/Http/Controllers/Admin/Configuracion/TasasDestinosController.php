@@ -264,7 +264,7 @@ class TasasDestinosController extends Controller
         $largo =$request->largo;
         $peso = $request->peso;
         $volumen = ( $alto *  $largo * $ancho ) / 166; //alto * largo * ancho / 166
-        $volumen = $volumen >  ? $volumen : 8.5;
+        $volumen = $volumen > 8.5 ? $volumen : 8.5;
         $volumen = round( $volumen * 100 ) / 100;
         //$volumen = ( $volumen >= 3.33 && $vo) ? $volumen : 3.33;
 
