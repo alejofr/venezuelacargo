@@ -48,28 +48,28 @@
                         <div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-floating mb-3">
                               <input type="text" id="alto" v-model="alto" v-validate="'required|numeric'" name="alto" class="form-control" :class="{'is-invalid': errors.first('alto')}" :data-vv-validate-on="'change'">
-                              <label for="alto">Alto</label>
+                              <label for="alto">Alto (pulgadas)</label>
                               <div v-if="errors.has('alto')" class="invalid-feedback">{{errors.first('alto')}}</div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-floating mb-3">
                                 <input type="text" id="largo" v-model="largo" v-validate="'required|numeric'" name="largo" class="form-control" :class="{'is-invalid': errors.first('largo')}" :data-vv-validate-on="'change'">
-                                <label for="largo">Largo</label>
+                                <label for="largo">Largo (pulgadas)</label>
                                 <div v-if="errors.has('largo')" class="invalid-feedback">{{errors.first('largo')}}</div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-floating mb-3">
                               <input type="text" id="ancho" v-model="ancho" v-validate="'required|numeric'" name="ancho" class="form-control" :class="{'is-invalid': errors.first('ancho')}" :data-vv-validate-on="'change'">
-                              <label for="ancho">Ancho</label>
+                              <label for="ancho">Ancho (pulgadas)</label>
                               <div v-if="errors.has('ancho')" class="invalid-feedback">{{errors.first('ancho')}}</div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-12">
                             <div class="form-floating mb-3">
                               <input type="text" id="peso" v-model="peso" v-validate="'required|regex:^[0-9]+([.][0-9]{2})?$'" name="peso" class="form-control" :class="{'is-invalid': errors.first('peso')}" :data-vv-validate-on="'change'">
-                              <label for="peso">Peso</label>
+                              <label for="peso">Peso (libras)</label>
                               <div v-if="errors.has('peso')" class="invalid-feedback">{{errors.first('peso')}}</div>
                             </div>
                         </div>
