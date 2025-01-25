@@ -38,7 +38,7 @@ var request = function request() {
       ascending: 0,
       query: {
         search: '',
-        estado: 'pendiente',
+        estado: 'all',
         fecha_inicio: '',
         fecha_final: ''
       }
@@ -102,6 +102,9 @@ var request = function request() {
             value: 'valor'
           },
           data: [{
+            title: 'Todos',
+            valor: 'all'
+          }, {
             title: 'Pendiente',
             valor: 'pendiente'
           }, {

@@ -1643,7 +1643,8 @@ var calc_cost_env_aereo = function calc_cost_env_aereo() {
       peso = 0,
       total_lb = 0,
       cost_env = 0,
-      sub_total = 0;
+      sub_total = 0,
+      val_box = 0;
   data.forEach(function (element) {
     var volumen = parseNum(element.volumen);
     var weight = parseNum(element.peso);
@@ -1655,21 +1656,29 @@ var calc_cost_env_aereo = function calc_cost_env_aereo() {
         total_lb = total_lb + weight;
       }
     } else {
+      if (volumen > weight) val_box = val_box + volumen;else if (weight > volumen) val_box = val_box + weight;
       vol = vol + volumen;
       peso = peso + weight;
     }
   });
 
   if (envio === 'directo') {
-    total_lb = total_lb <= 7.5 ? 7.5 : total_lb;
+    total_lb = total_lb <= 8.5 ? 8.5 : total_lb;
   } else {
-    if (vol > peso && vol > 7.5) {
-      total_lb = vol;
-    } else if (peso > vol && peso > 7.5) {
-      total_lb = peso;
+    if (val_box > 8.5) {
+      total_lb = val_box;
     } else {
-      total_lb = 7.5;
+      total_lb = 8.5;
     }
+    /*if( vol > peso && vol > 8.5 ){
+        total_lb = vol;
+    }else if( peso > vol && peso > 8.5 ){
+        total_lb = peso;*/
+
+    /*}else{
+        total_lb = 8.5;
+    }*/
+
   }
 
   cost_env = total_lb * costo_envio;
@@ -1770,7 +1779,7 @@ var parseNum = function parseNum(val) {
 };
 
 var generateRandomString = function generateRandomString(num) {
-  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345678.59';
   var result1 = '';
   var charactersLength = characters.length;
 

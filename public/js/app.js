@@ -3413,13 +3413,9 @@ var tableadmin = {
       var _getters$getRequest = getters.getRequest,
           url = _getters$getRequest.url,
           params = _getters$getRequest.params;
-      console.log('hola aqui');
-      console.log(params);
-      console.log(url);
       axios__WEBPACK_IMPORTED_MODULE_0___default().get(url, {
         params: params
       }).then(function (response) {
-        console.log(response.data);
         setTimeout(function () {
           commit('mutDataTblePagination', response.data);
           commit('componentRender', {
@@ -3430,6 +3426,7 @@ var tableadmin = {
         }, 2000);
       })["catch"](function (error) {
         console.log(error.response.data);
+        alert('Ha ocurrido un error', JSON.stringify(error.response.data));
       });
     }
   }

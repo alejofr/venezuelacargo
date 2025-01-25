@@ -160,11 +160,6 @@ class AlmacenesController extends Controller
             $tracking->pie_cubico = round( $tracking->pie_cubico * 100 ) /100;
             $tracking->pie_cubico = ( $tracking->pie_cubico > 1 ) ? $tracking->pie_cubico : 1;
             $tracking->ruta_image = Storage::url($request->images[$track->id_tracking]->store('public/images'));
-                //$tracking->ruta_image = $tracking->ruta_image;
-
-            
-
-            //$tracking->descripcion = $track->descripcion;
 
             $tracking->update();
 
@@ -181,7 +176,6 @@ class AlmacenesController extends Controller
         ]);
 
         if( $usuario->cod_usuario == 1 ){
-            //$usuario = UsuariosInfo::find($usuario->id_usuario_info);
             $usuario->cod_usuario = $request->cod_usuario;
             $usuario->update();
         }

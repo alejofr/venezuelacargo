@@ -99,12 +99,8 @@ const tableadmin = {
         },
         getData({commit, getters }){
             const { url, params } = getters.getRequest;
-            console.log('hola aqui')
-                console.log(params)
-                console.log(url)
 
             axios.get(url, {params : params}).then(response => {
-                console.log(response.data)
             
                 setTimeout(() => {
                     commit('mutDataTblePagination', response.data)
@@ -116,6 +112,7 @@ const tableadmin = {
                 }, 2000);
             }).catch(error => {
                 console.log(error.response.data)
+                alert('Ha ocurrido un error', JSON.stringify(error.response.data))
             });
         }
     }

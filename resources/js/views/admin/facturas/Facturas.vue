@@ -20,7 +20,7 @@ const request = () => {
         ascending : 0,
         query: {
             search : '',
-            estado: 'pendiente',
+            estado: 'all',
             fecha_inicio: '',
             fecha_final: ''
         }, 
@@ -71,6 +71,10 @@ export default {
                             value: 'valor'
                         },
                         data: [
+                            {
+                                title: 'Todos',
+                                valor: 'all'
+                            },
                             {
                                 title: 'Pendiente',
                                 valor: 'pendiente'

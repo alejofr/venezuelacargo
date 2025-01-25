@@ -409,7 +409,7 @@ var LoaderComponent = function LoaderComponent() {
       this.msgAlert = {
         msg: 'No se encontró resultados',
         clss: 'error'
-      }; //this.$store.dispatch('tableadmin/alertMessage', true);
+      };
     }
 
     return data;

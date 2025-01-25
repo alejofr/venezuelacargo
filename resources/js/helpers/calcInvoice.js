@@ -230,7 +230,7 @@ const calc_cost_maritimo = (data = [], costo_envio = 0) => {
 }
 
 const calc_cost_env_aereo = (data = [], envio = 'directo', costo_envio = 0) => {
-    let vol = 0, peso = 0, total_lb = 0, cost_env = 0, sub_total = 0;
+    let vol = 0, peso = 0, total_lb = 0, cost_env = 0, sub_total = 0, val_box = 0;
 
     data.forEach((element) => {
         let volumen = parseNum(element.volumen);
@@ -243,6 +243,11 @@ const calc_cost_env_aereo = (data = [], envio = 'directo', costo_envio = 0) => {
                 total_lb = total_lb + weight;
             }
         }else{
+            if( volumen > weight )
+                val_box = val_box + volumen
+            else if ( weight > volumen )
+                val_box = val_box + weight;
+
             vol = vol + volumen;
             peso = peso + weight;
         }
@@ -251,13 +256,18 @@ const calc_cost_env_aereo = (data = [], envio = 'directo', costo_envio = 0) => {
     if( envio === 'directo' ){
         total_lb = ( total_lb <= 8.5 ) ? 8.5 : total_lb;
     }else{
-        if( vol > peso && vol > 8.5 ){
-            total_lb = vol;
-        }else if( peso > vol && peso > 8.5 ){
-            total_lb = peso;
+        if( val_box > 8.5) {
+            total_lb = val_box;
         }else{
             total_lb = 8.5;
         }
+        /*if( vol > peso && vol > 8.5 ){
+            total_lb = vol;
+        }else if( peso > vol && peso > 8.5 ){
+            total_lb = peso;*/
+        /*}else{
+            total_lb = 8.5;
+        }*/
     }
 
     cost_env = total_lb * costo_envio;
