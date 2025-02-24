@@ -316,6 +316,7 @@ class ShipmentsController extends Controller
         ];*/
     }
 
+
     public function rastreo(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -393,7 +394,17 @@ class ShipmentsController extends Controller
             })->first();
 
             if( $facturaAndEnvio != null ){
+                $statusShipment = $this->status_shipment();
                 $result['module'] = 'Factura-Envio';
+
+                for ($j=0; $j <count($statusShipment) ; $j++) { 
+                    if( $statusShipment[$j]['valor'] == $facturaAndEnvio->estado_envio ){
+                        $facturaAndEnvio->map = $statusShipment[$j]['map'];
+                        $facturaAndEnvio->shipment_status = $statusShipment[$j];
+                        break;
+                    }
+                }
+
                 $result['data'] = $facturaAndEnvio;
             }
 
@@ -421,6 +432,17 @@ class ShipmentsController extends Controller
 
             $result['data'] = $solicitudEnvio;
         }
+
+        
+
+        /*for ($i=0; $i < count($results) ; $i++) { 
+            for ($j=0; $j <count($statusShipment) ; $j++) { 
+                if( $statusShipment[$j]['valor'] == $results[$i]['estado_envio'] ){
+                    $results[$i]['map'] = $statusShipment[$j]['map'];
+                    $results[$i]['shipment_status'] = $statusShipment[$j];
+                }
+            }
+        }*/
 
         return response()->json([
             'status' => 200,
