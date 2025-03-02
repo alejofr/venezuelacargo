@@ -257,6 +257,9 @@ class TasasDestinosController extends Controller
         ->where('config_tasas_destinos_estados.id_estado', '=', $request->estado_id)
         ->where('config_tasas_destinos_estados.activo', '=', true)
         ->first();
+        
+        $valueMinAereo = 8;
+        $valueMinMartimo = 1.62;
 
         $tarifa = ( $request->tipo_envio === 'aereo' ) ? $tasa_destino->tarifa_aereo : $tasa_destino->tarifa_maritimo;
         $ancho = $request->ancho;
@@ -264,13 +267,13 @@ class TasasDestinosController extends Controller
         $largo =$request->largo;
         $peso = $request->peso;
         $volumen = ( $alto *  $largo * $ancho ) / 166; //alto * largo * ancho / 166
-        $volumen = $volumen > 8.5 ? $volumen : 8.5;
+        $volumen = $volumen > $valueMinAereo ? $volumen : $valueMinAereo;
         $volumen = round( $volumen * 100 ) / 100;
         //$volumen = ( $volumen >= 3.33 && $vo) ? $volumen : 3.33;
 
         $pie_cubico = ( $alto *  $largo * $ancho ) / 1728; //alto * largo * ancho / 1728
         $pie_cubico = round( $pie_cubico * 100 ) / 100;
-        $pie_cubico = ( $pie_cubico > 1.72 ) ? $pie_cubico : 1.72;
+        $pie_cubico = ( $pie_cubico > $valueMinMartimo ) ? $pie_cubico : $valueMinMartimo;
         $pie_cubico = round( $pie_cubico * 100 ) / 100;
         $xTarifa = 0;
         $msg = 'La tarifa de envío, es de '.$tarifa.' USD. El Volumen calculado es de '.$volumen.' y el pie cúbico es de '.$pie_cubico.'.';

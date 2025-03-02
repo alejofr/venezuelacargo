@@ -1386,6 +1386,8 @@ var dataContentAereo = {
   seguro: '',
   sub_total: '0.00'
 };
+var valueMinAereo = 8;
+var valueMinMartimo = 1.62;
 /*
 id_almacen: '',
 almacen_ids: [],
@@ -1611,8 +1613,8 @@ var calc_cost_maritimo = function calc_cost_maritimo() {
     pie_cubico = pie_cubico + parseNum(element.pie_cubico);
   });
 
-  if (1.72 > pie_cubico) {
-    pie_cubico = 1.72;
+  if (valueMinMartimo > pie_cubico) {
+    pie_cubico = valueMinMartimo;
   }
 
   cost_env = pie_cubico * costo_envio;
@@ -1658,19 +1660,19 @@ var calc_cost_env_aereo = function calc_cost_env_aereo() {
   });
 
   if (envio === 'directo') {
-    total_lb = total_lb <= 8.5 ? 8.5 : total_lb;
+    total_lb = total_lb <= valueMinAereo ? valueMinAereo : total_lb;
   } else {
     /*if( val_box > 8.5) {
         total_lb = val_box;
     }else{
         total_lb = 8.5;
     }*/
-    if (vol > peso && vol > 8.5) {
+    if (vol > peso && vol > valueMinAereo) {
       total_lb = vol;
-    } else if (peso > vol && peso > 8.5) {
+    } else if (peso > vol && peso > valueMinAereo) {
       total_lb = peso;
     } else {
-      total_lb = 8.5;
+      total_lb = valueMinAereo;
     }
   }
 
