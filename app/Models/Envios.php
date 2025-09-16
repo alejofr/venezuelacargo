@@ -38,6 +38,7 @@ class Envios extends Model
         'id_factura',
         'historial_estado',
         'estado', //FACTURADO - ENVIADO-VENEZUELA - EN-TRANSITO-VENEZUELA - ADUENA-VENEZUELA - ALMACEN-VENEZUELA - ENVIADO-CLINTE - ENTREGADO
+        'nota',
         'fecha_estimada',
         'fecha_creado',
         'fecha_editado',

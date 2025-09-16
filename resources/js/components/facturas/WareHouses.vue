@@ -1,5 +1,5 @@
 <template>
-<div class="mb-4 table-responsive">
+<div class="mb-3 table-responsive">
     <div class="d-flex align-items-center mb-3" v-if="envio === 'reempaque' && type_form != 'show'">
         <button @click="reempaque" type="button" class="btn btn-info ms-auto">
             <span>Reempacar</span>

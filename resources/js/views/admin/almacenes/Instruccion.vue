@@ -118,9 +118,16 @@
                         </div>
                         <div class="d-flex align-items-center mt-3">
                             <btn-volver :classe="'btn-light'"></btn-volver>
-                            <button type="submit" class="btn btn-info ms-auto">
-                                Guardar
-                            </button>
+                            <div class="ms-auto d-flex">
+                                <button v-if="solicitud.status === 1" type="button" class="btn btn-danger me-3"
+                                    @click="revokeInstruccion()"
+                                >
+                                    Eliminar instrucción
+                                </button>
+                                <button type="submit" class="btn btn-info">
+                                    Guardar
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -155,7 +162,8 @@ export default {
                 estado: '',
                 cod_usuario: '',
                 usuario_id: '',
-                trackings: []
+                trackings: [],
+                status: 0
             },
             alert: {}
         };
@@ -221,6 +229,11 @@ export default {
                         this.solicitud.id_almacen = response.data.results.id_almacen;
                     }
 
+                    if( response.data.results.status != null ){
+                        this.solicitud.status = response.data.results.status;
+                    }
+
+
                     this.solicitud.total_seguro = response.data.results.total_seguro;
                     if (response.data.results.status == 1) {
                         this.solicitud.total_seguro = formatPrice.constPrice(this.solicitud.total_seguro,',', '.');
@@ -250,6 +263,44 @@ export default {
 
             if( e.target.id == 'total_seguro') this.solicitud.total_seguro = re;
             else this.trackings[e.target.id].total_seguro = re;
+       },
+       revokeInstruccion(){
+            this.componentRender = LoaderComponent;
+            let paquetes = [...this.trackings];
+            let solicitud = {...this.solicitud};
+
+            solicitud.trackings = paquetes;
+
+            this.axios.post('almacen/revoke/instrucciones', {solicitud: solicitud}, {headers: { "content-type": "multipart/form-data" } } ).then(response => {
+                
+                console.log(response.data)
+                this.alert = {
+                    msg: response.data.message,
+                    clss: 'updated'
+                }
+
+                this.activeComponent = AlertMessageComponent;
+        
+                setTimeout(() => {
+                    this.$router.go(-1)
+                }, 4000)
+
+                setTimeout(() => {
+                    this.componentRender = '';
+                }, 2000);
+                
+            }).catch(error => {
+                console.log(error.response.data);
+                this.alert = {
+                    msg: error.response.data.message,
+                    clss: 'error'
+                }
+
+                this.activeComponent = AlertMessageComponent;
+                setTimeout(() => {
+                    this.componentRender = '';
+                }, 2000);
+            });
        },
        saveInstruccion(){
             this.$validator.validate().then(valid => {

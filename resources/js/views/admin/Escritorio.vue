@@ -28,36 +28,59 @@
         </div>
     </div>
     <div class="container-xl">
-        <div class="row row-deck row-cards">
-            <div class="col-sm-6 col-lg-3 mb-3">
-                <transition name="component-fade" mode="out-in">
-                    <keep-alive>
-                        <component :is='CardClientsComponent' v-bind:data="dataClients" @changeCardSmall="changeCardSmall" ref="dataClientsCard"></component>
-                    </keep-alive>
-                </transition>
-            </div>
-            <div class="col-sm-6 col-lg-3 mb-3">
+        <div class="row row-deck row-cards mb-3">
+                <div class="col-sm-6 col-lg-3">
                     <transition name="component-fade" mode="out-in">
-                    <keep-alive>
-                        <component :is='CardPrealertasComponent' v-bind:data="dataPrealertas" @changeCardSmall="changeCardSmall" ref="dataPrealertasCard"></component>
-                    </keep-alive>
-                </transition>
+                        <keep-alive>
+                            <component :is='CardClientsComponent' v-bind:data="dataClients" @changeCardSmall="changeCardSmall" ref="dataClientsCard"></component>
+                        </keep-alive>
+                    </transition>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                        <transition name="component-fade" mode="out-in">
+                        <keep-alive>
+                            <component :is='CardPrealertasComponent' v-bind:data="dataPrealertas" @changeCardSmall="changeCardSmall" ref="dataPrealertasCard"></component>
+                        </keep-alive>
+                    </transition>
+                </div>
+                    <div class="col-sm-6 col-lg-3">
+                    <transition name="component-fade" mode="out-in">
+                        <keep-alive>
+                            <component :is='CardEnviosComponent' v-bind:data="dataEnviados" @changeCardSmall="changeCardSmall" ref="dataEnviosCard"></component>
+                        </keep-alive>
+                    </transition>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <transition name="component-fade" mode="out-in">
+                        <keep-alive>
+                            <component :is='CardFacturasComponent' v-bind:data="dataFacturas" @changeCardSmall="changeCardSmall" ref="dataFacturasCard"></component>
+                        </keep-alive>
+                    </transition>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <transition name="component-fade" mode="out-in">
+                        <keep-alive>
+                            <component :is='CardPieCubicoEnviadosComponent' v-bind:data="dataPieCubicoEnviados" @changeCardSmall="changeCardSmall" ref="dataPieCubicoEnviadosCard"></component>
+                        </keep-alive>
+                    </transition>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <transition name="component-fade" mode="out-in">
+                        <keep-alive>
+                            <component :is='CardVolumenEnviadosComponent' v-bind:data="dataVolumenEnviados" @changeCardSmall="changeCardSmall" ref="dataVolumenEnviadosCard"></component>
+                        </keep-alive>
+                    </transition>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <transition name="component-fade" mode="out-in">
+                        <keep-alive>
+                            <component :is='CardLibrasEnviadosComponent' v-bind:data="dataLibrasEnviados" @changeCardSmall="changeCardSmall" ref="dataLibrasEnviadosCard"></component>
+                        </keep-alive>
+                    </transition>
+                </div>
             </div>
-                <div class="col-sm-6 col-lg-3 mb-3">
-                <transition name="component-fade" mode="out-in">
-                    <keep-alive>
-                        <component :is='CardEnviosComponent' v-bind:data="dataEnviados" @changeCardSmall="changeCardSmall" ref="dataEnviosCard"></component>
-                    </keep-alive>
-                </transition>
-            </div>
-                <div class="col-sm-6 col-lg-3 mb-3">
-                <transition name="component-fade" mode="out-in">
-                    <keep-alive>
-                        <component :is='CardFacturasComponent' v-bind:data="dataFacturas" @changeCardSmall="changeCardSmall" ref="dataFacturasCard"></component>
-                    </keep-alive>
-                </transition>
-            </div>
-            <div class="col-md-8">
+            <div class="row row-deck row-cards">
+                <div class="col-md-8">
                 <div class="card" style="height: calc(20rem + 15px);">
                     <div class="card-table table-responsive">
                         <table class="table table-vcenter">
@@ -126,7 +149,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+            
+            </div>
     </div>
 </div>
 </template>
@@ -148,6 +172,9 @@ export default {
            CardPrealertasComponent: CardSmallSkeleton,
            CardEnviosComponent: CardSmallSkeleton,
            CardFacturasComponent: CardSmallSkeleton,
+           CardPieCubicoEnviadosComponent: CardSmallSkeleton,
+           CardVolumenEnviadosComponent: CardSmallSkeleton,
+           CardLibrasEnviadosComponent: CardSmallSkeleton,
            dataClients: {
                 title: 'Clientes',
                 value: 7,
@@ -174,6 +201,27 @@ export default {
                 value: 7,
                 result: '',
                 var: 'dataFacturas',
+                event: 'changeCardSmall'
+           },
+           dataPieCubicoEnviados: {
+                title: 'Pies cúbicos enviados',
+                value: 7,
+                result: '',
+                var: 'dataPieCubicoEnviados',
+                event: 'changeCardSmall'
+           },
+           dataVolumenEnviados: {
+                title: 'Volumenes enviados',
+                value: 7,
+                result: '',
+                var: 'dataVolumenEnviados',
+                event: 'changeCardSmall'
+           },
+           dataLibrasEnviados: {
+                title: 'Libras enviados',
+                value: 7,
+                result: '',
+                var: 'dataLibrasEnviados',
                 event: 'changeCardSmall'
            },
            CardSmPrealertsComponent: CardSmSkeleton,
@@ -247,6 +295,9 @@ export default {
             await this.getCardSmallWhereFech('prealertas-analyze', this.dataPrealertas.value, this.dataPrealertas.var);
             await this.getCardSmallWhereFech('envios-analyze', this.dataEnviados.value, this.dataEnviados.var);
             await this.getCardSmallWhereFech('facturas-analyze', this.dataFacturas.value, this.dataFacturas.var);
+            await this.getCardSmallWhereFech('pies-cubicos-enviados-analyze', this.dataPieCubicoEnviados.value, this.dataPieCubicoEnviados.var);
+            await this.getCardSmallWhereFech('volumen-enviados-analyze', this.dataVolumenEnviados.value, this.dataVolumenEnviados.var);
+            await this.getCardSmallWhereFech('libras-enviados-analyze', this.dataLibrasEnviados.value, this.dataLibrasEnviados.var);
             await this.getCardSmallWhereFech('clientes-sincodigos', '', 'dataClientState');
             await this.getCardSmallWhereFech('prealertas-pendientes', '', 'dataPreAlerts');
             await this.getCardSmallWhereFech('warehouse-pendientes', '', 'dataWarehouse');
@@ -289,6 +340,15 @@ export default {
                             break;
                         case 8:
                             this.CardSmClientStateComponent = CardSm;
+                            break;
+                        case 9:
+                            this.CardPieCubicoEnviadosComponent = CardSmall;
+                            break;
+                        case 10:
+                            this.CardVolumenEnviadosComponent = CardSmall;
+                            break;
+                        case 11:
+                            this.CardLibrasEnviadosComponent = CardSmall;
                             break;
                         default:
                             break;
@@ -342,6 +402,18 @@ export default {
                     re(8);
                 }else if( val == 'dataEstUsers' ){
                     this.dataEstUsers = response.data.result;
+                }else if( val === 'dataPieCubicoEnviados' ){
+                    this.dataPieCubicoEnviados.value = response.data.valor;
+                    this.dataPieCubicoEnviados.result = response.data.result;
+                    re(9);
+                }else if( val === 'dataVolumenEnviados' ){
+                    this.dataVolumenEnviados.value = response.data.valor;
+                    this.dataVolumenEnviados.result = response.data.result;
+                    re(10);
+                }else if( val === 'dataLibrasEnviados' ){
+                    this.dataLibrasEnviados.value = response.data.valor;
+                    this.dataLibrasEnviados.result = response.data.result;
+                    re(11);
                 }               
             }).catch(error => {
                console.log(error.response.data);
@@ -361,7 +433,17 @@ export default {
             }else if( valor == 'dataFacturas' ){
                 url = 'facturas-analyze';
                 this.CardFacturasComponent = CardSmallSkeleton;
+            }else if( valor === 'dataPieCubicoEnviados' ){
+                url = 'pies-cubicos-enviados-analyze';
+                this.CardPieCubicoEnviadosComponent = CardSmallSkeleton;
+            }else if( valor === 'dataVolumenEnviados' ){
+                url = 'volumen-enviados-analyze';
+                this.CardVolumenEnviadosComponent = CardSmallSkeleton;
+            }else if( valor === 'dataLibrasEnviados' ){
+                url = 'libras-enviados-analyze';
+                this.CardLibrasEnviadosComponent = CardSmallSkeleton;
             }
+
 
             await this.getCardSmallWhereFech(url, value, valor);
         },

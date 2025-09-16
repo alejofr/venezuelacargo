@@ -13,21 +13,33 @@
                                 </div>
                              </div>
                         </div>
-                        <div class="d-flex align-items-center mt-5">
-                            <div class=" m-0 ms-auto" style="width: 330px;">
-                                <div class="form-floating mb-3" v-if="estados_select.length != 0" :class="{'is-invalid': errors.first('change_estado')}">
-                                    <select class="form-select" name="change_estado" v-validate="'required'" id="change_estado" v-model="change_estado" :data-vv-validate-on="'change'">
-                                        <option v-for="(item, index) in estados_select" :key="index" :value="item.valor">
-                                            {{item.title}}
-                                        </option>
-                                    </select>
-                                    <label for="change_estado">Cambiar de estado</label>
-                                    <div v-if="errors.has('change_estado')" class="invalid-feedback">{{errors.first('change_estado')}}</div>
-                                </div>
-                                <div class="form-group mb-3 " v-if="active_fecha">
-                                    <label class="form-label">Fecha Estimada</label>
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <div class="form-group mb-3 mt-5">
+                                    <label class="form-label">Nota (opcional)</label>
                                     <div>
-                                        <input type="date" class="form-control" v-model="fech_estimada" />
+                                        <textarea class="form-control" aria-label="With textarea" v-model="nota"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="d-flex align-items-center mt-5">
+                                    <div class=" m-0 ms-auto" style="width: 330px;">
+                                        <div class="form-floating mb-3" v-if="estados_select.length != 0" :class="{'is-invalid': errors.first('change_estado')}">
+                                            <select class="form-select" name="change_estado" v-validate="'required'" id="change_estado" v-model="change_estado" :data-vv-validate-on="'change'">
+                                                <option v-for="(item, index) in estados_select" :key="index" :value="item.valor">
+                                                    {{item.title}}
+                                                </option>
+                                            </select>
+                                            <label for="change_estado">Cambiar de estado</label>
+                                            <div v-if="errors.has('change_estado')" class="invalid-feedback">{{errors.first('change_estado')}}</div>
+                                        </div>
+                                        <div class="form-group mb-3 " v-if="active_fecha">
+                                            <label class="form-label">Fecha Estimada</label>
+                                            <div>
+                                                <input type="date" class="form-control" v-model="fech_estimada" />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -68,6 +80,7 @@ export default {
             id: '',
             active_fecha: true,
             fech_estimada: '',
+            nota: null,
             alert: {}
         };
     },
@@ -165,9 +178,11 @@ export default {
                     }
                 }*/
 
+
                 let estadoEnvio = {
                     estado: this.change_estado,
-                    h: {historial : historial}
+                    h: {historial : historial},
+                    nota: this.nota !== "" ? this.nota : null
                 }
 
                 if( this.active_fecha && this.fech_estimada == '' ){

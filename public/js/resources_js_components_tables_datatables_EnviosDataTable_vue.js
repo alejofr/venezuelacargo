@@ -57,13 +57,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'EnviosDataTable',
   props: ['data'],
   data: function data() {
     return {
-      getId: ''
+      getId: '',
+      showNota: false
     };
   },
   methods: {
@@ -77,6 +104,12 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return valueState;
+    },
+    openNota: function openNota() {
+      this.showNota = true;
+    },
+    closeNota: function closeNota() {
+      this.showNota = false;
     }
   },
   watch: {
@@ -350,6 +383,85 @@ var render = function () {
                   )
                 ),
               ])
+            : _vm._e(),
+        ]),
+        _vm._v(" "),
+        _c("td", [
+          item.nota
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-light",
+                  attrs: { type: "button" },
+                  on: { click: _vm.openNota },
+                },
+                [_vm._v("\n                Ver Nota\n            ")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.showNota
+            ? _c(
+                "div",
+                {
+                  staticClass: "modal fade show",
+                  staticStyle: {
+                    display: "block",
+                    "background-color": "#0000007a",
+                  },
+                  attrs: {
+                    tabindex: "-1",
+                    "aria-modal": "true",
+                    role: "dialog",
+                  },
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal-dialog modal-dialog-centered",
+                      attrs: { role: "document" },
+                    },
+                    [
+                      _c("div", { staticClass: "modal-content" }, [
+                        _c("div", { staticClass: "modal-header" }, [
+                          _c("h5", { staticClass: "modal-title" }, [
+                            _vm._v("Factura: " + _vm._s(item.nro_factura)),
+                          ]),
+                          _vm._v(" "),
+                          _c("button", {
+                            staticClass: "btn-close",
+                            attrs: {
+                              type: "button",
+                              "data-bs-dismiss": "modal",
+                              "aria-label": "Close",
+                            },
+                            on: { click: _vm.closeNota },
+                          }),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-body" }, [
+                          _c("p", [_vm._v(_vm._s(item.nota))]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-footer" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-secondary",
+                              attrs: {
+                                type: "button",
+                                "data-bs-dismiss": "modal",
+                              },
+                              on: { click: _vm.closeNota },
+                            },
+                            [_vm._v("Cerrar")]
+                          ),
+                        ]),
+                      ]),
+                    ]
+                  ),
+                ]
+              )
             : _vm._e(),
         ]),
         _vm._v(" "),

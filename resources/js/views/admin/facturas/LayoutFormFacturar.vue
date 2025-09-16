@@ -3,154 +3,199 @@
     <div class="row row-cards">
         <div class="col-12" style="min-height: 60vh;">
             <component :is='componentRender'></component>
-            <div class="card card-lg" v-if="componentRender == ''">
+            <div class="card card-lg" v-if="componentRender == ''" >
                 <div v-show="loaderCard" class="div-loader_white" style="margin: 0;"><loader></loader></div>
                 <div class="card-body">
-                     <div class="w-100 mb-3" v-if="activeComponent != ''"><component :is='activeComponent' v-bind:alert="alert"></component></div>
-                    <div class="row mb-4">
-                        <div class="col-6">
-                            <p class="h3">Detalles</p>
-                            <address>
-                                <p v-show="details.fecha_factura != ''">Fecha Factura: <span style="text-transform: uppercase;">{{details.fecha_factura}}</span> </p>
-                                <p>Numero Factura: {{details.nro_factura}}</p>
-                                <p>Numero Container: {{details.nro_container}}</p>
-                                <p>Tarifa Envio: {{details.tarifa}} USD</p>
-                                <p>Tipo Envio:  <span style="text-transform: uppercase;">{{details.tipo_envio}}</span></p>
-                                <p>Tasa Bs: {{details.monto_tc}} VES</p>
-                            </address>
-                        </div>
-                        <div class="col-6 text-end">
-                            <p class="h3">Cliente</p>
-                            <address>
-                                <p>Nombre Completo: {{client.nombres}} {{client.apellidos}}</p>
-                                <p v-if="client.cod_usuario != null">Código Usuario: {{client.cod_usuario}}</p>
-                                <p>Teléfono: {{client.telefono}}</p>
-                                <p>Cédula: {{client.cedula}}</p>
-                                <p>Dirección: {{client.direccion}} {{client.estado_ve}} {{`${client.zona != null ? ', '+ client.zona + ', '+client.codigo_postal : ''}`}}</p>
-                                <p v-if="client.ref_direccion != null">Ref. Dirección: {{client.ref_direccion}}</p>
-                            </address>
-                        </div>
-                    </div>
-                    <ware-houses 
-                        v-bind:warehouses="warehouses"
-                        :envio="envio"
-                        @add_new_wh="add_new_wh"
-                        v-bind:whNew="warehousesNew"
-                        :type_form="type_form"
-                    />
-                    <div class="w-100 mb-4" >
-                        <div class="row" v-if="type_form === 'new' || type_form === 'edit'">
-                            <div class="col-4">
-                                <div class="row">
+                    <vue-html2pdf
+                        :show-layout="false"
+                        :float-layout="false"
+                        :enable-download="true"
+                        :preview-modal="false"
+                        :paginate-elements-by-height="1400"
+                        filename="Factura"
+                        :pdf-quality="1"
+                        :manual-pagination="false"
+                        pdf-format="a4"
+                        pdf-orientation="landscape"
+                        pdf-content-width="100%"
+                        @progress="onProgress($event)"
+                        @hasStartedGeneration="hasStartedGeneration()"
+                        @hasGenerated="hasGenerated($event)"
+                        ref="html2Pdf"
+                    >
+                        <section class="w-100 h-100 pdf-content" slot="pdf-content" >
+                            <div class="w-100 mb-3" v-if="activeComponent != ''"><component :is='activeComponent' v-bind:alert="alert"></component></div>
+                                <div class="row mb-3">
                                     <div class="col-6">
-                                        <div class="form-group mb-3 ">
-                                            <label class="form-label">Cajas</label>
-                                            <div>
-                                                <select class="form-select" v-model="caja">
-                                                    <option v-for="(item, index) in cajas" :key="index" :value="item.id_gasto_extra">{{item.nombre}} - ${{item.monto_gasto_extra}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                        <p class="h3">Detalles</p>
+                                        <address>
+                                            <p v-show="details.fecha_factura != ''">Fecha Factura: <span style="text-transform: uppercase;">{{details.fecha_factura}}</span> </p>
+                                            <p>Numero Factura: {{details.nro_factura}}</p>
+                                            <p>Numero Container: {{details.nro_container}}</p>
+                                            <p>Tarifa Envio: {{details.tarifa}} USD</p>
+                                            <p>Tipo Envio:  <span style="text-transform: uppercase;">{{details.tipo_envio}}</span></p>
+                                            <p>Tasa Bs: {{details.monto_tc}} VES</p>
+                                        </address>
                                     </div>
-                                    <div class="row col-6" style="padding-left: 0;">
-                                        <div class="form-group mb-3 col-6">
-                                            <label class="form-label">Cant.</label>
-                                            <input type="number" class="form-control" min="1" pattern="^[0-9]+" name="example-password-input" placeholder="Cantidad Caja" v-model="cant_caja">
-                                        </div>
-                                        <div class="form-group mb-3 col-6" style="padding-left: 0;">
-                                            <label class="form-label" style="opacity:0;">agegar</label>
-                                            <div>
-                                                <button type="button" class="btn btn-light" @click="addCaja">
-                                                    Agregar
-                                                </button>
+                                    <div class="col-6 text-end">
+                                        <p class="h3">Cliente</p>
+                                        <address>
+                                            <p>Nombre Completo: {{client.nombres}} {{client.apellidos}}</p>
+                                            <p v-if="client.cod_usuario != null">Código Usuario: {{client.cod_usuario}}</p>
+                                            <p>Teléfono: {{client.telefono}}</p>
+                                            <p>Cédula: {{client.cedula}}</p>
+                                            <p>Dirección: {{client.direccion}} {{client.estado_ve}} {{`${client.zona != null ? ', '+ client.zona + ', '+client.codigo_postal : ''}`}}</p>
+                                            <p v-if="client.ref_direccion != null">Ref. Dirección: {{client.ref_direccion}}</p>
+                                        </address>
+                                    </div>
+                                </div>
+                                <ware-houses 
+                                    v-bind:warehouses="warehouses"
+                                    :envio="envio"
+                                    @add_new_wh="add_new_wh"
+                                    v-bind:whNew="warehousesNew"
+                                    :type_form="type_form"
+                                />
+                                <div class="w-100 mb-3" >
+                                    <div class="row" v-if="type_form === 'new' || type_form === 'edit'">
+                                        <div class="col-4">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group mb-3 ">
+                                                        <label class="form-label">Cajas</label>
+                                                        <div>
+                                                            <select class="form-select" v-model="caja">
+                                                                <option v-for="(item, index) in cajas" :key="index" :value="item.id_gasto_extra">{{item.nombre}} - ${{item.monto_gasto_extra}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row col-6" style="padding-left: 0;">
+                                                    <div class="form-group mb-3 col-6">
+                                                        <label class="form-label">Cant.</label>
+                                                        <input type="number" class="form-control" min="1" pattern="^[0-9]+" name="example-password-input" placeholder="Cantidad Caja" v-model="cant_caja">
+                                                    </div>
+                                                    <div class="form-group mb-3 col-6" style="padding-left: 0;">
+                                                        <label class="form-label" style="opacity:0;">agegar</label>
+                                                        <div>
+                                                            <button type="button" class="btn btn-light" @click="addCaja">
+                                                                Agregar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <content-body 
-                        v-bind:dataContent="dataContent"
-                    />
-                    <list-cajas 
-                        v-bind:listCajas="list_cajas"
-                        @removeCaja="removeCaja"
-                         :type_form="type_form"
-                    />
-                    <div class="d-flex align-items-center mt-4 mb-3">
-                        <div class=" m-0 ms-auto">
-                            <div class="d-flex align-items-center mb-3 justify-content-end">
-                                <span class="me-2">
-                                    Total WH
-                                </span>
-                                <span style="max-width: 80px;">
-                                    <input v-if="type_form === 'new' || type_form === 'edit'" type="text" class="form-control" v-model="costo_trackings" name="costo_trackings" style="padding: 0.4375rem 5px;text-align: end;" @keyup="keyUpPrecio($event)" @change="changePrecio($event)">
-                                    <input v-else disabled type="text" class="form-control" v-model="costo_trackings" name="costo_trackings" style="padding: 0.4375rem 5px;text-align: end;">
-                                </span>
-                            </div>
-                            <div class="d-flex align-items-center mb-3 justify-content-end" v-if="envio === 'reempaque'">
-                                <span class="me-2">
-                                    Total WH Reemp.
-                                </span>
-                                <span style="max-width: 80px;">
-                                    <input v-if="type_form === 'new' || type_form === 'edit'" type="text" class="form-control" v-model="costo_reempaque" name="costo_reempaque" style="padding: 0.4375rem 5px;text-align: end;" @keyup="keyUpPrecio($event)" @change="changePrecio($event)">
-                                    <input v-else disabled type="text" class="form-control" v-model="costo_reempaque" name="costo_reempaque" style="padding: 0.4375rem 5px;text-align: end;">
-                                </span>
-                            </div>
-                            <div class="d-flex align-items-center mb-3 justify-content-end">
-                                <span class="me-2">
-                                    Gastos Extras
-                                </span>
-                                <span style="max-width: 80px;">
-                                    <input v-if="type_form === 'new' || type_form === 'edit'" type="text" class="form-control" v-model="gastos_extras" name="gastos_extras" style="padding: 0.4375rem 5px;text-align: end;" @keyup="keyUpPrecio($event)" @change="changePrecio($event)">
-                                    <input v-else disabled type="text" class="form-control" v-model="gastos_extras" name="gastos_extras" style="padding: 0.4375rem 5px;text-align: end;">
-                                </span>
-                            </div>
-                            <div class="d-flex align-items-center mb-3 justify-content-end">
-                                <span class="me-2">
-                                    Total USD
-                                </span>
-                                <span style="width: 80px;" class="text-end">
-                                    {{ total_usd }}
-                                </span>
-                            </div>
-                            <div class="d-flex align-items-center mb-3 justify-content-end">
-                                <span class="me-2">
-                                    Total VES
-                                </span>
-                                <span style="width: 80px;" class="text-end">
-                                    {{ total_ves }}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center mt-5 mb-3">
-                        <div class=" m-0 ms-auto" style="width: 330px;">
-                            <div class="form-floating mb-3 w-100">
-                                <input v-if="type_form === 'new' || type_form === 'edit'" type="text" class="form-control" name="nro_factura" v-model="details.nro_factura" id="nro_factura"  >
-                                <input v-else disabled type="text" class="form-control" name="nro_factura" v-model="details.nro_factura" id="nro_factura"  >
-                                <label for="nro_factura">Nro. Factura</label>
-                            </div>
-                            <div class="form-floating mb-3 w-100">
-                                <input v-if="type_form === 'new' || type_form === 'edit'" type="text" class="form-control" name="nro_container" v-model="details.nro_container" id="nro_container"  >
-                                <input v-else disabled type="text" class="form-control" name="nro_container" v-model="details.nro_container" id="nro_container"  >
-                                <label for="nro_container">Nro. Container</label>
-                            </div>
-                            <div class="form-floating mb-3 w-100">
-                                <input v-if="type_form === 'new' || type_form === 'edit'" type="text" class="form-control" name="tarifa" v-model="details.tarifa" id="tarifa" @keyup="keyUpPrecio($event)" @change="changePrecioTarifa" >
-                                <input v-else disabled type="text" class="form-control" name="tarifa" v-model="details.tarifa" id="tarifa">
-                                <label for="tarifa">Tarifa de Envio ( {{details.tipo_envio}} )</label>
-                            </div>
-                        </div>
-                    </div>
+                                <content-body 
+                                    v-bind:dataContent="dataContent"
+                                />
+                                <list-cajas 
+                                    v-bind:listCajas="list_cajas"
+                                    @removeCaja="removeCaja"
+                                    :type_form="type_form"
+                                />
+                                <div class="row mt-4">
+                                    <div class="col-12 col-md-6  mb-3">
+                                        <div class="m-0" style="width: 330px;">
+                                            <div class="form-floating mb-3 w-100">
+                                                <input v-if="type_form === 'new' || type_form === 'edit'" type="text" class="form-control" name="nro_factura" v-model="details.nro_factura" id="nro_factura"  >
+                                                <div v-else disabled class="d-flex flex-column">
+                                                    <span class="me-2">Nro. Factura</span>
+                                                    <span><strong>{{ details.nro_factura }}</strong></span>
+                                                </div>
+                                                <label
+                                                 v-if="type_form === 'new' || type_form === 'edit'" 
+                                                for="nro_factura">Nro. Factura</label>
+                                            </div>
+                                            <div class="form-floating mb-3 w-100">
+                                                <input v-if="type_form === 'new' || type_form === 'edit'" type="text" class="form-control" name="nro_container" v-model="details.nro_container" id="nro_container"  >
+                                                <div v-else disabled class="d-flex flex-column">
+                                                    <span class="me-2">Nro. Container</span>
+                                                    <span><strong>{{ details.nro_container }}</strong></span>
+                                                </div>
+                                                <label v-if="type_form === 'new' || type_form === 'edit'"  for="nro_container">Nro. Container</label>
+                                            </div>
+                                            <div class="form-floating mb-3 w-100">
+                                                <input v-if="type_form === 'new' || type_form === 'edit'" type="text" class="form-control" name="tarifa" v-model="details.tarifa" id="tarifa" @keyup="keyUpPrecio($event)" @change="changePrecioTarifa" >
+                                                <div v-else disabled class="d-flex flex-column">
+                                                    <span class="me-2">Tarifa de Envio ( {{details.tipo_envio}} )</span>
+                                                    <span><strong>{{ details.tarifa }}</strong></span>
+                                                </div>
+                                                <label v-if="type_form === 'new' || type_form === 'edit'"  for="tarifa">Tarifa de Envio ( {{details.tipo_envio}} )</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <div class=" m-0 ms-auto">
+                                            <div class="d-flex align-items-center mb-3 justify-content-end">
+                                                <span class="me-2">
+                                                    Total WH:
+                                                </span>
+                                                <span style="max-width: 80px;">
+                                                    <input v-if="type_form === 'new' || type_form === 'edit'" type="text" class="form-control" v-model="costo_trackings" name="costo_trackings" style="padding: 0.4375rem 5px;text-align: end;" @keyup="keyUpPrecio($event)" @change="changePrecio($event)">
+                                                    <span v-else disabled style="padding: 0.4375rem 5px;text-align: end;"
+                                                    ><strong>{{ costo_trackings }}</strong></span> 
+                                                </span>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-3 justify-content-end" v-if="envio === 'reempaque'">
+                                                <span class="me-2">
+                                                    Total WH Reemp:
+                                                </span>
+                                                <span style="max-width: 80px;">
+                                                    <input v-if="type_form === 'new' || type_form === 'edit'" type="text" class="form-control" v-model="costo_reempaque" name="costo_reempaque" style="padding: 0.4375rem 5px;text-align: end;" @keyup="keyUpPrecio($event)" @change="changePrecio($event)">
+                                                    <span v-else disabled style="padding: 0.4375rem 5px;text-align: end;"
+                                                    ><strong>{{ costo_reempaque }}</strong></span> 
+                                                </span>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-3 justify-content-end">
+                                                <span class="me-2">
+                                                    Gastos Extras:
+                                                </span>
+                                                <span style="max-width: 80px;">
+                                                    <input v-if="type_form === 'new' || type_form === 'edit'" type="text" class="form-control" v-model="gastos_extras" name="gastos_extras" style="padding: 0.4375rem 5px;text-align: end;" @keyup="keyUpPrecio($event)" @change="changePrecio($event)">
+                                                    <span v-else disabled style="padding: 0.4375rem 5px;text-align: end;"
+                                                    ><strong>{{ gastos_extras }}</strong></span>
+                                                </span>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-3 justify-content-end">
+                                                <span class="me-2">
+                                                    Total USD:
+                                                </span>
+                                                <span style="width: 80px;" class="text-end">
+                                                    {{ total_usd }}
+                                                </span>
+                                            </div>
+                                            <div class="d-flex align-items-center mb-3 justify-content-end">
+                                                <span class="me-2">
+                                                    Total VES:
+                                                </span>
+                                                <span style="width: 80px;" class="text-end">
+                                                    {{ total_ves }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </section>
+                    </vue-html2pdf>
                     <div class="d-flex align-items-center mt-3">
                         <btn-volver :classe="'btn-light'"></btn-volver>
+                        <button 
+                            @click="generateReport"
+                            v-if="type_form === 'show'"
+                            class="btn btn-danger ms-auto"
+                        >
+                            Descargar PDF
+                            <i class="ti ti-file-download fs-19 ms-1"></i>
+                        </button>
                         <button type="button" @click="confirmInvoice" class="btn btn-info ms-auto" v-if="type_form === 'new' || type_form === 'edit'">
                             <span>Guardar</span>
                         </button>
                     </div>
                 </div>
+               
             </div>
         </div>
     </div>
@@ -191,6 +236,7 @@
 <script>
 
 //componentes de primer plano, para factura
+import VueHtml2pdf from 'vue-html2pdf'
 import WareHouses from '../../../components/facturas/WareHouses.vue';
 import ContentBody from '../../../components/facturas/ContentBody.vue';
 import ListCajas from '../../../components/facturas/ListCajas.vue';
@@ -263,6 +309,7 @@ export default {
         ListCajas,
         BtnVolver,
         loader: LoaderComponent,
+        VueHtml2pdf
     },
     beforeCreate(){
         this.$nextTick(async function () {
@@ -289,6 +336,35 @@ export default {
         });
     },
     methods: {
+         // Method to trigger PDF generation using the component ref
+	  generateReport() {
+		this.$refs.html2Pdf.generatePdf();
+	  },
+  
+	  // Event handler for PDF generation progress
+	  onProgress(event) {
+		console.log("Progress:", event);
+	  },
+  
+	  // Event handler when pagination starts
+	  startPaginationHandler() {
+		console.log("Pagination started");
+	  },
+  
+	  // Event handler after pagination is complete
+	  hasPaginatedHandler() {
+		console.log("Pagination completed");
+	  },
+  
+	  // Event handler before downloading the PDF
+	  beforeDownloadHandler(event) {
+		console.log("Before Download:", event);
+	  },
+  
+	  // Event handler after the PDF has been downloaded
+	  hasDownloadedHandler(event) {
+		console.log("PDF Downloaded:", event);
+	  },
         //obtener data de wh a facturar o datos de la factura
         get_axios(dataReq, url){
             this.axios.get(url, {params : dataReq}).then(response => {
@@ -613,5 +689,11 @@ export default {
 <style>
     .modal.show{
         display: block;
+    }
+    .pdf-content {
+        padding: 30px; /* Adds space around the content */
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%; /* Ensure content doesn't overflow */
     }
 </style>

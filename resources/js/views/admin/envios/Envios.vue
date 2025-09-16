@@ -42,6 +42,7 @@ export default {
                     {name: 'Estado de Envio'},
                     {name: 'Actualización de Envío'},
                     {name: 'Historial de Envío'},
+                    {name: 'Nota'},
                     {name: ''},
                 ],
                 columns: [

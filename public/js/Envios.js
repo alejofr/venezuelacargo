@@ -107,6 +107,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var LoaderComponent = function LoaderComponent() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_LoaderComponent_vue-_c2861").then(__webpack_require__.bind(__webpack_require__, /*! ../../../components/LoaderComponent.vue */ "./resources/js/components/LoaderComponent.vue"));
 };
@@ -134,6 +146,7 @@ var estados = _helpers_shippingStates_js__WEBPACK_IMPORTED_MODULE_2__.shippingSt
       id: '',
       active_fecha: true,
       fech_estimada: '',
+      nota: null,
       alert: {}
     };
   },
@@ -251,7 +264,8 @@ var estados = _helpers_shippingStates_js__WEBPACK_IMPORTED_MODULE_2__.shippingSt
           estado: this.change_estado,
           h: {
             historial: historial
-          }
+          },
+          nota: this.nota !== "" ? this.nota : null
         };
 
         if (this.active_fecha && this.fech_estimada == '') {
@@ -364,6 +378,8 @@ var request = function request() {
           name: 'Actualización de Envío'
         }, {
           name: 'Historial de Envío'
+        }, {
+          name: 'Nota'
         }, {
           name: ''
         }],
@@ -1300,158 +1316,206 @@ var render = function () {
                       0
                     ),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "d-flex align-items-center mt-5" },
-                      [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-6 col-12" }, [
+                        _c("div", { staticClass: "form-group mb-3 mt-5" }, [
+                          _c("label", { staticClass: "form-label" }, [
+                            _vm._v("Nota (opcional)"),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", [
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.nota,
+                                  expression: "nota",
+                                },
+                              ],
+                              staticClass: "form-control",
+                              attrs: { "aria-label": "With textarea" },
+                              domProps: { value: _vm.nota },
+                              on: {
+                                input: function ($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.nota = $event.target.value
+                                },
+                              },
+                            }),
+                          ]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-6 col-12" }, [
                         _c(
                           "div",
-                          {
-                            staticClass: " m-0 ms-auto",
-                            staticStyle: { width: "330px" },
-                          },
+                          { staticClass: "d-flex align-items-center mt-5" },
                           [
-                            _vm.estados_select.length != 0
-                              ? _c(
-                                  "div",
-                                  {
-                                    staticClass: "form-floating mb-3",
-                                    class: {
-                                      "is-invalid":
-                                        _vm.errors.first("change_estado"),
-                                    },
-                                  },
-                                  [
-                                    _c(
-                                      "select",
+                            _c(
+                              "div",
+                              {
+                                staticClass: " m-0 ms-auto",
+                                staticStyle: { width: "330px" },
+                              },
+                              [
+                                _vm.estados_select.length != 0
+                                  ? _c(
+                                      "div",
                                       {
-                                        directives: [
-                                          {
-                                            name: "validate",
-                                            rawName: "v-validate",
-                                            value: "required",
-                                            expression: "'required'",
-                                          },
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.change_estado,
-                                            expression: "change_estado",
-                                          },
-                                        ],
-                                        staticClass: "form-select",
-                                        attrs: {
-                                          name: "change_estado",
-                                          id: "change_estado",
-                                          "data-vv-validate-on": "change",
-                                        },
-                                        on: {
-                                          change: function ($event) {
-                                            var $$selectedVal =
-                                              Array.prototype.filter
-                                                .call(
-                                                  $event.target.options,
-                                                  function (o) {
-                                                    return o.selected
-                                                  }
-                                                )
-                                                .map(function (o) {
-                                                  var val =
-                                                    "_value" in o
-                                                      ? o._value
-                                                      : o.value
-                                                  return val
-                                                })
-                                            _vm.change_estado = $event.target
-                                              .multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          },
+                                        staticClass: "form-floating mb-3",
+                                        class: {
+                                          "is-invalid":
+                                            _vm.errors.first("change_estado"),
                                         },
                                       },
-                                      _vm._l(
-                                        _vm.estados_select,
-                                        function (item, index) {
-                                          return _c(
-                                            "option",
-                                            {
-                                              key: index,
-                                              domProps: { value: item.valor },
+                                      [
+                                        _c(
+                                          "select",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "validate",
+                                                rawName: "v-validate",
+                                                value: "required",
+                                                expression: "'required'",
+                                              },
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.change_estado,
+                                                expression: "change_estado",
+                                              },
+                                            ],
+                                            staticClass: "form-select",
+                                            attrs: {
+                                              name: "change_estado",
+                                              id: "change_estado",
+                                              "data-vv-validate-on": "change",
                                             },
-                                            [
-                                              _vm._v(
-                                                "\n                                        " +
-                                                  _vm._s(item.title) +
-                                                  "\n                                    "
-                                              ),
-                                            ]
-                                          )
-                                        }
-                                      ),
-                                      0
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "label",
-                                      { attrs: { for: "change_estado" } },
-                                      [_vm._v("Cambiar de estado")]
-                                    ),
-                                    _vm._v(" "),
-                                    _vm.errors.has("change_estado")
-                                      ? _c(
-                                          "div",
-                                          { staticClass: "invalid-feedback" },
-                                          [
-                                            _vm._v(
-                                              _vm._s(
-                                                _vm.errors.first(
-                                                  "change_estado"
-                                                )
+                                            on: {
+                                              change: function ($event) {
+                                                var $$selectedVal =
+                                                  Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function (o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function (o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
+                                                _vm.change_estado = $event
+                                                  .target.multiple
+                                                  ? $$selectedVal
+                                                  : $$selectedVal[0]
+                                              },
+                                            },
+                                          },
+                                          _vm._l(
+                                            _vm.estados_select,
+                                            function (item, index) {
+                                              return _c(
+                                                "option",
+                                                {
+                                                  key: index,
+                                                  domProps: {
+                                                    value: item.valor,
+                                                  },
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                                " +
+                                                      _vm._s(item.title) +
+                                                      "\n                                            "
+                                                  ),
+                                                ]
                                               )
-                                            ),
-                                          ]
-                                        )
-                                      : _vm._e(),
-                                  ]
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.active_fecha
-                              ? _c("div", { staticClass: "form-group mb-3 " }, [
-                                  _c("label", { staticClass: "form-label" }, [
-                                    _vm._v("Fecha Estimada"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.fech_estimada,
-                                          expression: "fech_estimada",
-                                        },
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: { type: "date" },
-                                      domProps: { value: _vm.fech_estimada },
-                                      on: {
-                                        input: function ($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.fech_estimada =
-                                            $event.target.value
-                                        },
-                                      },
-                                    }),
-                                  ]),
-                                ])
-                              : _vm._e(),
+                                            }
+                                          ),
+                                          0
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "label",
+                                          { attrs: { for: "change_estado" } },
+                                          [_vm._v("Cambiar de estado")]
+                                        ),
+                                        _vm._v(" "),
+                                        _vm.errors.has("change_estado")
+                                          ? _c(
+                                              "div",
+                                              {
+                                                staticClass: "invalid-feedback",
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.errors.first(
+                                                      "change_estado"
+                                                    )
+                                                  )
+                                                ),
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.active_fecha
+                                  ? _c(
+                                      "div",
+                                      { staticClass: "form-group mb-3 " },
+                                      [
+                                        _c(
+                                          "label",
+                                          { staticClass: "form-label" },
+                                          [_vm._v("Fecha Estimada")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("div", [
+                                          _c("input", {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.fech_estimada,
+                                                expression: "fech_estimada",
+                                              },
+                                            ],
+                                            staticClass: "form-control",
+                                            attrs: { type: "date" },
+                                            domProps: {
+                                              value: _vm.fech_estimada,
+                                            },
+                                            on: {
+                                              input: function ($event) {
+                                                if ($event.target.composing) {
+                                                  return
+                                                }
+                                                _vm.fech_estimada =
+                                                  $event.target.value
+                                              },
+                                            },
+                                          }),
+                                        ]),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                              ]
+                            ),
                           ]
                         ),
-                      ]
-                    ),
+                      ]),
+                    ]),
                     _vm._v(" "),
                     _c(
                       "div",

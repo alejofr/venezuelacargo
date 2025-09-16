@@ -179,13 +179,19 @@ Route::middleware('auth:api')->group(function() {
                 Route::resource('almacenes', App\Http\Controllers\Admin\AlmacenesController::class);
                 Route::post('almacenes-actualizar', 'App\Http\Controllers\Admin\AlmacenesController@update_prealerta');
                 Route::post('almacenes-crear', 'App\Http\Controllers\Admin\AlmacenesController@create');
+                Route::post('almacen/revoke/instrucciones', 'App\Http\Controllers\Admin\AlmacenesController@revokeAlmacenForInstruction');
                 Route::post('almacen/instrucciones', 'App\Http\Controllers\Admin\AlmacenesController@storeAlmacenForInstruction');
                 Route::get('almacen/paquetes/data', 'App\Http\Controllers\Admin\AlmacenesController@getDatosForInvoice');
+                Route::put('almacen/process-instruction/{id}', 'App\Http\Controllers\Admin\AlmacenesController@processInstruction');
                 Route::get('warehouse-pendientes', 'App\Http\Controllers\Admin\AlmacenesController@state');
         
                 //facturas
                 Route::resource('facturas', App\Http\Controllers\Admin\FacturasController::class);
                 Route::get('facturas-analyze', 'App\Http\Controllers\Admin\FacturasController@analyze');
+                Route::get('pies-cubicos-enviados-analyze', 'App\Http\Controllers\Admin\FacturasController@analyzePieCubicoSending');
+                Route::get('volumen-enviados-analyze', 'App\Http\Controllers\Admin\FacturasController@analyzeVolumenSending');
+                Route::get('libras-enviados-analyze', 'App\Http\Controllers\Admin\FacturasController@analyzeLibrasSending');
+
                 Route::get('facturas-pendientes', 'App\Http\Controllers\Admin\FacturasController@state');
                 Route::put('pago-factura/{id}', 'App\Http\Controllers\Admin\FacturasController@pagoVerificado');
                 Route::put('no-pago-factura/{id}', 'App\Http\Controllers\Admin\FacturasController@pagoNoVerificado');

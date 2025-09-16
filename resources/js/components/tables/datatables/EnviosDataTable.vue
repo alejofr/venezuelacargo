@@ -26,6 +26,32 @@
                 <span v-if="item.historial_estado != null">{{item.historial_estado.historial[item.historial_estado.historial.length - 1].title}}</span> 
             </td>
             <td>
+                <button 
+                    type="button" 
+                    class="btn btn-light"
+                    v-if="item.nota"
+                    @click="openNota"
+                >
+                    Ver Nota
+                </button>
+                <div class="modal fade show" v-if="showNota" tabindex="-1" aria-modal="true" role="dialog" style="display: block; background-color: #0000007a;">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Factura: {{ item.nro_factura }}</h5>
+                                <button  @click="closeNota" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{ item.nota }}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button @click="closeNota" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
                 <router-link
                         :to="{ 
                             name: 'ChangeEstadoEnvio', 
@@ -53,6 +79,7 @@ export default {
     data(){
         return {
             getId: '',
+            showNota: false
         }
     },
     methods: {
@@ -64,6 +91,12 @@ export default {
             }
 
             return valueState;
+        },
+        openNota(){
+            this.showNota = true;
+        },
+        closeNota(){
+            this.showNota = false;
         }
     },
     watch: {

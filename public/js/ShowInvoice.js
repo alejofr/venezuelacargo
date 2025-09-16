@@ -2912,7 +2912,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mb-4 table-responsive" }, [
+  return _c("div", { staticClass: "mb-3 table-responsive" }, [
     _vm.envio === "reempaque" && _vm.type_form != "show"
       ? _c("div", { staticClass: "d-flex align-items-center mb-3" }, [
           _c(

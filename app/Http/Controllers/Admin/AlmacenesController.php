@@ -34,6 +34,7 @@ class AlmacenesController extends Controller
             'almacenes.estado',
             'almacenes.status',
             'almacenes.activo',
+            'almacenes.procesado',
             'almacenes.fecha_creado',
             'almacenes.tipo_envio',
             'solicitudes_envios.id_solicitud',
@@ -187,6 +188,16 @@ class AlmacenesController extends Controller
         ], 200);
     }
 
+    public function processInstruction($id){
+        $almacen = Almacenes::find($id);
+        $almacen->procesado = true;
+        $almacen->update();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'El WareHouse: '.$almacen->warehouse.' con instruccion, ha sido procesado',
+        ], 200);
+    }
 
     public function show($id)
     {
@@ -393,6 +404,41 @@ class AlmacenesController extends Controller
             'status' => 200,
             'message' => 'Los Tracking de la prealerta fueron agregados en el almacen',
         ], 200);
+    }
+
+    public function revokeAlmacenForInstruction(Request  $request){
+        $solicitud = $request->solicitud;
+        $almacen = Almacenes::find($solicitud['id_almacen']);
+
+        if( $almacen->estado == 'recibido'){
+            $trackings = $solicitud['trackings'];
+
+            for ($i=0; $i <count($trackings) ; $i++) { 
+                $tracking = Trackings::find($trackings[$i]['id_tracking']);
+                $tracking->reempaque =  'no';
+                $tracking->total_seguro = 0;
+                $tracking->seguro = 0;
+                $tracking->update();
+            }
+
+            $almacen->status = false;
+            $almacen->tipo_envio = null;
+            $almacen->seguro = 0;
+            $almacen->total_seguro = 0;
+
+            $almacen->update();
+
+            return response()->json([
+                'status' => 200,
+                'message' => 'Fueron Agregados revocados las intrucciones a los paquetes del WareHose: '.$almacen->warehouse
+            ], 200);
+        }else{
+            return response()->json([
+                'status' => 403,
+                'message' => 'Error, no se puede actualizar este '.$solicitud['warehouse'].' WareHouse',
+            ], 403);
+        }
+        
     }
 
     public function storeAlmacenForInstruction(Request  $request)

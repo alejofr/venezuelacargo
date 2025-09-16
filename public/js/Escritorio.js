@@ -164,6 +164,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var CardSmallSkeleton = function CardSmallSkeleton() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_cards_CardSmallSkeleton_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../../components/cards/CardSmallSkeleton.vue */ "./resources/js/components/cards/CardSmallSkeleton.vue"));
 };
@@ -195,6 +219,9 @@ var CalculadoraEnvio = function CalculadoraEnvio() {
       CardPrealertasComponent: CardSmallSkeleton,
       CardEnviosComponent: CardSmallSkeleton,
       CardFacturasComponent: CardSmallSkeleton,
+      CardPieCubicoEnviadosComponent: CardSmallSkeleton,
+      CardVolumenEnviadosComponent: CardSmallSkeleton,
+      CardLibrasEnviadosComponent: CardSmallSkeleton,
       dataClients: {
         title: 'Clientes',
         value: 7,
@@ -221,6 +248,27 @@ var CalculadoraEnvio = function CalculadoraEnvio() {
         value: 7,
         result: '',
         "var": 'dataFacturas',
+        event: 'changeCardSmall'
+      },
+      dataPieCubicoEnviados: {
+        title: 'Pies cúbicos enviados',
+        value: 7,
+        result: '',
+        "var": 'dataPieCubicoEnviados',
+        event: 'changeCardSmall'
+      },
+      dataVolumenEnviados: {
+        title: 'Volumenes enviados',
+        value: 7,
+        result: '',
+        "var": 'dataVolumenEnviados',
+        event: 'changeCardSmall'
+      },
+      dataLibrasEnviados: {
+        title: 'Libras enviados',
+        value: 7,
+        result: '',
+        "var": 'dataLibrasEnviados',
         event: 'changeCardSmall'
       },
       CardSmPrealertsComponent: CardSmSkeleton,
@@ -311,25 +359,37 @@ var CalculadoraEnvio = function CalculadoraEnvio() {
 
             case 8:
               _context.next = 10;
-              return this.getCardSmallWhereFech('clientes-sincodigos', '', 'dataClientState');
+              return this.getCardSmallWhereFech('pies-cubicos-enviados-analyze', this.dataPieCubicoEnviados.value, this.dataPieCubicoEnviados["var"]);
 
             case 10:
               _context.next = 12;
-              return this.getCardSmallWhereFech('prealertas-pendientes', '', 'dataPreAlerts');
+              return this.getCardSmallWhereFech('volumen-enviados-analyze', this.dataVolumenEnviados.value, this.dataVolumenEnviados["var"]);
 
             case 12:
               _context.next = 14;
-              return this.getCardSmallWhereFech('warehouse-pendientes', '', 'dataWarehouse');
+              return this.getCardSmallWhereFech('libras-enviados-analyze', this.dataLibrasEnviados.value, this.dataLibrasEnviados["var"]);
 
             case 14:
               _context.next = 16;
-              return this.getCardSmallWhereFech('facturas-pendientes', '', 'dataInvoices');
+              return this.getCardSmallWhereFech('clientes-sincodigos', '', 'dataClientState');
 
             case 16:
               _context.next = 18;
-              return this.getCardSmallWhereFech('estados-usuarios', '', 'dataEstUsers');
+              return this.getCardSmallWhereFech('prealertas-pendientes', '', 'dataPreAlerts');
 
             case 18:
+              _context.next = 20;
+              return this.getCardSmallWhereFech('warehouse-pendientes', '', 'dataWarehouse');
+
+            case 20:
+              _context.next = 22;
+              return this.getCardSmallWhereFech('facturas-pendientes', '', 'dataInvoices');
+
+            case 22:
+              _context.next = 24;
+              return this.getCardSmallWhereFech('estados-usuarios', '', 'dataEstUsers');
+
+            case 24:
             case "end":
               return _context.stop();
           }
@@ -387,6 +447,18 @@ var CalculadoraEnvio = function CalculadoraEnvio() {
 
                       case 8:
                         _this.CardSmClientStateComponent = CardSm;
+                        break;
+
+                      case 9:
+                        _this.CardPieCubicoEnviadosComponent = CardSmall;
+                        break;
+
+                      case 10:
+                        _this.CardVolumenEnviadosComponent = CardSmall;
+                        break;
+
+                      case 11:
+                        _this.CardLibrasEnviadosComponent = CardSmall;
                         break;
 
                       default:
@@ -449,6 +521,18 @@ var CalculadoraEnvio = function CalculadoraEnvio() {
                     re(8);
                   } else if (val == 'dataEstUsers') {
                     _this.dataEstUsers = response.data.result;
+                  } else if (val === 'dataPieCubicoEnviados') {
+                    _this.dataPieCubicoEnviados.value = response.data.valor;
+                    _this.dataPieCubicoEnviados.result = response.data.result;
+                    re(9);
+                  } else if (val === 'dataVolumenEnviados') {
+                    _this.dataVolumenEnviados.value = response.data.valor;
+                    _this.dataVolumenEnviados.result = response.data.result;
+                    re(10);
+                  } else if (val === 'dataLibrasEnviados') {
+                    _this.dataLibrasEnviados.value = response.data.valor;
+                    _this.dataLibrasEnviados.result = response.data.result;
+                    re(11);
                   }
                 })["catch"](function (error) {
                   console.log(error.response.data);
@@ -486,6 +570,15 @@ var CalculadoraEnvio = function CalculadoraEnvio() {
                 } else if (valor == 'dataFacturas') {
                   url = 'facturas-analyze';
                   _this2.CardFacturasComponent = CardSmallSkeleton;
+                } else if (valor === 'dataPieCubicoEnviados') {
+                  url = 'pies-cubicos-enviados-analyze';
+                  _this2.CardPieCubicoEnviadosComponent = CardSmallSkeleton;
+                } else if (valor === 'dataVolumenEnviados') {
+                  url = 'volumen-enviados-analyze';
+                  _this2.CardVolumenEnviadosComponent = CardSmallSkeleton;
+                } else if (valor === 'dataLibrasEnviados') {
+                  url = 'libras-enviados-analyze';
+                  _this2.CardLibrasEnviadosComponent = CardSmallSkeleton;
                 }
 
                 _context3.next = 5;
@@ -824,10 +917,10 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "container-xl" }, [
-      _c("div", { staticClass: "row row-deck row-cards" }, [
+      _c("div", { staticClass: "row row-deck row-cards mb-3" }, [
         _c(
           "div",
-          { staticClass: "col-sm-6 col-lg-3 mb-3" },
+          { staticClass: "col-sm-6 col-lg-3" },
           [
             _c(
               "transition",
@@ -854,7 +947,7 @@ var render = function () {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "col-sm-6 col-lg-3 mb-3" },
+          { staticClass: "col-sm-6 col-lg-3" },
           [
             _c(
               "transition",
@@ -881,7 +974,7 @@ var render = function () {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "col-sm-6 col-lg-3 mb-3" },
+          { staticClass: "col-sm-6 col-lg-3" },
           [
             _c(
               "transition",
@@ -908,7 +1001,7 @@ var render = function () {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "col-sm-6 col-lg-3 mb-3" },
+          { staticClass: "col-sm-6 col-lg-3" },
           [
             _c(
               "transition",
@@ -933,6 +1026,89 @@ var render = function () {
           1
         ),
         _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-sm-6 col-lg-4" },
+          [
+            _c(
+              "transition",
+              { attrs: { name: "component-fade", mode: "out-in" } },
+              [
+                _c(
+                  "keep-alive",
+                  [
+                    _c(_vm.CardPieCubicoEnviadosComponent, {
+                      ref: "dataPieCubicoEnviadosCard",
+                      tag: "component",
+                      attrs: { data: _vm.dataPieCubicoEnviados },
+                      on: { changeCardSmall: _vm.changeCardSmall },
+                    }),
+                  ],
+                  1
+                ),
+              ],
+              1
+            ),
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-sm-6 col-lg-4" },
+          [
+            _c(
+              "transition",
+              { attrs: { name: "component-fade", mode: "out-in" } },
+              [
+                _c(
+                  "keep-alive",
+                  [
+                    _c(_vm.CardVolumenEnviadosComponent, {
+                      ref: "dataVolumenEnviadosCard",
+                      tag: "component",
+                      attrs: { data: _vm.dataVolumenEnviados },
+                      on: { changeCardSmall: _vm.changeCardSmall },
+                    }),
+                  ],
+                  1
+                ),
+              ],
+              1
+            ),
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-sm-6 col-lg-4" },
+          [
+            _c(
+              "transition",
+              { attrs: { name: "component-fade", mode: "out-in" } },
+              [
+                _c(
+                  "keep-alive",
+                  [
+                    _c(_vm.CardLibrasEnviadosComponent, {
+                      ref: "dataLibrasEnviadosCard",
+                      tag: "component",
+                      attrs: { data: _vm.dataLibrasEnviados },
+                      on: { changeCardSmall: _vm.changeCardSmall },
+                    }),
+                  ],
+                  1
+                ),
+              ],
+              1
+            ),
+          ],
+          1
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row row-deck row-cards" }, [
         _c("div", { staticClass: "col-md-8" }, [
           _c(
             "div",

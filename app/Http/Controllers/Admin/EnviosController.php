@@ -28,6 +28,7 @@ class EnviosController extends Controller
             'envios.fecha_estimada',
             'envios.fecha_creado',
             'envios.fecha_editado',
+            'envios.nota',
             'usuarios_info.nombres', 
             'usuarios_info.apellidos', 
         ];
@@ -129,6 +130,7 @@ class EnviosController extends Controller
             $envio->historial_estado = json_encode($request->h);
             $envio->estado = $estado;
             $envio->fecha_estimada = $request->fech_estimada;
+            $envio->nota = $request->nota ? $request->nota : $envio->nota;
     
 
     
@@ -163,8 +165,7 @@ class EnviosController extends Controller
         }
 
         if( $from != null ){
-            $cantidad = Envios::where('estado', '=', 'ENVIO-VENEZUELA')
-            ->whereBetween('fecha_creado', [$from, $to])
+            $cantidad = Envios::whereBetween('fecha_creado', [$from, $to])
             ->count();
         }
         

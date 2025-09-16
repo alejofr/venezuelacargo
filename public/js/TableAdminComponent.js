@@ -729,6 +729,23 @@ var LoaderComponent = function LoaderComponent() {
     };
     this.$store.dispatch('tableadmin/modalDelete', true);
   },
+  processInstructionWH: function processInstructionWH(id) {
+    var _this7 = this;
+
+    this.loaderCard = true;
+    this.axios.put("/almacen/process-instruction/".concat(id)).then(function (response) {
+      console.log(response.data);
+      _this7.loaderCard = false;
+
+      _this7.$store.dispatch('tableadmin/resetInit');
+    })["catch"](function (error) {
+      console.log(error.response.data);
+
+      _this7.respAlert(403, 'Ha ocurrido un error en descargar el archivo pdf');
+
+      _this7.loaderCard = false;
+    });
+  },
   eliminar: function eliminar(e) {
     var value = e.target.value;
 
@@ -837,7 +854,7 @@ var LoaderComponent = function LoaderComponent() {
     }
   },
   savePago: function savePago() {
-    var _this7 = this;
+    var _this8 = this;
 
     if (this.pago.tipo_pago != '' && this.pago.comprobante != '' && this.pago.nro_comprobante != '' && this.pago.titular != '') {
       var total_usd = this.factura.total_usd;
@@ -886,17 +903,17 @@ var LoaderComponent = function LoaderComponent() {
       }).then(function (response) {
         console.log(response.data);
 
-        _this7.resp(response.data);
+        _this8.resp(response.data);
 
-        _this7.msgAlert = {
+        _this8.msgAlert = {
           msg: response.data.message,
           clss: 'updated'
         };
 
-        _this7.$store.dispatch('tableadmin/alertMessage', true);
+        _this8.$store.dispatch('tableadmin/alertMessage', true);
 
         setTimeout(function () {
-          _this7.loaderCard = false;
+          _this8.loaderCard = false;
         }, 1500);
       })["catch"](function (error) {
         console.log('err', error);
@@ -907,15 +924,15 @@ var LoaderComponent = function LoaderComponent() {
           message = 'Error inesperado. por favor intentar más tarde.';
         }
 
-        _this7.msgAlert = {
+        _this8.msgAlert = {
           msg: message,
           clss: 'error'
         };
 
-        _this7.$store.dispatch('tableadmin/alertMessage', true);
+        _this8.$store.dispatch('tableadmin/alertMessage', true);
 
         setTimeout(function () {
-          _this7.loaderCard = false;
+          _this8.loaderCard = false;
         }, 1500);
       });
     } else {
@@ -2815,6 +2832,7 @@ var render = function () {
                         send_invoice_pdf: _vm.send_invoice_pdf,
                         sendPagoFactura: _vm.sendPagoFactura,
                         destroyWH: _vm.destroyWH,
+                        processInstructionWH: _vm.processInstructionWH,
                       },
                     }),
                   ],

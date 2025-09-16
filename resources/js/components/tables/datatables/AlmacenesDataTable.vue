@@ -23,7 +23,7 @@
                     <span class=""> {{ item.pie_cubico }}</span>
                 </td>
                 <td>
-                    <span class=""> {{ item.tipo_envio }}</span>
+                    <span class=""> {{ `${ item.tipo_envio ? item.tipo_envio : 'Sin Instrucción'}` }}</span>
                 </td>
                 <td>
                     <span class="" v-show="item.status == 1"> {{`${ item.reempaque == 'no' ? 'Directo' : 'Reempaque'}`}}</span>
@@ -60,6 +60,18 @@
                             v-title
                         >
                             <i class="ti ti-trash fs-19"></i>
+                        </button>
+                        <button
+                            v-if="item.status == 1"
+                            :value="item.id_almacen"
+                            type="button"
+                            class="align-text-top nav-link m-0"
+                            style="padding: 0;margin-bottom: 0 !important;"
+                            title="Procesar Instrucción" 
+                            @click="processInstruction(item.id_almacen)"
+                            v-title
+                        >
+                            <i :class="`ti ti-checks fs-19 ${item.procesado === 0 ? 'text-muted' : 'text-success'}`"></i>
                         </button>
                     </div>
                 </td>
@@ -103,6 +115,9 @@ export default {
         destroy_wh(e){
             const { value } = e.target.parentNode;
             this.$emit('destroyWH', value);
+        },
+        processInstruction(id){
+            this.$emit('processInstructionWH', id);
         },
         getStorage(){
             if( window.sessionStorage.getItem('idLocalStorage') !== undefined && window.sessionStorage.getItem('idLocalStorage') ){

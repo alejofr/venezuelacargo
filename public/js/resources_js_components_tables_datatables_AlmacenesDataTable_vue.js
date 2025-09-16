@@ -88,6 +88,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var reItemAlmacen = function reItemAlmacen() {
   var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var id = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
@@ -135,6 +147,9 @@ var reItemAlmacen = function reItemAlmacen() {
     destroy_wh: function destroy_wh(e) {
       var value = e.target.parentNode.value;
       this.$emit('destroyWH', value);
+    },
+    processInstruction: function processInstruction(id) {
+      this.$emit('processInstructionWH', id);
     },
     getStorage: function getStorage() {
       if (window.sessionStorage.getItem('idLocalStorage') !== undefined && window.sessionStorage.getItem('idLocalStorage')) {
@@ -433,7 +448,16 @@ var render = function () {
         _vm._v(" "),
         _c("td", [_c("span", {}, [_vm._v(" " + _vm._s(item.pie_cubico))])]),
         _vm._v(" "),
-        _c("td", [_c("span", {}, [_vm._v(" " + _vm._s(item.tipo_envio))])]),
+        _c("td", [
+          _c("span", {}, [
+            _vm._v(
+              " " +
+                _vm._s(
+                  "" + (item.tipo_envio ? item.tipo_envio : "Sin Instrucción")
+                )
+            ),
+          ]),
+        ]),
         _vm._v(" "),
         _c("td", [
           _c(
@@ -555,6 +579,39 @@ var render = function () {
                 },
                 [_c("i", { staticClass: "ti ti-trash fs-19" })]
               ),
+              _vm._v(" "),
+              item.status == 1
+                ? _c(
+                    "button",
+                    {
+                      directives: [{ name: "title", rawName: "v-title" }],
+                      staticClass: "align-text-top nav-link m-0",
+                      staticStyle: {
+                        padding: "0",
+                        "margin-bottom": "0 !important",
+                      },
+                      attrs: {
+                        value: item.id_almacen,
+                        type: "button",
+                        title: "Procesar Instrucción",
+                      },
+                      on: {
+                        click: function ($event) {
+                          return _vm.processInstruction(item.id_almacen)
+                        },
+                      },
+                    },
+                    [
+                      _c("i", {
+                        class:
+                          "ti ti-checks fs-19 " +
+                          (item.procesado === 0
+                            ? "text-muted"
+                            : "text-success"),
+                      }),
+                    ]
+                  )
+                : _vm._e(),
             ],
             1
           ),

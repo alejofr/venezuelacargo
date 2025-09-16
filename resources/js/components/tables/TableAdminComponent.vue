@@ -235,7 +235,7 @@
                 </thead>
                 <transition name="component-fade" mode="out-in">
                     <keep-alive>
-                        <component :is='tbodyComponent' v-bind:data="dataTble" v-bind:th="columns.th" @getId="getId" @sendCheckPago="sendCheckPago" @exporDonwload_pdf="exporDonwload_pdf" @send_invoice_pdf="send_invoice_pdf" @sendPagoFactura="sendPagoFactura" @destroyWH="destroyWH"></component>
+                        <component :is='tbodyComponent' v-bind:data="dataTble" v-bind:th="columns.th" @getId="getId" @sendCheckPago="sendCheckPago" @exporDonwload_pdf="exporDonwload_pdf" @send_invoice_pdf="send_invoice_pdf" @sendPagoFactura="sendPagoFactura" @destroyWH="destroyWH" @processInstructionWH="processInstructionWH"></component>
                     </keep-alive>
                 </transition>
             </table>
@@ -588,6 +588,20 @@ export default {
                 id: id
             }
             this.$store.dispatch('tableadmin/modalDelete', true);
+        },
+        processInstructionWH(id){
+            this.loaderCard = true;
+            this.axios.put(`/almacen/process-instruction/${id}`)
+            .then(response => {
+                console.log(response.data)
+                this.loaderCard = false;
+                this.$store.dispatch('tableadmin/resetInit');
+            }).catch(error => {
+                console.log(error.response.data)
+                this.respAlert(403, 'Ha ocurrido un error en descargar el archivo pdf');
+                this.loaderCard = false;
+            });
+           
         },
         eliminar(e){
             let value = e.target.value;

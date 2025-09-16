@@ -41,6 +41,7 @@ class Almacenes extends Model
         'estado',
         'status',
         'activo',
+        'procesado',
         'fecha_creado',
         'fecha_editado',
     ];

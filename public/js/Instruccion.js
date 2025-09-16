@@ -197,6 +197,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var LoaderComponent = function LoaderComponent() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_LoaderComponent_vue-_c2860").then(__webpack_require__.bind(__webpack_require__, /*! ../../../components/LoaderComponent.vue */ "./resources/js/components/LoaderComponent.vue"));
 };
@@ -234,7 +241,8 @@ var parseIntOrFloat = function parseIntOrFloat(valor) {
         estado: '',
         cod_usuario: '',
         usuario_id: '',
-        trackings: []
+        trackings: [],
+        status: 0
       },
       alert: {}
     };
@@ -310,6 +318,10 @@ var parseIntOrFloat = function parseIntOrFloat(valor) {
                   _this.solicitud.id_almacen = response.data.results.id_almacen;
                 }
 
+                if (response.data.results.status != null) {
+                  _this.solicitud.status = response.data.results.status;
+                }
+
                 _this.solicitud.total_seguro = response.data.results.total_seguro;
 
                 if (response.data.results.status == 1) {
@@ -348,16 +360,57 @@ var parseIntOrFloat = function parseIntOrFloat(valor) {
       var re = _formatPrice__WEBPACK_IMPORTED_MODULE_2__.formatPrice.constPrice(e.target.value, ',', '.');
       if (e.target.id == 'total_seguro') this.solicitud.total_seguro = re;else this.trackings[e.target.id].total_seguro = re;
     },
-    saveInstruccion: function saveInstruccion() {
+    revokeInstruccion: function revokeInstruccion() {
       var _this2 = this;
+
+      this.componentRender = LoaderComponent;
+
+      var paquetes = _toConsumableArray(this.trackings);
+
+      var solicitud = _objectSpread({}, this.solicitud);
+
+      solicitud.trackings = paquetes;
+      this.axios.post('almacen/revoke/instrucciones', {
+        solicitud: solicitud
+      }, {
+        headers: {
+          "content-type": "multipart/form-data"
+        }
+      }).then(function (response) {
+        console.log(response.data);
+        _this2.alert = {
+          msg: response.data.message,
+          clss: 'updated'
+        };
+        _this2.activeComponent = AlertMessageComponent;
+        setTimeout(function () {
+          _this2.$router.go(-1);
+        }, 4000);
+        setTimeout(function () {
+          _this2.componentRender = '';
+        }, 2000);
+      })["catch"](function (error) {
+        console.log(error.response.data);
+        _this2.alert = {
+          msg: error.response.data.message,
+          clss: 'error'
+        };
+        _this2.activeComponent = AlertMessageComponent;
+        setTimeout(function () {
+          _this2.componentRender = '';
+        }, 2000);
+      });
+    },
+    saveInstruccion: function saveInstruccion() {
+      var _this3 = this;
 
       this.$validator.validate().then(function (valid) {
         if (valid) {
-          _this2.componentRender = LoaderComponent;
+          _this3.componentRender = LoaderComponent;
 
-          var paquetes = _toConsumableArray(_this2.trackings);
+          var paquetes = _toConsumableArray(_this3.trackings);
 
-          var solicitud = _objectSpread({}, _this2.solicitud);
+          var solicitud = _objectSpread({}, _this3.solicitud);
 
           solicitud.total_seguro = _formatPrice__WEBPACK_IMPORTED_MODULE_2__.formatPrice.desctPrice(solicitud.total_seguro, ',');
           var newPaquetes = [];
@@ -371,7 +424,7 @@ var parseIntOrFloat = function parseIntOrFloat(valor) {
 
           solicitud.trackings = newPaquetes;
 
-          _this2.axios.post('almacen/instrucciones', {
+          _this3.axios.post('almacen/instrucciones', {
             solicitud: solicitud
           }, {
             headers: {
@@ -379,26 +432,26 @@ var parseIntOrFloat = function parseIntOrFloat(valor) {
             }
           }).then(function (response) {
             console.log(response.data);
-            _this2.alert = {
+            _this3.alert = {
               msg: response.data.message,
               clss: 'updated'
             };
-            _this2.activeComponent = AlertMessageComponent;
+            _this3.activeComponent = AlertMessageComponent;
             setTimeout(function () {
-              _this2.$router.go(-1);
+              _this3.$router.go(-1);
             }, 4000);
             setTimeout(function () {
-              _this2.componentRender = '';
+              _this3.componentRender = '';
             }, 2000);
           })["catch"](function (error) {
             console.log(error.response.data);
-            _this2.alert = {
+            _this3.alert = {
               msg: error.response.data.message,
               clss: 'error'
             };
-            _this2.activeComponent = AlertMessageComponent;
+            _this3.activeComponent = AlertMessageComponent;
             setTimeout(function () {
-              _this2.componentRender = '';
+              _this3.componentRender = '';
             }, 2000);
           });
         }
@@ -1245,18 +1298,40 @@ var render = function () {
                       [
                         _c("btn-volver", { attrs: { classe: "btn-light" } }),
                         _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-info ms-auto",
-                            attrs: { type: "submit" },
-                          },
-                          [
-                            _vm._v(
-                              "\n                            Guardar\n                        "
-                            ),
-                          ]
-                        ),
+                        _c("div", { staticClass: "ms-auto d-flex" }, [
+                          _vm.solicitud.status === 1
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger me-3",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.revokeInstruccion()
+                                    },
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                Eliminar instrucción\n                            "
+                                  ),
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-info",
+                              attrs: { type: "submit" },
+                            },
+                            [
+                              _vm._v(
+                                "\n                                Guardar\n                            "
+                              ),
+                            ]
+                          ),
+                        ]),
                       ],
                       1
                     ),

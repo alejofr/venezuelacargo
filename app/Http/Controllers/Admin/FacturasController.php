@@ -991,10 +991,133 @@ class FacturasController extends Controller
         ], 200);
     }
 
+    public function analyzePieCubicoSending(Request $request){
+        $from = null;
+        $to = new Carbon('tomorrow');
+        $cantidad = 0;
+
+        if( $request->valor == '7' ){
+            $from = Carbon::now()->subDays(7)->format('Y-m-d');
+        }else if ( $request->valor == '30'  ){
+            $from = Carbon::now()->subDays(30)->format('Y-m-d');
+        }else if( $request->valor == '90' ){
+            $from = Carbon::now()->subDays(90)->format('Y-m-d');
+        }
+
+        if( $from != null ){
+            $results = Facturas::select([
+                'facturas_content.pie_cubico'
+            ])
+            ->leftJoin('facturas_content', 'facturas_content.id_factura', '=', 'facturas.id_factura')
+            ->where([['facturas.activo', true] ])
+            ->whereNotNull('facturas_content.pie_cubico')
+            ->whereBetween('facturas.fecha_creado', [$from, $to])->get()->toArray();
+
+            for ($i=0; $i < count($results) ; $i++) { 
+                $cantidad = $cantidad + $results[$i]['pie_cubico'];
+            }
+
+            return response()->json([
+                'status' => 200,
+                'result' => $cantidad,
+                'valor' => $request->valor
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => 200,
+            'result' => $cantidad,
+            'valor' => $request->valor
+        ], 200);
+    }
+
+    public function analyzeVolumenSending(Request $request){
+        $from = null;
+        $to = new Carbon('tomorrow');
+        $cantidad = 0;
+
+        if( $request->valor == '7' ){
+            $from = Carbon::now()->subDays(7)->format('Y-m-d');
+        }else if ( $request->valor == '30'  ){
+            $from = Carbon::now()->subDays(30)->format('Y-m-d');
+        }else if( $request->valor == '90' ){
+            $from = Carbon::now()->subDays(90)->format('Y-m-d');
+        }
+
+        if( $from != null ){
+            $results = Facturas::select([
+                'facturas_content.volumen'
+            ])
+            ->leftJoin('facturas_content', 'facturas_content.id_factura', '=', 'facturas.id_factura')
+            ->where([['facturas.activo', true] ])
+            ->whereNotNull('facturas_content.volumen')
+            ->whereBetween('facturas.fecha_creado', [$from, $to])->get()->toArray();
+
+            for ($i=0; $i < count($results) ; $i++) { 
+                $cantidad = $cantidad + $results[$i]['volumen'];
+            }
+
+            return response()->json([
+                'status' => 200,
+                'result' => $cantidad,
+                'valor' => $request->valor
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => 200,
+            'result' => $cantidad,
+            'valor' => $request->valor
+        ], 200);
+    }
+
+    public function analyzeLibrasSending(Request $request){
+        $from = null;
+        $to = new Carbon('tomorrow');
+        $cantidad = 0;
+
+        if( $request->valor == '7' ){
+            $from = Carbon::now()->subDays(7)->format('Y-m-d');
+        }else if ( $request->valor == '30'  ){
+            $from = Carbon::now()->subDays(30)->format('Y-m-d');
+        }else if( $request->valor == '90' ){
+            $from = Carbon::now()->subDays(90)->format('Y-m-d');
+        }
+
+        if( $from != null ){
+            $results = Facturas::select([
+                'facturas_content.total_lb'
+            ])
+            ->leftJoin('facturas_content', 'facturas_content.id_factura', '=', 'facturas.id_factura')
+            ->where([['facturas.activo', true] ])
+            ->whereNotNull('facturas_content.total_lb')
+            ->whereBetween('facturas.fecha_creado', [$from, $to])->get()->toArray();
+
+            for ($i=0; $i < count($results) ; $i++) { 
+                $cantidad = $cantidad + $results[$i]['total_lb'];
+            }
+
+            return response()->json([
+                'status' => 200,
+                'result' => $cantidad,
+                'valor' => $request->valor
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => 200,
+            'result' => $cantidad,
+            'valor' => $request->valor
+        ], 200);
+    }
+
+
+
     public function state()
     {
         $cantidad = Facturas::where([['activo', true], ['estado', 'Pendiente']])->count();
 
+        
 
         return response()->json([
             'status' => 200,
