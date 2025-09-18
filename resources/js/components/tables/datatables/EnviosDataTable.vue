@@ -30,7 +30,7 @@
                     type="button" 
                     class="btn btn-light"
                     v-if="item.nota"
-                    @click="openNota"
+                    @click="openNota(item.nro_factura, item.nota)"
                 >
                     Ver Nota
                 </button>
@@ -38,11 +38,11 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Factura: {{ item.nro_factura }}</h5>
+                                <h5 class="modal-title">Factura: {{ notaTitle }}</h5>
                                 <button  @click="closeNota" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <p>{{ item.nota }}</p>
+                                <p>{{ notaContent }}</p>
                             </div>
                             <div class="modal-footer">
                                 <button @click="closeNota" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -79,7 +79,9 @@ export default {
     data(){
         return {
             getId: '',
-            showNota: false
+            showNota: false,
+            notaContent: null,
+            notaTitle: null,
         }
     },
     methods: {
@@ -92,8 +94,11 @@ export default {
 
             return valueState;
         },
-        openNota(){
+        openNota(title, nota){
+            console.log({title, nota})
             this.showNota = true;
+            this.notaContent = nota;
+            this.notaTitle = title;
         },
         closeNota(){
             this.showNota = false;

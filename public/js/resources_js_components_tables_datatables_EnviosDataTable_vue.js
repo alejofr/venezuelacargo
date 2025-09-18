@@ -90,7 +90,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       getId: '',
-      showNota: false
+      showNota: false,
+      notaContent: null,
+      notaTitle: null
     };
   },
   methods: {
@@ -105,8 +107,14 @@ __webpack_require__.r(__webpack_exports__);
 
       return valueState;
     },
-    openNota: function openNota() {
+    openNota: function openNota(title, nota) {
+      console.log({
+        title: title,
+        nota: nota
+      });
       this.showNota = true;
+      this.notaContent = nota;
+      this.notaTitle = title;
     },
     closeNota: function closeNota() {
       this.showNota = false;
@@ -393,7 +401,11 @@ var render = function () {
                 {
                   staticClass: "btn btn-light",
                   attrs: { type: "button" },
-                  on: { click: _vm.openNota },
+                  on: {
+                    click: function ($event) {
+                      return _vm.openNota(item.nro_factura, item.nota)
+                    },
+                  },
                 },
                 [_vm._v("\n                Ver Nota\n            ")]
               )
@@ -425,7 +437,7 @@ var render = function () {
                       _c("div", { staticClass: "modal-content" }, [
                         _c("div", { staticClass: "modal-header" }, [
                           _c("h5", { staticClass: "modal-title" }, [
-                            _vm._v("Factura: " + _vm._s(item.nro_factura)),
+                            _vm._v("Factura: " + _vm._s(_vm.notaTitle)),
                           ]),
                           _vm._v(" "),
                           _c("button", {
@@ -440,7 +452,7 @@ var render = function () {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "modal-body" }, [
-                          _c("p", [_vm._v(_vm._s(item.nota))]),
+                          _c("p", [_vm._v(_vm._s(_vm.notaContent))]),
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "modal-footer" }, [
