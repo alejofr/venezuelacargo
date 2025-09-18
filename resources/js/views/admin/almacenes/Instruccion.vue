@@ -122,7 +122,7 @@
                                 <button v-if="solicitud.status === 1" type="button" class="btn btn-danger me-3"
                                     @click="revokeInstruccion()"
                                 >
-                                    Eliminar instrucción
+                                    Eliminar instrucciones
                                 </button>
                                 <button type="submit" class="btn btn-info">
                                     Guardar

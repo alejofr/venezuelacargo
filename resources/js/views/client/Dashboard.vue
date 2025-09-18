@@ -7,8 +7,10 @@
                 <address>
                     <p>Name: <strong>{{ name }}</strong></p>
                     <p>Last name: <strong>VZLACARGO</strong>.</p>
-                    <p>Address: <strong>6994 NW 82 Ave</strong>. City: <strong>MIAMI</strong></p>
-                    <p>State: <strong>FLORIDA</strong>. Zip code: <strong>33166</strong></p>
+                    <p>Address: <strong>6994 NW 82 Ave</strong></p>
+                    <p>City: <strong>MIAMI</strong></p>
+                    <p>State: <strong>FLORIDA</strong></p>
+                    <p>Zip code: <strong>33166</strong></p>
                 </address>
             </div>
             <div class="col-auto ms-auto d-print-none">

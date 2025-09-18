@@ -74,6 +74,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 var CalculadoraEnvio = function CalculadoraEnvio() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_CalculadoraEnvio_vue-_34de0").then(__webpack_require__.bind(__webpack_require__, /*! ../../components/CalculadoraEnvio.vue */ "./resources/js/components/CalculadoraEnvio.vue"));
 };
@@ -325,6 +327,10 @@ var render = function () {
               _vm._m(1),
               _vm._v(" "),
               _vm._m(2),
+              _vm._v(" "),
+              _vm._m(3),
+              _vm._v(" "),
+              _vm._m(4),
             ]),
           ]),
           _vm._v(" "),
@@ -395,7 +401,7 @@ var render = function () {
               },
             }),
             _vm._v(" "),
-            _vm._m(3),
+            _vm._m(5),
             _vm._v(" "),
             _c("tables", {
               attrs: {
@@ -429,20 +435,25 @@ var staticRenderFns = [
     return _c("p", [
       _vm._v("Address: "),
       _c("strong", [_vm._v("6994 NW 82 Ave")]),
-      _vm._v(". City: "),
-      _c("strong", [_vm._v("MIAMI")]),
     ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", [
-      _vm._v("State: "),
-      _c("strong", [_vm._v("FLORIDA")]),
-      _vm._v(". Zip code: "),
-      _c("strong", [_vm._v("33166")]),
-    ])
+    return _c("p", [_vm._v("City: "), _c("strong", [_vm._v("MIAMI")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_vm._v("State: "), _c("strong", [_vm._v("FLORIDA")])])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_vm._v("Zip code: "), _c("strong", [_vm._v("33166")])])
   },
   function () {
     var _vm = this

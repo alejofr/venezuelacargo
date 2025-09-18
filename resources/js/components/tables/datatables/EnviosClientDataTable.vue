@@ -86,6 +86,14 @@
                     >
                         <i class="ti ti-file-download fs-19"></i>
                     </button>
+                    <button 
+                        type="button" 
+                        class="btn btn-light"
+                        v-if="item.nota_envio"
+                        @click="openNota(item.nro_factura, item.nota_envio)"
+                    >
+                        Ver Nota
+                    </button>
                 </div>
             </td>
         </tr>
@@ -144,14 +152,41 @@
                                 </div>
                                 <div class="row" v-if="!loader">
                                     <div class="col-md-12 col-sm-12 col-12 mb-3" v-for="(estado, index) in estados" :key="index">
-                                        <div class="avatar text-uppercase w-100" :class="{'bg-green-lt': estado.check, 'bg-muted-lt': !estado.check}">
-                                            {{estado.title}}
+                                        <div class="avatar text-uppercase w-100 d-flex px-2 flex-row justify-content-between align-items-center" :class="{'bg-green-lt': estado.check, 'bg-muted-lt': !estado.check}">
+                                            <div class="text-center" style="flex: 1;">
+                                                {{estado.title}}
+                                            </div>
+                                            <button
+                                                type="button"
+                                                class="nav-link"
+                                                style="padding: 0;"
+                                                v-if="estado.nota"
+                                                @click="openNota(`${factura.nro_factura} - ${estado.title}`, estado.nota)"
+                                            >
+                                                <i class="ti ti-notes fs-19 text-info"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn me-auto" data-bs-dismiss="modal" @click="hiddenModal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade show" v-if="showNota" tabindex="-1" aria-modal="true" role="dialog" style="display: block; background-color: #0000007a;">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Factura: {{ notaTitle }}</h5>
+                                <button  @click="closeNota" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{ notaContent }}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button @click="closeNota" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
                     </div>
@@ -195,6 +230,9 @@ export default {
             showFactura: false,
             showEstado: false,
             showMap: false,
+            showNota: false,
+            notaContent: null,
+            notaTitle: null,
             modal: '',
             dato: '',
             tasa: '',
@@ -233,6 +271,15 @@ export default {
         })
     },
     methods: {
+        openNota(title, nota){
+            console.log({title, nota})
+            this.showNota = true;
+            this.notaContent = nota;
+            this.notaTitle = title;
+        },
+        closeNota(){
+            this.showNota = false;
+        },
         async download(e){
             const { value } = e.target.parentNode;
             const data = this.data.filter(item => item.id_factura)[0];
@@ -305,10 +352,16 @@ export default {
                 for (let j = 0; j < estados.length; j++) {
                     if( h_estados[i].valor == estados[j].valor ){
                         estados[j].check = true;
+
+                        if(h_estados[i].nota){
+                            estados[j].nota = h_estados[i].nota;
+                        }
                     }
                     
                 }
             }
+
+            console.log({ estados });
             this.estados = estados;
             setTimeout(() => {
                 this.loader = false;

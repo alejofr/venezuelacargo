@@ -1313,7 +1313,7 @@ var render = function () {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                                Eliminar instrucción\n                            "
+                                    "\n                                Eliminar instrucciones\n                            "
                                   ),
                                 ]
                               )

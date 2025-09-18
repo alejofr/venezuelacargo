@@ -130,7 +130,7 @@ class EnviosController extends Controller
             $envio->historial_estado = json_encode($request->h);
             $envio->estado = $estado;
             $envio->fecha_estimada = $request->fech_estimada;
-            $envio->nota = $request->nota ? $request->nota : $envio->nota;
+            $envio->nota = $request->nota && $request->nota !== '' ? $request->nota : null;
     
 
     

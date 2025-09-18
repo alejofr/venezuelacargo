@@ -81,6 +81,8 @@ export default {
             active_fecha: true,
             fech_estimada: '',
             nota: null,
+            notaCurrent: null,
+            historialEstados: [],
             alert: {}
         };
     },
@@ -91,7 +93,7 @@ export default {
                 this.axios.get(`envios/${this.$route.params.id}/edit`,)
                 .then( (response) => {
                     console.log(response.data);
-                    const { id_envio, historial_estado, estado, fecha_estimada } = response.data.result;
+                    const { id_envio, historial_estado, estado, fecha_estimada, nota } = response.data.result;
                     let h_estados = [];
                     this.id = this.$route.params.id;
 
@@ -138,8 +140,11 @@ export default {
                         
                     }
 
+                    console.log({ h_estados })
+                    this.historialEstados = historial_estado ? historial_estado.historial : [];
                     this.estados = estados;
                     this.estado = estado;
+                    this.notaCurrent = nota;
 
               
 
@@ -168,7 +173,26 @@ export default {
 
                 for (let i = indiceCurrent; i >= 0  ; i--) {
                     const { title, valor } = estados[i];
-                    historial.push({title,valor});
+                    let valores = {title,valor};   
+                    const findHEstado = this.historialEstados.find((item) => item.valor === valor)
+
+                    if( findHEstado && findHEstado?.nota ){
+                        valores.nota = findHEstado.nota;
+                    }
+                    
+                    historial.push(valores);
+                }
+
+                let notaSaved = this.nota !== "" && this.nota !== null ? this.nota : this.notaCurrent;
+
+                if( this.change_estado !==  this.estado ){
+                    const findIndex = historial.findIndex((item) => item.valor === this.estado );
+
+                    if( findIndex !== -1 ){
+                        historial[findIndex].nota = this.notaCurrent;
+                    }
+
+                    notaSaved = this.nota !== "" && this.nota !== null ? this.nota : null;
                 }
 
                 /*for (let i = 0; i < estados.length; i++) {
@@ -182,7 +206,7 @@ export default {
                 let estadoEnvio = {
                     estado: this.change_estado,
                     h: {historial : historial},
-                    nota: this.nota !== "" ? this.nota : null
+                    nota: notaSaved
                 }
 
                 if( this.active_fecha && this.fech_estimada == '' ){

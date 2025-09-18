@@ -430,7 +430,7 @@ class AlmacenesController extends Controller
 
             return response()->json([
                 'status' => 200,
-                'message' => 'Fueron Agregados revocados las intrucciones a los paquetes del WareHose: '.$almacen->warehouse
+                'message' => 'Fueron revocados las intrucciones a los paquetes del WareHose: '.$almacen->warehouse
             ], 200);
         }else{
             return response()->json([

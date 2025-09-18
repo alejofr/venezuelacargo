@@ -41,6 +41,7 @@ class ShipmentsController extends Controller
             'facturas.estado AS estado_pago',
             'envios.id_envio',
             'envios.historial_estado',
+            'envios.nota as nota_envio',
             'envios.estado AS estado_envio', //FACTURADO - ENVIADO-VENEZUELA - EN-TRANSITO-VENEZUELA - ADUENA-VENEZUELA - ALMACEN-VENEZUELA - ENVIADO-CLINTE - ENTREGADO
             'envios.fecha_estimada',
             'envios.fecha_creado',
@@ -361,6 +362,7 @@ class ShipmentsController extends Controller
             'facturas.estado AS estado_pago',
             'envios.id_envio',
             'envios.historial_estado',
+            'envios.nota as nota_envio',
             'envios.estado AS estado_envio', //FACTURADO - ENVIADO-VENEZUELA - EN-TRANSITO-VENEZUELA - ADUENA-VENEZUELA - ALMACEN-VENEZUELA - ENVIADO-CLINTE - ENTREGADO
             'envios.fecha_estimada',
             'envios.fecha_creado',

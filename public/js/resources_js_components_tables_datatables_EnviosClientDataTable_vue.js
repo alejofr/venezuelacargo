@@ -441,6 +441,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var check = function check() {
@@ -480,6 +515,9 @@ var estados = _helpers_shippingStates__WEBPACK_IMPORTED_MODULE_4__.shippingState
       showFactura: false,
       showEstado: false,
       showMap: false,
+      showNota: false,
+      notaContent: null,
+      notaTitle: null,
       modal: '',
       dato: '',
       tasa: '',
@@ -531,6 +569,18 @@ var estados = _helpers_shippingStates__WEBPACK_IMPORTED_MODULE_4__.shippingState
     })));
   },
   methods: {
+    openNota: function openNota(title, nota) {
+      console.log({
+        title: title,
+        nota: nota
+      });
+      this.showNota = true;
+      this.notaContent = nota;
+      this.notaTitle = title;
+    },
+    closeNota: function closeNota() {
+      this.showNota = false;
+    },
     download: function download(e) {
       var _this2 = this;
 
@@ -643,10 +693,17 @@ var estados = _helpers_shippingStates__WEBPACK_IMPORTED_MODULE_4__.shippingState
         for (var j = 0; j < estados.length; j++) {
           if (h_estados[i].valor == estados[j].valor) {
             estados[j].check = true;
+
+            if (h_estados[i].nota) {
+              estados[j].nota = h_estados[i].nota;
+            }
           }
         }
       }
 
+      console.log({
+        estados: estados
+      });
       this.estados = estados;
       setTimeout(function () {
         _this3.loader = false;
@@ -3491,6 +3548,29 @@ var render = function () {
                   },
                   [_c("i", { staticClass: "ti ti-file-download fs-19" })]
                 ),
+                _vm._v(" "),
+                item.nota_envio
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-light",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function ($event) {
+                            return _vm.openNota(
+                              item.nro_factura,
+                              item.nota_envio
+                            )
+                          },
+                        },
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Ver Nota\n                "
+                        ),
+                      ]
+                    )
+                  : _vm._e(),
               ],
               1
             ),
@@ -3670,18 +3750,54 @@ var render = function () {
                                     "div",
                                     {
                                       staticClass:
-                                        "avatar text-uppercase w-100",
+                                        "avatar text-uppercase w-100 d-flex px-2 flex-row justify-content-between align-items-center",
                                       class: {
                                         "bg-green-lt": estado.check,
                                         "bg-muted-lt": !estado.check,
                                       },
                                     },
                                     [
-                                      _vm._v(
-                                        "\n                                        " +
-                                          _vm._s(estado.title) +
-                                          "\n                                    "
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "text-center",
+                                          staticStyle: { flex: "1" },
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(estado.title) +
+                                              "\n                                        "
+                                          ),
+                                        ]
                                       ),
+                                      _vm._v(" "),
+                                      estado.nota
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass: "nav-link",
+                                              staticStyle: { padding: "0" },
+                                              attrs: { type: "button" },
+                                              on: {
+                                                click: function ($event) {
+                                                  return _vm.openNota(
+                                                    _vm.factura.nro_factura +
+                                                      " - " +
+                                                      estado.title,
+                                                    estado.nota
+                                                  )
+                                                },
+                                              },
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "ti ti-notes fs-19 text-info",
+                                              }),
+                                            ]
+                                          )
+                                        : _vm._e(),
                                     ]
                                   ),
                                 ]
@@ -3708,6 +3824,71 @@ var render = function () {
               ),
             ]
           ),
+          _vm._v(" "),
+          _vm.showNota
+            ? _c(
+                "div",
+                {
+                  staticClass: "modal fade show",
+                  staticStyle: {
+                    display: "block",
+                    "background-color": "#0000007a",
+                  },
+                  attrs: {
+                    tabindex: "-1",
+                    "aria-modal": "true",
+                    role: "dialog",
+                  },
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal-dialog modal-dialog-centered",
+                      attrs: { role: "document" },
+                    },
+                    [
+                      _c("div", { staticClass: "modal-content" }, [
+                        _c("div", { staticClass: "modal-header" }, [
+                          _c("h5", { staticClass: "modal-title" }, [
+                            _vm._v("Factura: " + _vm._s(_vm.notaTitle)),
+                          ]),
+                          _vm._v(" "),
+                          _c("button", {
+                            staticClass: "btn-close",
+                            attrs: {
+                              type: "button",
+                              "data-bs-dismiss": "modal",
+                              "aria-label": "Close",
+                            },
+                            on: { click: _vm.closeNota },
+                          }),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-body" }, [
+                          _c("p", [_vm._v(_vm._s(_vm.notaContent))]),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-footer" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-secondary",
+                              attrs: {
+                                type: "button",
+                                "data-bs-dismiss": "modal",
+                              },
+                              on: { click: _vm.closeNota },
+                            },
+                            [_vm._v("Cerrar")]
+                          ),
+                        ]),
+                      ]),
+                    ]
+                  ),
+                ]
+              )
+            : _vm._e(),
         ]),
       ]),
     ],

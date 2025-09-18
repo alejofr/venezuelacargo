@@ -528,7 +528,7 @@ var render = function () {
                     params: { id: item.id_solicitud },
                     query: { estado: item.estado_prealerta },
                   },
-                  title: item.status == 0 ? "Por Asignar" : "Asigando",
+                  title: item.status == 0 ? "Por Asignar" : "Asignado",
                 },
               }),
               _vm._v(" "),

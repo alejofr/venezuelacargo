@@ -147,6 +147,8 @@ var estados = _helpers_shippingStates_js__WEBPACK_IMPORTED_MODULE_2__.shippingSt
       active_fecha: true,
       fech_estimada: '',
       nota: null,
+      notaCurrent: null,
+      historialEstados: [],
       alert: {}
     };
   },
@@ -165,7 +167,8 @@ var estados = _helpers_shippingStates_js__WEBPACK_IMPORTED_MODULE_2__.shippingSt
                       id_envio = _response$data$result.id_envio,
                       historial_estado = _response$data$result.historial_estado,
                       estado = _response$data$result.estado,
-                      fecha_estimada = _response$data$result.fecha_estimada;
+                      fecha_estimada = _response$data$result.fecha_estimada,
+                      nota = _response$data$result.nota;
                   var h_estados = [];
                   _this.id = _this.$route.params.id;
                   if (historial_estado != null) h_estados = _toConsumableArray(historial_estado.historial);
@@ -213,8 +216,13 @@ var estados = _helpers_shippingStates_js__WEBPACK_IMPORTED_MODULE_2__.shippingSt
 
                   }
 
+                  console.log({
+                    h_estados: h_estados
+                  });
+                  _this.historialEstados = historial_estado ? historial_estado.historial : [];
                   _this.estados = estados;
                   _this.estado = estado;
+                  _this.notaCurrent = nota;
                   _this.componentRender = '';
                 })["catch"](function (error) {
                   console.log(error.response.data);
@@ -243,14 +251,42 @@ var estados = _helpers_shippingStates_js__WEBPACK_IMPORTED_MODULE_2__.shippingSt
           return item.valor == _this2.change_estado;
         });
 
-        for (var i = indiceCurrent; i >= 0; i--) {
+        var _loop = function _loop(i) {
           var _estados$i = estados[i],
               title = _estados$i.title,
               valor = _estados$i.valor;
-          historial.push({
+          var valores = {
             title: title,
             valor: valor
+          };
+
+          var findHEstado = _this2.historialEstados.find(function (item) {
+            return item.valor === valor;
           });
+
+          if (findHEstado && findHEstado !== null && findHEstado !== void 0 && findHEstado.nota) {
+            valores.nota = findHEstado.nota;
+          }
+
+          historial.push(valores);
+        };
+
+        for (var i = indiceCurrent; i >= 0; i--) {
+          _loop(i);
+        }
+
+        var notaSaved = this.nota !== "" && this.nota !== null ? this.nota : this.notaCurrent;
+
+        if (this.change_estado !== this.estado) {
+          var findIndex = historial.findIndex(function (item) {
+            return item.valor === _this2.estado;
+          });
+
+          if (findIndex !== -1) {
+            historial[findIndex].nota = this.notaCurrent;
+          }
+
+          notaSaved = this.nota !== "" && this.nota !== null ? this.nota : null;
         }
         /*for (let i = 0; i < estados.length; i++) {
             if( estados[i].check == true ){
@@ -265,7 +301,7 @@ var estados = _helpers_shippingStates_js__WEBPACK_IMPORTED_MODULE_2__.shippingSt
           h: {
             historial: historial
           },
-          nota: this.nota !== "" ? this.nota : null
+          nota: notaSaved
         };
 
         if (this.active_fecha && this.fech_estimada == '') {
