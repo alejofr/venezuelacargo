@@ -43,6 +43,7 @@ export default {
                 columns: [
                     {name: 'Nro Factura', value: 'facturas.nro_factura'},
                     {name: 'Nro Container', value: 'facturas.nro_container'},
+                    {name: 'Fecha', value: 'envios.fecha_creado'},
                 ]
             },
             view: 'EnviosClientDataTable',

@@ -70,6 +70,9 @@ var request = function request() {
         }, {
           name: 'Nro Container',
           value: 'facturas.nro_container'
+        }, {
+          name: 'Fecha',
+          value: 'envios.fecha_creado'
         }]
       },
       view: 'EnviosClientDataTable',

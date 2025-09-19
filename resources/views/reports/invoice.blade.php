@@ -2,6 +2,7 @@
 <html lang="en">
 
 
+
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -313,7 +314,7 @@
                         <th style="border-right:1px solid #ccc !important; text-align: center; font-size:13px;"
                             width="25%" class="fcolor">WH Secundario</th>
                         <th style="border-right:1px solid #ccc !important; text-align: center; font-size:13px;"
-                            width="10%" class="fcolor">PIEZAS</th>
+                            width="10%" class="fcolor">CAJA/CAJAS</th>
                         <th style="border-right:1px solid #ccc !important; text-align: center; font-size:13px;"
                             width="10%" class="fcolor">PESO</th>
                         <th style="border-right:1px solid #ccc !important; text-align: center; font-size:13px;"
@@ -605,9 +606,10 @@
 
                 </tr>
             </table>
+            <p class="fred" style="text-align: left; font-size:13px;"><b>RECIBES {{ $invoice['cajas'] }} CAJA/CAJAS</b></p>
         </div>    
     </main>
-    <footer style="margin-top:1cm !important;">
+    <footer style="margin-top:0cm !important;">
         <hr style="">
         <table>
 
@@ -648,12 +650,12 @@
                         ELECTRÓNICO: venezuelacargo@icloud.com</li>
                     <hr style="color: #ccc; line-height: 0.5em">
                     <li style="text-align: left; padding-left: 10px; font-size: 6; line-height: 1.2em">BINANCE</li>
-                    <li style="text-align: left; padding-left: 10px; font-size: 6; line-height: 1.2em">SOLICITAR
-                        INFORMACIÓN DE PAGO POR BINANCE AL NRO DE CONTACTO DE VENEZUELA CARGO</li>
+                    <li style="text-align: left; padding-left: 10px; font-size: 6; line-height: 1.2em">Importacionesreca@hotmail.com</li>
                     <hr style="color: #ccc; line-height: 0.5em">
                     <li class="fcolor"
                         style="text-align: left; font-size: 6;  line-height: 1.2em; list-style-type: none;">
                         <strong>CONDICIONES DE ENVÍO</strong></li>
+                    <li style="text-align: left; padding-left: 10px; font-size: 6; line-height: 1.2em">EL PRESENTE INVOICE ESTA SUJETO A CAMBIOS EN SU TARIFA Y COSTO FINAL, SEGÚN GASTOS ADICIONALES QUE SE PRESENTEN EN LA ADUANA DE VENEZUELA, EL CLIENTE ESTARÁ EN LA OBLIGACIÓN DE CANCELAR DICHOS GASTOS.</li>
                     <li style="text-align: left; padding-left: 10px; font-size: 6; line-height: 1.2em">Su fecha estimada
                         de entrega será considerada tan pronto su factura sea cancelada.</li>
                     <li style="text-align: left; padding-left: 10px; color: red; font-size: 6; line-height: 1.2em">LA
