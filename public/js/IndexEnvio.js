@@ -34,7 +34,7 @@ var request = function request() {
     params: {
       limit: 8,
       page: 1,
-      orderBy: 'facturas.nro_container',
+      orderBy: 'envios.fecha_creado',
       ascending: 0,
       query: {
         search: '' // fecha_estimada: '',
@@ -65,14 +65,14 @@ var request = function request() {
           name: ''
         }],
         columns: [{
+          name: 'Fecha',
+          value: 'envios.fecha_creado'
+        }, {
           name: 'Nro Factura',
           value: 'facturas.nro_factura'
         }, {
           name: 'Nro Container',
           value: 'facturas.nro_container'
-        }, {
-          name: 'Fecha',
-          value: 'envios.fecha_creado'
         }]
       },
       view: 'EnviosClientDataTable',

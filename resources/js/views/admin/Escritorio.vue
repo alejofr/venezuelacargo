@@ -408,7 +408,7 @@ export default {
                     re(9);
                 }else if( val === 'dataVolumenEnviados' ){
                     this.dataVolumenEnviados.value = response.data.valor;
-                    this.dataVolumenEnviados.result = response.data.result;
+                    this.dataVolumenEnviados.result = response.data.result.toFixed(2);
                     re(10);
                 }else if( val === 'dataLibrasEnviados' ){
                     this.dataLibrasEnviados.value = response.data.valor;

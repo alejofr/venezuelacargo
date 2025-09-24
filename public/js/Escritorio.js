@@ -527,7 +527,7 @@ var CalculadoraEnvio = function CalculadoraEnvio() {
                     re(9);
                   } else if (val === 'dataVolumenEnviados') {
                     _this.dataVolumenEnviados.value = response.data.valor;
-                    _this.dataVolumenEnviados.result = response.data.result;
+                    _this.dataVolumenEnviados.result = response.data.result.toFixed(2);
                     re(10);
                   } else if (val === 'dataLibrasEnviados') {
                     _this.dataLibrasEnviados.value = response.data.valor;

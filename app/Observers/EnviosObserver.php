@@ -99,6 +99,7 @@ class EnviosObserver
 
             $type_envio = $factura->reempaque == 'si' ? 'reempaque' : 'directo';
             $invoice['type_envio'] = $type_envio; 
+            $cajas = 0;
 
             for ($i=0; $i < count($invoice_info_extras) ; $i++) { 
                 $invoice_info_extras[$i] = json_decode($invoice_info_extras[$i]['detalles']);
@@ -113,11 +114,17 @@ class EnviosObserver
             }
 
             for ($i=0; $i < count($invoice_contents) ; $i++) { 
+                if( $invoice_contents[$i]['id_factura_tracking'] !== null ){
+                    $cajas++;
+                }
+                
+
                 $invoice_contents[$i] = json_encode($invoice_contents[$i]);
                 $invoice_contents[$i] = json_decode($invoice_contents[$i]);
             }
             
             $client = json_decode($factura->cliente);
+            $invoice['cajas'] = $cajas;
             $data = [
                 "invoice" => $invoice,
                 "user" => $client,

@@ -309,19 +309,19 @@
             <table style="border-right:1px solid #ccc !important; border-left:1px solid #ccc !important; border-bottom:1px solid #ccc !important; border-top: 1px solid #ccc !important; margin-right: 3px; margin-top: 5px;">
                 <thead>
                     <tr>
-                        <th style="border-right:1px solid #ccc !important; text-align: center; font-size:13px;"
+                        <th style="border-right:1px solid #ccc !important; text-align: center; font-size:12px;"
                             width="25%" class="fcolor">NRO. WH</th>
-                        <th style="border-right:1px solid #ccc !important; text-align: center; font-size:13px;"
+                        <th style="border-right:1px solid #ccc !important; text-align: center; font-size:12px;"
                             width="25%" class="fcolor">WH Secundario</th>
-                        <th style="border-right:1px solid #ccc !important; text-align: center; font-size:13px;"
+                        <th style="border-right:1px solid #ccc !important; text-align: center; font-size:12px;"
                             width="10%" class="fcolor">CAJA/CAJAS</th>
-                        <th style="border-right:1px solid #ccc !important; text-align: center; font-size:13px;"
+                        <th style="border-right:1px solid #ccc !important; text-align: center; font-size:12px;"
                             width="10%" class="fcolor">PESO</th>
-                        <th style="border-right:1px solid #ccc !important; text-align: center; font-size:13px;"
+                        <th style="border-right:1px solid #ccc !important; text-align: center; font-size:12px;"
                             width="10%" class="fcolor">VOLUMEN</th>
-                        <th width="10%" class="fcolor" style="border-right:1px solid #ccc !important; text-align: center; font-size:13px;">PIE CÚB</th>
+                        <th width="10%" class="fcolor" style="border-right:1px solid #ccc !important; text-align: center; font-size:12px;">PIE CÚB</th>
                         
-                        <th width="10%" class="fcolor" style="text-align: center;">TOTAL SEGURO</th>
+                        <th width="10%" class="fcolor" style="text-align: center; font-size:12px;">TOTAL SEGURO</th>
                     </tr>
                 </thead>
                 @foreach ($invoice_info_trackings as $tracking)
