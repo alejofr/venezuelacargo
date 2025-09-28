@@ -448,16 +448,7 @@ var render = function () {
         _vm._v(" "),
         _c("td", [_c("span", {}, [_vm._v(" " + _vm._s(item.pie_cubico))])]),
         _vm._v(" "),
-        _c("td", [
-          _c("span", {}, [
-            _vm._v(
-              " " +
-                _vm._s(
-                  "" + (item.tipo_envio ? item.tipo_envio : "Sin Instrucción")
-                )
-            ),
-          ]),
-        ]),
+        _c("td", [_c("span", {}, [_vm._v(" " + _vm._s(item.tipo_envio))])]),
         _vm._v(" "),
         _c("td", [
           _c(

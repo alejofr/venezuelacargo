@@ -23,7 +23,7 @@
                     <span class=""> {{ item.pie_cubico }}</span>
                 </td>
                 <td>
-                    <span class=""> {{ `${ item.tipo_envio ? item.tipo_envio : 'Sin Instrucción'}` }}</span>
+                    <span class=""> {{ item.tipo_envio }}</span>
                 </td>
                 <td>
                     <span class="" v-show="item.status == 1"> {{`${ item.reempaque == 'no' ? 'Directo' : 'Reempaque'}`}}</span>

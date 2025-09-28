@@ -15,6 +15,7 @@ use App\Models\Facturas\FacturasContent;
 use App\Models\Facturas\FacturasInfoExtras;
 use App\Models\Facturas\FacturasInfoTrackings;
 use App\Models\User;
+use App\Http\Controllers\Admin\FacturaProcessorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -738,6 +739,69 @@ class FacturasController extends Controller
         }
 
         return $contents;
+
+    }
+
+    public function print_detail_invoice($id){
+        $factura = Facturas::where([['id_factura', $id], ['activo', true]])->first();
+        $facturaProcessor = new FacturaProcessorController();
+
+        if($factura != null){
+            $factura->warehouses = FacturasInfoTrackings::where([['id_factura', $id]])->get()->toArray();
+            $factura->contents = FacturasContent::where([['id_factura', $id]])->get()->toArray();
+            $extras = FacturasInfoExtras::where([['id_factura', $id]])->get()->toArray();
+            $factura->pago = json_decode($factura->pago);
+            $factura->cliente = json_decode($factura->cliente);
+
+            for ($i=0; $i < count($extras) ; $i++) { 
+                $extras[$i]['detalles'] = json_decode($extras[$i]['detalles']);
+            }
+
+            $factura->extras = $extras;
+
+            $tasa = null;
+            $records = MonedasCambios::select(['id_moneda_cambio', 'abreviatura_moneda_nc'])
+            ->where('monedas_cambios.activo', '=', true)
+            ->first();
+
+            if( $records != null ){
+                $tasa = MonedasCambiosTasas::select(['monto_tc', 'fecha_tc'])
+                ->where('id_moneda_cambio', '=', $records->id_moneda_cambio)
+                ->where('activo', '=', true)
+                ->orderBy('fecha_tc', 'DESC')
+                ->first();
+            }
+
+            $extras = GastosExtras::select('*')->where([['activo', true], ['tipo', 'CAJA']])->get()->toArray();
+
+            $responseData = [
+                'result' => $factura,
+                'tasa' => $tasa,
+                'extras' => $extras
+            ];
+
+            // print_r($responseData);
+            
+            $processedData = $facturaProcessor->processFacturaData($responseData);
+
+            // Pasar los datos procesados a la vista
+            // return view('reports.detail-invoice', [
+            //     'processedData' => $processedData
+            // ]);
+
+                    
+            $pdf = PDF::loadView('reports.detail-invoice', [
+                'processedData' => $processedData
+            ])->setPaper('a4', 'landscape');;
+            $nameInvoice = 'test-detail-invoice';
+            $path = public_path('pdf');
+            $fileName =  time().'-'.''.$nameInvoice. '.pdf' ;
+            $pdf->save($path . '/' . $fileName);
+
+            $pdf = public_path('pdf/'.$fileName);
+            return response()->download($pdf);
+        
+        }
 
     }
 
