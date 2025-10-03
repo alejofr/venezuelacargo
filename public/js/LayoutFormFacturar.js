@@ -14317,7 +14317,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticStyle: { width: "5%" } }, [_vm._v("Peso")]),
         _vm._v(" "),
-        _c("th", { staticStyle: { width: "5%" } }, [_vm._v("Piezas")]),
+        _c("th", { staticStyle: { width: "5%" } }, [_vm._v("Caja/Cajas")]),
         _vm._v(" "),
         _c("th", { staticStyle: { width: "10%" } }, [_vm._v("Total Seguro")]),
       ]),

@@ -169,7 +169,7 @@
                         <th style="width: 5%;">Ancho</th>
                         <th style="width: 5%;">Largo</th>
                         <th style="width: 5%;">Peso</th>
-                        <th style="width: 5%;">Piezas</th>
+                        <th style="width: 5%;">Caja/Cajas</th>
                         <th style="width: 10%;">Total Seguro</th>
                     </tr>
                 </thead>

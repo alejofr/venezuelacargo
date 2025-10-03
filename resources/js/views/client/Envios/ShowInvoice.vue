@@ -6,7 +6,25 @@
             <div class="card card-lg" v-if="componentRender == ''">
                 <div v-show="loaderCard" class="div-loader_white" style="margin: 0;"><loader></loader></div>
                 <div class="card-body">
-                     <div class="w-100 mb-3" v-if="activeComponent != ''"><component :is='activeComponent' v-bind:alert="alert"></component></div>
+                    <vue-html2pdf
+                        :show-layout="false"
+                        :float-layout="false"
+                        :enable-download="true"
+                        :preview-modal="false"
+                        :paginate-elements-by-height="1400"
+                        filename="Factura"
+                        :pdf-quality="1"
+                        :manual-pagination="false"
+                        pdf-format="a4"
+                        pdf-orientation="landscape"
+                        pdf-content-width="100%"
+                        @progress="onProgress($event)"
+                        @hasStartedGeneration="hasStartedGeneration()"
+                        @hasGenerated="hasGenerated($event)"
+                        ref="html2Pdf"
+                    >
+                        <section class="w-100 h-100 pdf-content" slot="pdf-content" >
+                            <div class="w-100 mb-3" v-if="activeComponent != ''"><component :is='activeComponent' v-bind:alert="alert"></component></div>
                     <div class="row mb-4">
                         <div class="col-12 col-md-6">
                             <p class="h3">Detalles</p>
@@ -138,8 +156,17 @@
                             </div>
                         </div>
                     </div>
+                        </section>
+                    </vue-html2pdf>
                     <div class="d-flex align-items-center mt-3">
                         <btn-volver :classe="'btn-light'"></btn-volver>
+                        <button 
+                            @click="generateReport"
+                            class="btn btn-danger ms-auto"
+                        >
+                            Descargar PDF
+                            <i class="ti ti-file-download fs-19 ms-1"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -182,6 +209,7 @@
 <script>
 
 //componentes de primer plano, para factura
+import VueHtml2pdf from 'vue-html2pdf'
 import WareHouses from '../../../components/facturas/WareHouses.vue';
 import ContentBody from '../../../components/facturas/ContentBody.vue';
 import ListCajas from '../../../components/facturas/ListCajas.vue';
@@ -254,6 +282,7 @@ export default {
         ListCajas,
         BtnVolver,
         loader: LoaderComponent,
+        VueHtml2pdf
     },
     beforeCreate(){
         this.$nextTick(async function () {
@@ -278,6 +307,35 @@ export default {
         });
     },
     methods: {
+            // Method to trigger PDF generation using the component ref
+	  generateReport() {
+		this.$refs.html2Pdf.generatePdf();
+	  },
+  
+	  // Event handler for PDF generation progress
+	  onProgress(event) {
+		console.log("Progress:", event);
+	  },
+  
+	  // Event handler when pagination starts
+	  startPaginationHandler() {
+		console.log("Pagination started");
+	  },
+  
+	  // Event handler after pagination is complete
+	  hasPaginatedHandler() {
+		console.log("Pagination completed");
+	  },
+  
+	  // Event handler before downloading the PDF
+	  beforeDownloadHandler(event) {
+		console.log("Before Download:", event);
+	  },
+  
+	  // Event handler after the PDF has been downloaded
+	  hasDownloadedHandler(event) {
+		console.log("PDF Downloaded:", event);
+	  },
         //obtener data de wh a facturar o datos de la factura
         get_axios(dataReq, url){
             this.axios.get(url, {params : dataReq}).then(response => {
