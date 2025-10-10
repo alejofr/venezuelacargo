@@ -14317,7 +14317,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticStyle: { width: "5%" } }, [_vm._v("Peso")]),
         _vm._v(" "),
-        _c("th", { staticStyle: { width: "5%" } }, [_vm._v("Caja/Cajas")]),
+        _c(
+          "th",
+          { staticStyle: { width: "5%", "background-color": "#fee6c0" } },
+          [_vm._v("Caja/Cajas")]
+        ),
         _vm._v(" "),
         _c("th", { staticStyle: { width: "10%" } }, [_vm._v("Total Seguro")]),
       ]),
@@ -15130,11 +15134,15 @@ var render = function () {
                                           "d-flex align-items-center mb-3 justify-content-end",
                                       },
                                       [
-                                        _c("span", { staticClass: "me-2" }, [
-                                          _vm._v(
-                                            "\r\n                                                    Total WH:\r\n                                                "
-                                          ),
-                                        ]),
+                                        _c(
+                                          "span",
+                                          { staticClass: "me-2 text-danger" },
+                                          [
+                                            _vm._v(
+                                              "\r\n                                                    Total De Cajas: \r\n                                                "
+                                            ),
+                                          ]
+                                        ),
                                         _vm._v(" "),
                                         _c(
                                           "span",

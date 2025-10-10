@@ -313,7 +313,7 @@
                             width="25%" class="fcolor">NRO. WH</th>
                         <th style="border-right:1px solid #ccc !important; text-align: center; font-size:12px;"
                             width="25%" class="fcolor">WH Secundario</th>
-                        <th style="border-right:1px solid #ccc !important; text-align: center; font-size:12px;"
+                        <th style="border-right:1px solid #ccc !important; text-align: center; font-size:12px; background-color: #fee6c0;"
                             width="10%" class="fcolor">CAJA/CAJAS</th>
                         <th style="border-right:1px solid #ccc !important; text-align: center; font-size:12px;"
                             width="10%" class="fcolor">PESO</th>
@@ -506,10 +506,34 @@
             </table>
             
             <!--tabla totales-->
-            
 
             <table>
 
+                <tr style="font-size: 11; text-align: center; line-height: 1em;">
+                    <td width="42%">
+                    </td>
+                    <td width="58%" style="text-align: left; ">
+                        <table>
+                            <tr>
+                                <td
+                                    class="fred"
+                                    style="text-align: left; padding-left: 10px; font-size:13px;">
+                                    <b>RECIBES</b>
+                                </td>
+                                <td
+                                    class="fred"
+                                    style="text-align: right;  padding-left: 10px; font-size:13px;">
+                                    <b> {{ $invoice['cajas'] }} CAJA/CAJAS</b>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </td>
+
+                </tr>
+            </table>
+
+            <table>
 
                 <tr style="font-size: 11; text-align: center; line-height: 1em;">
                     <td width="42%">
@@ -606,7 +630,6 @@
 
                 </tr>
             </table>
-            <p class="fred" style="text-align: left; font-size:13px;"><b>RECIBES {{ $invoice['cajas'] }} CAJA/CAJAS</b></p>
         </div>    
     </main>
     <footer style="margin-top:0cm !important;">

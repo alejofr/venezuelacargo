@@ -96,14 +96,38 @@
                         @removeCaja="removeCaja"
                          :type_form="type_form"
                     />
-                    <div class="d-flex align-items-center mt-4 mb-3">
-                        <div class=" m-0 ms-auto">
+                    <div class="row mt-4">
+                        <div class="col-12 col-md-6  mb-3">
+                            <div class=" m-0" style="width: 330px;">
+                            <div class="form-floating mb-3 w-100">
+                                <div disabled class="d-flex flex-column">
+                                    <span class="me-2">Nro. Factura</span>
+                                    <span><strong>{{ details.nro_factura }}</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3 w-100">
+                                <div disabled class="d-flex flex-column">
+                                                    <span class="me-2">Nro. Container</span>
+                                                    <span><strong>{{ details.nro_container }}</strong></span>
+                                                </div>
+                            </div>
+                            <div class="form-floating mb-3 w-100">
+                                <div disabled class="d-flex flex-column">
+                                                    <span class="me-2">Tarifa de Envio ( {{details.tipo_envio}} )</span>
+                                                    <span><strong>{{ details.tarifa }}</strong></span>
+                                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                            <div class=" m-0 ms-auto">
                             <div class="d-flex align-items-center mb-3 justify-content-end">
-                                <span class="me-2">
-                                    Total WH
+                                <span class="me-2 text-danger">
+                                    Total De Cajas: 
                                 </span>
                                 <span style="max-width: 80px;">
-                                    <input disabled type="text" class="form-control" v-model="costo_trackings" name="costo_trackings" style="padding: 0.4375rem 5px;text-align: end;">
+                                    <span disabled style="padding: 0.4375rem 5px;text-align: end;"
+                                    ><strong>{{ costo_trackings }}</strong></span> 
                                 </span>
                             </div>
                             <div class="d-flex align-items-center mb-3 justify-content-end" v-if="envio === 'reempaque'">
@@ -111,7 +135,8 @@
                                     Total WH Reemp.
                                 </span>
                                 <span style="max-width: 80px;">
-                                    <input disabled type="text" class="form-control" v-model="costo_reempaque" name="costo_reempaque" style="padding: 0.4375rem 5px;text-align: end;">
+                                    <span disabled style="padding: 0.4375rem 5px;text-align: end;"
+                                    ><strong>{{ costo_reempaque }}</strong></span> 
                                 </span>
                             </div>
                             <div class="d-flex align-items-center mb-3 justify-content-end">
@@ -119,7 +144,8 @@
                                     Gastos Extras
                                 </span>
                                 <span style="max-width: 80px;">
-                                    <input disabled type="text" class="form-control" v-model="gastos_extras" name="gastos_extras" style="padding: 0.4375rem 5px;text-align: end;">
+                                    <span disabled style="padding: 0.4375rem 5px;text-align: end;"
+                                                    ><strong>{{ gastos_extras }}</strong></span>
                                 </span>
                             </div>
                             <div class="d-flex align-items-center mb-3 justify-content-end">
@@ -139,23 +165,8 @@
                                 </span>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-flex align-items-center mt-5 mb-3">
-                        <div class=" m-0 ms-auto" style="width: 330px;">
-                            <div class="form-floating mb-3 w-100">
-                                <input disabled type="text" class="form-control" name="nro_factura" v-model="details.nro_factura" id="nro_factura"  >
-                                <label for="nro_factura">Nro. Factura</label>
-                            </div>
-                            <div class="form-floating mb-3 w-100">
-                                <input disabled type="text" class="form-control" name="nro_container" v-model="details.nro_container" id="nro_container"  >
-                                <label for="nro_container">Nro. Container</label>
-                            </div>
-                            <div class="form-floating mb-3 w-100">
-                                <input disabled type="text" class="form-control" name="tarifa" v-model="details.tarifa" id="tarifa">
-                                <label for="tarifa">Tarifa de Envio ( {{details.tipo_envio}} )</label>
-                            </div>
                         </div>
-                    </div>
+                    </div>                        
                         </section>
                     </vue-html2pdf>
                     <div class="d-flex align-items-center mt-3">

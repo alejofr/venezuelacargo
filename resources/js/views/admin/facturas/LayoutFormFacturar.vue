@@ -130,8 +130,8 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class=" m-0 ms-auto">
                                             <div class="d-flex align-items-center mb-3 justify-content-end">
-                                                <span class="me-2">
-                                                    Total WH:
+                                                <span class="me-2 text-danger">
+                                                    Total De Cajas: 
                                                 </span>
                                                 <span style="max-width: 80px;">
                                                     <input v-if="type_form === 'new' || type_form === 'edit'" type="text" class="form-control" v-model="costo_trackings" name="costo_trackings" style="padding: 0.4375rem 5px;text-align: end;" @keyup="keyUpPrecio($event)" @change="changePrecio($event)">

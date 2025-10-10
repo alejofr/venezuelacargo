@@ -738,6 +738,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //componentes de primer plano, para factura
 
 
@@ -14291,7 +14302,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticStyle: { width: "5%" } }, [_vm._v("Peso")]),
         _vm._v(" "),
-        _c("th", { staticStyle: { width: "5%" } }, [_vm._v("Caja/Cajas")]),
+        _c(
+          "th",
+          { staticStyle: { width: "5%", "background-color": "#fee6c0" } },
+          [_vm._v("Caja/Cajas")]
+        ),
         _vm._v(" "),
         _c("th", { staticStyle: { width: "10%" } }, [_vm._v("Total Seguro")]),
       ]),
@@ -14808,417 +14823,339 @@ var render = function () {
                               on: { removeCaja: _vm.removeCaja },
                             }),
                             _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "d-flex align-items-center mt-4 mb-3",
-                              },
-                              [
-                                _c("div", { staticClass: " m-0 ms-auto" }, [
+                            _c("div", { staticClass: "row mt-4" }, [
+                              _c(
+                                "div",
+                                { staticClass: "col-12 col-md-6  mb-3" },
+                                [
                                   _c(
                                     "div",
                                     {
-                                      staticClass:
-                                        "d-flex align-items-center mb-3 justify-content-end",
+                                      staticClass: " m-0",
+                                      staticStyle: { width: "330px" },
                                     },
                                     [
-                                      _c("span", { staticClass: "me-2" }, [
-                                        _vm._v(
-                                          "\r\n                                    Total WH\r\n                                "
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
                                       _c(
-                                        "span",
+                                        "div",
                                         {
-                                          staticStyle: { "max-width": "80px" },
+                                          staticClass:
+                                            "form-floating mb-3 w-100",
                                         },
                                         [
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value: _vm.costo_trackings,
-                                                expression: "costo_trackings",
-                                              },
-                                            ],
-                                            staticClass: "form-control",
-                                            staticStyle: {
-                                              padding: "0.4375rem 5px",
-                                              "text-align": "end",
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "d-flex flex-column",
+                                              attrs: { disabled: "" },
                                             },
-                                            attrs: {
-                                              disabled: "",
-                                              type: "text",
-                                              name: "costo_trackings",
+                                            [
+                                              _c(
+                                                "span",
+                                                { staticClass: "me-2" },
+                                                [_vm._v("Nro. Factura")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _c("strong", [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.details.nro_factura
+                                                    )
+                                                  ),
+                                                ]),
+                                              ]),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "form-floating mb-3 w-100",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "d-flex flex-column",
+                                              attrs: { disabled: "" },
                                             },
-                                            domProps: {
-                                              value: _vm.costo_trackings,
+                                            [
+                                              _c(
+                                                "span",
+                                                { staticClass: "me-2" },
+                                                [_vm._v("Nro. Container")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _c("strong", [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.details.nro_container
+                                                    )
+                                                  ),
+                                                ]),
+                                              ]),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "form-floating mb-3 w-100",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "d-flex flex-column",
+                                              attrs: { disabled: "" },
                                             },
-                                            on: {
-                                              input: function ($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.costo_trackings =
-                                                  $event.target.value
-                                              },
-                                            },
-                                          }),
+                                            [
+                                              _c(
+                                                "span",
+                                                { staticClass: "me-2" },
+                                                [
+                                                  _vm._v(
+                                                    "Tarifa de Envio ( " +
+                                                      _vm._s(
+                                                        _vm.details.tipo_envio
+                                                      ) +
+                                                      " )"
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("span", [
+                                                _c("strong", [
+                                                  _vm._v(
+                                                    _vm._s(_vm.details.tarifa)
+                                                  ),
+                                                ]),
+                                              ]),
+                                            ]
+                                          ),
                                         ]
                                       ),
                                     ]
                                   ),
-                                  _vm._v(" "),
-                                  _vm.envio === "reempaque"
-                                    ? _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "d-flex align-items-center mb-3 justify-content-end",
-                                        },
-                                        [
-                                          _c("span", { staticClass: "me-2" }, [
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "col-12 col-md-6 mb-3" },
+                                [
+                                  _c("div", { staticClass: " m-0 ms-auto" }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "d-flex align-items-center mb-3 justify-content-end",
+                                      },
+                                      [
+                                        _c(
+                                          "span",
+                                          { staticClass: "me-2 text-danger" },
+                                          [
                                             _vm._v(
-                                              "\r\n                                    Total WH Reemp.\r\n                                "
+                                              "\r\n                                    Total De Cajas: \r\n                                "
                                             ),
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "span",
-                                            {
-                                              staticStyle: {
-                                                "max-width": "80px",
-                                              },
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "max-width": "80px",
                                             },
-                                            [
-                                              _c("input", {
-                                                directives: [
-                                                  {
-                                                    name: "model",
-                                                    rawName: "v-model",
-                                                    value: _vm.costo_reempaque,
-                                                    expression:
-                                                      "costo_reempaque",
-                                                  },
-                                                ],
-                                                staticClass: "form-control",
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
                                                 staticStyle: {
                                                   padding: "0.4375rem 5px",
                                                   "text-align": "end",
                                                 },
-                                                attrs: {
-                                                  disabled: "",
-                                                  type: "text",
-                                                  name: "costo_reempaque",
-                                                },
-                                                domProps: {
-                                                  value: _vm.costo_reempaque,
-                                                },
-                                                on: {
-                                                  input: function ($event) {
-                                                    if (
-                                                      $event.target.composing
-                                                    ) {
-                                                      return
-                                                    }
-                                                    _vm.costo_reempaque =
-                                                      $event.target.value
-                                                  },
-                                                },
-                                              }),
-                                            ]
-                                          ),
-                                        ]
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "d-flex align-items-center mb-3 justify-content-end",
-                                    },
-                                    [
-                                      _c("span", { staticClass: "me-2" }, [
-                                        _vm._v(
-                                          "\r\n                                    Gastos Extras\r\n                                "
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        {
-                                          staticStyle: { "max-width": "80px" },
-                                        },
-                                        [
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value: _vm.gastos_extras,
-                                                expression: "gastos_extras",
+                                                attrs: { disabled: "" },
                                               },
-                                            ],
-                                            staticClass: "form-control",
-                                            staticStyle: {
-                                              padding: "0.4375rem 5px",
-                                              "text-align": "end",
-                                            },
-                                            attrs: {
-                                              disabled: "",
-                                              type: "text",
-                                              name: "gastos_extras",
-                                            },
-                                            domProps: {
-                                              value: _vm.gastos_extras,
-                                            },
-                                            on: {
-                                              input: function ($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.gastos_extras =
-                                                  $event.target.value
-                                              },
-                                            },
-                                          }),
-                                        ]
-                                      ),
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "d-flex align-items-center mb-3 justify-content-end",
-                                    },
-                                    [
-                                      _c("span", { staticClass: "me-2" }, [
-                                        _vm._v(
-                                          "\r\n                                    Total USD\r\n                                "
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass: "text-end",
-                                          staticStyle: { width: "80px" },
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\r\n                                    " +
-                                              _vm._s(_vm.total_usd) +
-                                              "\r\n                                "
-                                          ),
-                                        ]
-                                      ),
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "d-flex align-items-center mb-3 justify-content-end",
-                                    },
-                                    [
-                                      _c("span", { staticClass: "me-2" }, [
-                                        _vm._v(
-                                          "\r\n                                    Total VES\r\n                                "
-                                        ),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        {
-                                          staticClass: "text-end",
-                                          staticStyle: { width: "80px" },
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\r\n                                    " +
-                                              _vm._s(_vm.total_ves) +
-                                              "\r\n                                "
-                                          ),
-                                        ]
-                                      ),
-                                    ]
-                                  ),
-                                ]),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "d-flex align-items-center mt-5 mb-3",
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: " m-0 ms-auto",
-                                    staticStyle: { width: "330px" },
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "form-floating mb-3 w-100",
-                                      },
-                                      [
-                                        _c("input", {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.details.nro_factura,
-                                              expression: "details.nro_factura",
-                                            },
-                                          ],
-                                          staticClass: "form-control",
-                                          attrs: {
-                                            disabled: "",
-                                            type: "text",
-                                            name: "nro_factura",
-                                            id: "nro_factura",
-                                          },
-                                          domProps: {
-                                            value: _vm.details.nro_factura,
-                                          },
-                                          on: {
-                                            input: function ($event) {
-                                              if ($event.target.composing) {
-                                                return
-                                              }
-                                              _vm.$set(
-                                                _vm.details,
-                                                "nro_factura",
-                                                $event.target.value
-                                              )
-                                            },
-                                          },
-                                        }),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          { attrs: { for: "nro_factura" } },
-                                          [_vm._v("Nro. Factura")]
-                                        ),
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "form-floating mb-3 w-100",
-                                      },
-                                      [
-                                        _c("input", {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.details.nro_container,
-                                              expression:
-                                                "details.nro_container",
-                                            },
-                                          ],
-                                          staticClass: "form-control",
-                                          attrs: {
-                                            disabled: "",
-                                            type: "text",
-                                            name: "nro_container",
-                                            id: "nro_container",
-                                          },
-                                          domProps: {
-                                            value: _vm.details.nro_container,
-                                          },
-                                          on: {
-                                            input: function ($event) {
-                                              if ($event.target.composing) {
-                                                return
-                                              }
-                                              _vm.$set(
-                                                _vm.details,
-                                                "nro_container",
-                                                $event.target.value
-                                              )
-                                            },
-                                          },
-                                        }),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          { attrs: { for: "nro_container" } },
-                                          [_vm._v("Nro. Container")]
-                                        ),
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "form-floating mb-3 w-100",
-                                      },
-                                      [
-                                        _c("input", {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value: _vm.details.tarifa,
-                                              expression: "details.tarifa",
-                                            },
-                                          ],
-                                          staticClass: "form-control",
-                                          attrs: {
-                                            disabled: "",
-                                            type: "text",
-                                            name: "tarifa",
-                                            id: "tarifa",
-                                          },
-                                          domProps: {
-                                            value: _vm.details.tarifa,
-                                          },
-                                          on: {
-                                            input: function ($event) {
-                                              if ($event.target.composing) {
-                                                return
-                                              }
-                                              _vm.$set(
-                                                _vm.details,
-                                                "tarifa",
-                                                $event.target.value
-                                              )
-                                            },
-                                          },
-                                        }),
-                                        _vm._v(" "),
-                                        _c(
-                                          "label",
-                                          { attrs: { for: "tarifa" } },
-                                          [
-                                            _vm._v(
-                                              "Tarifa de Envio ( " +
-                                                _vm._s(_vm.details.tipo_envio) +
-                                                " )"
+                                              [
+                                                _c("strong", [
+                                                  _vm._v(
+                                                    _vm._s(_vm.costo_trackings)
+                                                  ),
+                                                ]),
+                                              ]
                                             ),
                                           ]
                                         ),
                                       ]
                                     ),
-                                  ]
-                                ),
-                              ]
-                            ),
+                                    _vm._v(" "),
+                                    _vm.envio === "reempaque"
+                                      ? _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "d-flex align-items-center mb-3 justify-content-end",
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              { staticClass: "me-2" },
+                                              [
+                                                _vm._v(
+                                                  "\r\n                                    Total WH Reemp.\r\n                                "
+                                                ),
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "span",
+                                              {
+                                                staticStyle: {
+                                                  "max-width": "80px",
+                                                },
+                                              },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    staticStyle: {
+                                                      padding: "0.4375rem 5px",
+                                                      "text-align": "end",
+                                                    },
+                                                    attrs: { disabled: "" },
+                                                  },
+                                                  [
+                                                    _c("strong", [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.costo_reempaque
+                                                        )
+                                                      ),
+                                                    ]),
+                                                  ]
+                                                ),
+                                              ]
+                                            ),
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "d-flex align-items-center mb-3 justify-content-end",
+                                      },
+                                      [
+                                        _c("span", { staticClass: "me-2" }, [
+                                          _vm._v(
+                                            "\r\n                                    Gastos Extras\r\n                                "
+                                          ),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "max-width": "80px",
+                                            },
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticStyle: {
+                                                  padding: "0.4375rem 5px",
+                                                  "text-align": "end",
+                                                },
+                                                attrs: { disabled: "" },
+                                              },
+                                              [
+                                                _c("strong", [
+                                                  _vm._v(
+                                                    _vm._s(_vm.gastos_extras)
+                                                  ),
+                                                ]),
+                                              ]
+                                            ),
+                                          ]
+                                        ),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "d-flex align-items-center mb-3 justify-content-end",
+                                      },
+                                      [
+                                        _c("span", { staticClass: "me-2" }, [
+                                          _vm._v(
+                                            "\r\n                                    Total USD\r\n                                "
+                                          ),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass: "text-end",
+                                            staticStyle: { width: "80px" },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\r\n                                    " +
+                                                _vm._s(_vm.total_usd) +
+                                                "\r\n                                "
+                                            ),
+                                          ]
+                                        ),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "d-flex align-items-center mb-3 justify-content-end",
+                                      },
+                                      [
+                                        _c("span", { staticClass: "me-2" }, [
+                                          _vm._v(
+                                            "\r\n                                    Total VES\r\n                                "
+                                          ),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass: "text-end",
+                                            staticStyle: { width: "80px" },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\r\n                                    " +
+                                                _vm._s(_vm.total_ves) +
+                                                "\r\n                                "
+                                            ),
+                                          ]
+                                        ),
+                                      ]
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ]),
                           ],
                           1
                         ),

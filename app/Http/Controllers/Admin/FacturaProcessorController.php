@@ -21,6 +21,15 @@ class FacturaProcessorController {
      * Procesa los datos de la factura similar a la función JavaScript
      */
     public function processFacturaData($responseData) {
+        // Debug: Log type of responseData
+        error_log('Type of responseData: ' . gettype($responseData));
+        if (is_object($responseData)) {
+            error_log('responseData is object: ' . json_encode($responseData));
+        } elseif (is_array($responseData)) {
+            error_log('responseData is array');
+        } else {
+            error_log('responseData is neither object nor array');
+        }
         // Extraer datos del response
         $result = $responseData['result'];
         $tasa = $responseData['tasa'];
@@ -78,7 +87,7 @@ class FacturaProcessorController {
         // Procesar listado de cajas extras
         $list_cajas = [];
         foreach ($extras as $element) {
-            $detalles = $element['detalles'];
+            $detalles = json_decode(json_encode($element['detalles']), true);
             $list_cajas = $this->add_box($list_cajas, $detalles['id_gasto_extra'], $detalles['nombre'], $detalles['monto_gasto_extra'], $detalles['cant']);
         }
         
