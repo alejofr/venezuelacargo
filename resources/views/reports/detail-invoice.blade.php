@@ -169,7 +169,7 @@
                         <th style="width: 5%;">Ancho</th>
                         <th style="width: 5%;">Largo</th>
                         <th style="width: 5%;">Peso</th>
-                        <th style="width: 5%;">Caja/Cajas</th>
+                        <th style="width: 5%;background-color: #fee6c0;">Caja/Cajas</th>
                         <th style="width: 10%;">Total Seguro</th>
                     </tr>
                 </thead>
@@ -380,8 +380,8 @@
             </div>
             <div class="col-12 col-md-6 mb-3">
                 <div class="m-0 ms-auto">
-                    <div class="d-flex align-items-center mb-3 justify-content-end">
-                        <span class="me-2">Total WH:</span>
+                    <div class="d-flex align-items-center mb-3 justify-content-end" style="color: red;">
+                        <span class="me-2">Total de Cajas:</span>
                         <span style="max-width: 80px;">
                             <span disabled style="padding: 0.4375rem 5px; text-align: end;">
                                 <strong>{{ count($warehouses) }}</strong>
