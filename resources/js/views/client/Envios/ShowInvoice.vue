@@ -113,7 +113,7 @@
                             </div>
                             <div class="form-floating mb-3 w-100">
                                 <div disabled class="d-flex flex-column">
-                                                    <span class="me-2">Tarifa de Envio ( {{details.tipo_envio}} )</span>
+                                                    <span class="me-2">Tarifa de Envío ( {{details.tipo_envio}} )</span>
                                                     <span><strong>{{ details.tarifa }}</strong></span>
                                                 </div>
                             </div>
@@ -123,7 +123,7 @@
                             <div class=" m-0 ms-auto">
                             <div class="d-flex align-items-center mb-3 justify-content-end">
                                 <span class="me-2 text-danger">
-                                    Total De Cajas: 
+                                    Recibes Caja/Cajas: 
                                 </span>
                                 <span style="max-width: 80px;">
                                     <span disabled style="padding: 0.4375rem 5px;text-align: end;"

@@ -358,7 +358,7 @@
                     </div>
                     <div class="form-floating mb-3 w-100">
                         <div class="d-flex flex-column">
-                            <span class="me-2">Tarifa de Envio ( {{ getValue($details, 'tipo_envio', 'N/A') }} )</span>
+                            <span class="me-2">Tarifa de Envío ( {{ getValue($details, 'tipo_envio', 'N/A') }} )</span>
                             <span><strong>{{ getValue($details, 'tarifa', '0.00') }} USD</strong></span>
                         </div>
                     </div>
@@ -381,7 +381,7 @@
             <div class="col-12 col-md-6 mb-3">
                 <div class="m-0 ms-auto">
                     <div class="d-flex align-items-center mb-3 justify-content-end" style="color: red;">
-                        <span class="me-2">Total de Cajas:</span>
+                        <span class="me-2">Recibes Caja/Cajas:</span>
                         <span style="max-width: 80px;">
                             <span disabled style="padding: 0.4375rem 5px; text-align: end;">
                                 <strong>{{ count($warehouses) }}</strong>
