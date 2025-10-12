@@ -195,7 +195,7 @@
                                     <td><span>{{ getValue($trackingData, 'ancho', '0') }}</span></td>
                                     <td><span>{{ getValue($trackingData, 'largo', '0') }}</span></td>
                                     <td><span>{{ getValue($trackingData, 'peso', '0') }}</span></td>
-                                    <td><span>{{ getValue($trackingData, 'piezas', '0') }}</span></td>
+                                    <td><span>{{ getValue($trackingData, 'num_piezas', '0') }}</span></td>
                                     <td><span>{{ getValue($trackingData, 'total_seguro', '0.00') }}</span></td>
                                 </tr>
                             @endforeach
@@ -209,7 +209,7 @@
                                 <td><span>{{ getValue($warehouseData, 'ancho', '0') }}</span></td>
                                 <td><span>{{ getValue($warehouseData, 'largo', '0') }}</span></td>
                                 <td><span>{{ getValue($warehouseData, 'peso', '0') }}</span></td>
-                                <td><span>{{ getValue($warehouseData, 'piezas', '0') }}</span></td>
+                                <td><span>{{ getValue($warehouseData, 'num_piezas', '0') }}</span></td>
                                 <td><span>{{ getValue($warehouseData, 'total_seguro', '0.00') }}</span></td>
                             </tr>
                         @else
@@ -222,7 +222,7 @@
                                 <td><span>{{ getValue($warehouseData, 'ancho', '0') }}</span></td>
                                 <td><span>{{ getValue($warehouseData, 'largo', '0') }}</span></td>
                                 <td><span>{{ getValue($warehouseData, 'peso', '0') }}</span></td>
-                                <td><span>{{ getValue($warehouseData, 'piezas', '0') }}</span></td>
+                                <td><span>{{ getValue($warehouseData, 'num_piezas', '0') }}</span></td>
                                 <td><span>{{ getValue($warehouseData, 'total_seguro', '0.00') }}</span></td>
                             </tr>
                         @endif

@@ -15077,7 +15077,7 @@ var render = function () {
                                                     { staticClass: "me-2" },
                                                     [
                                                       _vm._v(
-                                                        "Tarifa de Envio ( " +
+                                                        "Tarifa de Envío ( " +
                                                           _vm._s(
                                                             _vm.details
                                                               .tipo_envio
@@ -15106,7 +15106,7 @@ var render = function () {
                                                 { attrs: { for: "tarifa" } },
                                                 [
                                                   _vm._v(
-                                                    "Tarifa de Envio ( " +
+                                                    "Tarifa de Envío ( " +
                                                       _vm._s(
                                                         _vm.details.tipo_envio
                                                       ) +
@@ -15139,7 +15139,7 @@ var render = function () {
                                           { staticClass: "me-2 text-danger" },
                                           [
                                             _vm._v(
-                                              "\r\n                                                    Total De Cajas: \r\n                                                "
+                                              "\r\n                                                    Recibes Caja/Cajas: \r\n                                                "
                                             ),
                                           ]
                                         ),

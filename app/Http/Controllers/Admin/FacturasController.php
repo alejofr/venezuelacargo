@@ -784,6 +784,10 @@ class FacturasController extends Controller
             
             $processedData = $facturaProcessor->processFacturaData($responseData);
 
+            // return response()->json([
+            //     'data' => $processedData,
+            // ], 200);
+
             // Pasar los datos procesados a la vista
             // return view('reports.detail-invoice', [
             //     'processedData' => $processedData
