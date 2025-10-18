@@ -15152,72 +15152,32 @@ var render = function () {
                                             },
                                           },
                                           [
-                                            _vm.type_form === "new" ||
-                                            _vm.type_form === "edit"
-                                              ? _c("input", {
-                                                  directives: [
-                                                    {
-                                                      name: "model",
-                                                      rawName: "v-model",
-                                                      value:
-                                                        _vm.costo_trackings,
-                                                      expression:
-                                                        "costo_trackings",
-                                                    },
-                                                  ],
-                                                  staticClass: "form-control",
-                                                  staticStyle: {
-                                                    padding: "0.4375rem 5px",
-                                                    "text-align": "end",
-                                                  },
-                                                  attrs: {
-                                                    type: "text",
-                                                    name: "costo_trackings",
-                                                  },
-                                                  domProps: {
-                                                    value: _vm.costo_trackings,
-                                                  },
-                                                  on: {
-                                                    keyup: function ($event) {
-                                                      return _vm.keyUpPrecio(
-                                                        $event
-                                                      )
-                                                    },
-                                                    change: function ($event) {
-                                                      return _vm.changePrecio(
-                                                        $event
-                                                      )
-                                                    },
-                                                    input: function ($event) {
-                                                      if (
-                                                        $event.target.composing
-                                                      ) {
-                                                        return
-                                                      }
-                                                      _vm.costo_trackings =
-                                                        $event.target.value
-                                                    },
-                                                  },
-                                                })
-                                              : _c(
-                                                  "span",
-                                                  {
-                                                    staticStyle: {
-                                                      padding: "0.4375rem 5px",
-                                                      "text-align": "end",
-                                                    },
-                                                    attrs: { disabled: "" },
-                                                  },
-                                                  [
-                                                    _c("strong", [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm.costo_trackings
-                                                        )
-                                                      ),
-                                                    ]),
-                                                  ]
-                                                ),
+                                            _c(
+                                              "span",
+                                              {
+                                                staticStyle: {
+                                                  padding: "0.4375rem 5px",
+                                                  "text-align": "end",
+                                                },
+                                              },
+                                              [
+                                                _c("strong", [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.dataContent.filter(
+                                                        function (item) {
+                                                          return (
+                                                            item.warehouse &&
+                                                            item.warehouse !==
+                                                              ""
+                                                          )
+                                                        }
+                                                      ).length
+                                                    )
+                                                  ),
+                                                ]),
+                                              ]
+                                            ),
                                           ]
                                         ),
                                       ]

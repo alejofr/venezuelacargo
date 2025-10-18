@@ -273,9 +273,10 @@ export default {
     methods: {
         openNota(title, nota){
             console.log({title, nota})
-            this.showNota = true;
-            this.notaContent = nota;
-            this.notaTitle = title;
+            alert(`Factura: ${title}\n\n${nota}`);
+            // this.showNota = true;
+            // this.notaContent = nota;
+            // this.notaTitle = title;
         },
         closeNota(){
             this.showNota = false;

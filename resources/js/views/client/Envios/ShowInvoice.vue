@@ -127,7 +127,7 @@
                                 </span>
                                 <span style="max-width: 80px;">
                                     <span disabled style="padding: 0.4375rem 5px;text-align: end;"
-                                    ><strong>{{ costo_trackings }}</strong></span> 
+                                    ><strong>{{ dataContent.filter(item => item.warehouse && item.warehouse !== '').length }}</strong></span> 
                                 </span>
                             </div>
                             <div class="d-flex align-items-center mb-3 justify-content-end" v-if="envio === 'reempaque'">

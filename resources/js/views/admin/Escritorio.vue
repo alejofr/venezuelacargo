@@ -404,7 +404,7 @@ export default {
                     this.dataEstUsers = response.data.result;
                 }else if( val === 'dataPieCubicoEnviados' ){
                     this.dataPieCubicoEnviados.value = response.data.valor;
-                    this.dataPieCubicoEnviados.result = response.data.result;
+                    this.dataPieCubicoEnviados.result = response.data.result.toFixed(2);
                     re(9);
                 }else if( val === 'dataVolumenEnviados' ){
                     this.dataVolumenEnviados.value = response.data.valor;
@@ -412,7 +412,7 @@ export default {
                     re(10);
                 }else if( val === 'dataLibrasEnviados' ){
                     this.dataLibrasEnviados.value = response.data.valor;
-                    this.dataLibrasEnviados.result = response.data.result;
+                    this.dataLibrasEnviados.result = response.data.result.toFixed(2);
                     re(11);
                 }               
             }).catch(error => {

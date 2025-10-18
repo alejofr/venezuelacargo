@@ -523,7 +523,7 @@ var CalculadoraEnvio = function CalculadoraEnvio() {
                     _this.dataEstUsers = response.data.result;
                   } else if (val === 'dataPieCubicoEnviados') {
                     _this.dataPieCubicoEnviados.value = response.data.valor;
-                    _this.dataPieCubicoEnviados.result = response.data.result;
+                    _this.dataPieCubicoEnviados.result = response.data.result.toFixed(2);
                     re(9);
                   } else if (val === 'dataVolumenEnviados') {
                     _this.dataVolumenEnviados.value = response.data.valor;
@@ -531,7 +531,7 @@ var CalculadoraEnvio = function CalculadoraEnvio() {
                     re(10);
                   } else if (val === 'dataLibrasEnviados') {
                     _this.dataLibrasEnviados.value = response.data.valor;
-                    _this.dataLibrasEnviados.result = response.data.result;
+                    _this.dataLibrasEnviados.result = response.data.result.toFixed(2);
                     re(11);
                   }
                 })["catch"](function (error) {

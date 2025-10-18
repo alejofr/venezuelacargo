@@ -14989,7 +14989,17 @@ var render = function () {
                                               [
                                                 _c("strong", [
                                                   _vm._v(
-                                                    _vm._s(_vm.costo_trackings)
+                                                    _vm._s(
+                                                      _vm.dataContent.filter(
+                                                        function (item) {
+                                                          return (
+                                                            item.warehouse &&
+                                                            item.warehouse !==
+                                                              ""
+                                                          )
+                                                        }
+                                                      ).length
+                                                    )
                                                   ),
                                                 ]),
                                               ]

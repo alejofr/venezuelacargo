@@ -112,9 +112,9 @@ __webpack_require__.r(__webpack_exports__);
         title: title,
         nota: nota
       });
-      this.showNota = true;
-      this.notaContent = nota;
-      this.notaTitle = title;
+      alert("Factura: ".concat(title, "\n\n").concat(nota)); // this.showNota = true;
+      // this.notaContent = nota;
+      // this.notaTitle = title;
     },
     closeNota: function closeNota() {
       this.showNota = false;
