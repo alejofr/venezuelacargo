@@ -412,7 +412,7 @@ export default {
                     re(10);
                 }else if( val === 'dataLibrasEnviados' ){
                     this.dataLibrasEnviados.value = response.data.valor;
-                    this.dataLibrasEnviados.result = response.data.result.toFixed(2);
+                    this.dataLibrasEnviados.result = parseInt(response.data.result);
                     re(11);
                 }               
             }).catch(error => {

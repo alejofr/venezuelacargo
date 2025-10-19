@@ -531,7 +531,7 @@ var CalculadoraEnvio = function CalculadoraEnvio() {
                     re(10);
                   } else if (val === 'dataLibrasEnviados') {
                     _this.dataLibrasEnviados.value = response.data.valor;
-                    _this.dataLibrasEnviados.result = response.data.result.toFixed(2);
+                    _this.dataLibrasEnviados.result = parseInt(response.data.result);
                     re(11);
                   }
                 })["catch"](function (error) {
