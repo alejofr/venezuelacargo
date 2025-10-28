@@ -957,17 +957,26 @@ class FacturasController extends Controller
         $invoice_info_trackings = $this->wharehouses($invoice_info_trackings, $type_envio);
         $invoice_contents = $this->contents_wh($invoice_contents, $invoice_info_trackings);
 
+        $cajas = 0;
+
         for ($i=0; $i < count($invoice_info_trackings); $i++) { 
             $invoice_info_trackings[$i] = json_encode($invoice_info_trackings[$i]);
             $invoice_info_trackings[$i] = json_decode($invoice_info_trackings[$i]);
         }
 
         for ($i=0; $i < count($invoice_contents) ; $i++) { 
+
+            if( $invoice_contents[$i]['id_factura_tracking'] !== null ){
+                $cajas++;
+            }
+
             $invoice_contents[$i] = json_encode($invoice_contents[$i]);
             $invoice_contents[$i] = json_decode($invoice_contents[$i]);
         }
         
         $client = json_decode($factura->cliente);
+        $invoice['cajas'] = $cajas;
+        
         $data = [
             "invoice" => $invoice,
             "user" => $client,
