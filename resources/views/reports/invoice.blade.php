@@ -230,7 +230,7 @@
                             <tr>
                                 <td style="font-size: 11; line-height: 0.6em; padding-left: 10px">
                                     <p>venezuelacargo.com</p>
-                                    <p>6994 NW 82 Ave. Miami, FL 33166</p>
+                                    <p>11017 NW 122ND ST #17. MEDLEY, FL 33178</p>
                                     <p>+ 58 (412) 181 2469</p>
 
                                 </td>

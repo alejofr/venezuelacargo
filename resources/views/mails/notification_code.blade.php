@@ -17,9 +17,10 @@
         <br>
         <strong>NAME:</strong>primer nombre + Código<br>
         <strong>LASTNAME:</strong>VzlaCargo<br>
-        <strong>ADDRESS:</strong>6994 NW 82 Ave<br>
-        <strong>CITY:</strong>Miami<br>
-        <strong>ZIP CODE:</strong>33166<br>
+        <strong>ADDRESS:</strong>11017 NW 122ND ST #17<br>
+        <strong>CITY:</strong>MEDLEY<br>
+        <strong>STATE:</strong>FLORIDA<br>
+        <strong>ZIP CODE:</strong>33178<br>
         <strong>PHONE:</strong>7868720552<br>
          </p><center>
 

@@ -434,14 +434,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", [
       _vm._v("Address: "),
-      _c("strong", [_vm._v("6994 NW 82 Ave")]),
+      _c("strong", [_vm._v("11017 NW 122ND ST #17")]),
     ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", [_vm._v("City: "), _c("strong", [_vm._v("MIAMI")])])
+    return _c("p", [_vm._v("City: "), _c("strong", [_vm._v("MEDLEY")])])
   },
   function () {
     var _vm = this
@@ -453,7 +453,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", [_vm._v("Zip code: "), _c("strong", [_vm._v("33166")])])
+    return _c("p", [_vm._v("Zip code: "), _c("strong", [_vm._v("33178")])])
   },
   function () {
     var _vm = this
