@@ -742,71 +742,122 @@ class FacturasController extends Controller
 
     }
 
+    /**
+     * Genera un PDF detallado de la factura replicando la lógica del componente LayoutFormFacturar.vue
+     * 
+     * Este método sigue el mismo flujo que el componente Vue:
+     * 1. Obtiene la factura y datos relacionados
+     * 2. Determina el tipo de envío (directo o reempaque)
+     * 3. Procesa los datos usando FacturaProcessorController (equivalente a los helpers JS)
+     * 4. Genera el PDF con los datos procesados
+     * 
+     * @param int $id ID de la factura
+     * @return \Illuminate\Http\Response
+     */
     public function print_detail_invoice($id){
+        // Paso 1: Obtener factura activa (equivalente a GET facturas/{id})
         $factura = Facturas::where([['id_factura', $id], ['activo', true]])->first();
-        $facturaProcessor = new FacturaProcessorController();
 
-        if($factura != null){
-            $factura->warehouses = FacturasInfoTrackings::where([['id_factura', $id]])->get()->toArray();
-            $factura->contents = FacturasContent::where([['id_factura', $id]])->get()->toArray();
-            $extras = FacturasInfoExtras::where([['id_factura', $id]])->get()->toArray();
-            $factura->pago = json_decode($factura->pago);
-            $factura->cliente = json_decode($factura->cliente);
+        if($factura == null){
+            return response()->json([
+                'status' => 403,
+                'message' => 'Error, no existe esta factura',
+            ], 403);
+        }
 
-            for ($i=0; $i < count($extras) ; $i++) { 
-                $extras[$i]['detalles'] = json_decode($extras[$i]['detalles']);
-            }
+        // Paso 2: Obtener datos relacionados (warehouses, contents, extras)
+        // Esto replica la lógica del método show() del controlador
+        $factura->warehouses = FacturasInfoTrackings::where([['id_factura', $id]])->get()->toArray();
+        $factura->contents = FacturasContent::where([['id_factura', $id]])->get()->toArray();
+        $extras = FacturasInfoExtras::where([['id_factura', $id]])->get()->toArray();
+        
+        // Decodificar JSON almacenado en la base de datos
+        $factura->pago = json_decode($factura->pago);
+        $factura->cliente = json_decode($factura->cliente);
 
-            $factura->extras = $extras;
+        // Decodificar detalles de extras (cajas)
+        for ($i=0; $i < count($extras) ; $i++) { 
+            $extras[$i]['detalles'] = json_decode($extras[$i]['detalles']);
+        }
+        $factura->extras = $extras;
 
-            $tasa = null;
-            $records = MonedasCambios::select(['id_moneda_cambio', 'abreviatura_moneda_nc'])
+        // Paso 3: Obtener tasa de cambio actual (igual que en show/edit)
+        $tasa = null;
+        $records = MonedasCambios::select(['id_moneda_cambio', 'abreviatura_moneda_nc'])
             ->where('monedas_cambios.activo', '=', true)
             ->first();
 
-            if( $records != null ){
-                $tasa = MonedasCambiosTasas::select(['monto_tc', 'fecha_tc'])
+        if( $records != null ){
+            $tasa = MonedasCambiosTasas::select(['monto_tc', 'fecha_tc'])
                 ->where('id_moneda_cambio', '=', $records->id_moneda_cambio)
                 ->where('activo', '=', true)
                 ->orderBy('fecha_tc', 'DESC')
                 ->first();
-            }
-
-            $extras = GastosExtras::select('*')->where([['activo', true], ['tipo', 'CAJA']])->get()->toArray();
-
-            $responseData = [
-                'result' => $factura,
-                'tasa' => $tasa,
-                'extras' => $extras
-            ];
-
-            // print_r($responseData);
-            
-            $processedData = $facturaProcessor->processFacturaData($responseData);
-
-            // return response()->json([
-            //     'data' => $processedData,
-            // ], 200);
-
-            // Pasar los datos procesados a la vista
-            // return view('reports.detail-invoice', [
-            //     'processedData' => $processedData
-            // ]);
-
-                    
-            $pdf = PDF::loadView('reports.detail-invoice', [
-                'processedData' => $processedData
-            ])->setPaper('a4', 'landscape');;
-            $nameInvoice = 'test-detail-invoice';
-            $path = public_path('pdf');
-            $fileName =  time().'-'.''.$nameInvoice. '.pdf' ;
-            $pdf->save($path . '/' . $fileName);
-
-            $pdf = public_path('pdf/'.$fileName);
-            return response()->download($pdf);
-        
         }
 
+        // Paso 4: Obtener gastos extras disponibles (tipo CAJA)
+        $extrasData = GastosExtras::select('*')
+            ->where([['activo', true], ['tipo', 'CAJA']])
+            ->get()
+            ->toArray();
+
+        // Paso 5: Preparar datos en formato esperado por FacturaProcessorController
+        // Esto replica la estructura que el componente Vue espera recibir del backend
+        $responseData = [
+            'result' => [
+                'id_factura' => $factura->id_factura,
+                'cliente' => $factura->cliente,
+                'tarifa_envio' => $factura->tarifa_envio,
+                'total_usd' => $factura->total_usd,
+                'tipo_envio' => $factura->tipo_envio,
+                'nro_factura' => $factura->nro_factura,
+                'nro_container' => $factura->nro_container,
+                'warehouses' => $factura->warehouses,
+                'pago' => $factura->pago,
+                'extras' => $factura->extras,
+                'cost_x_tracking' => $factura->cost_x_tracking,
+                'cost_reempaque' => $factura->cost_reempaque ?? '0.00',
+                'gastos_extras' => $factura->gastos_extras,
+                'reempaque' => $factura->reempaque, // Campo clave para determinar tipo de envío
+                'fecha_creado' => $factura->fecha_creado,
+                'monto_tc' => $factura->monto_tc,
+                'fecha_tc' => $factura->fecha_tc
+            ],
+            'tasa' => $tasa ? [
+                'monto_tc' => $tasa->monto_tc,
+                'fecha_tc' => $tasa->fecha_tc
+            ] : [
+                'monto_tc' => $factura->monto_tc ?? '0.00',
+                'fecha_tc' => $factura->fecha_tc ?? date('Y-m-d')
+            ],
+            'extras' => $extrasData
+        ];
+
+        // Paso 6: Procesar datos usando FacturaProcessorController
+        // Este procesador replica la lógica de los helpers JavaScript (calcInvoice.js)
+        $facturaProcessor = new FacturaProcessorController();
+        $processedData = $facturaProcessor->processFacturaData($responseData);
+
+        // Paso 7: Generar PDF con los datos procesados
+        // Los datos procesados tienen la misma estructura que el componente Vue usa
+        $pdf = PDF::loadView('reports.detail-invoice', [
+            'processedData' => $processedData
+        ])->setPaper('a4', 'landscape');
+
+        // Paso 8: Guardar y descargar PDF
+        $nameInvoice = 'factura-detalle-' . $factura->nro_factura;
+        $path = public_path('pdf');
+        
+        // Crear directorio si no existe
+        if (!file_exists($path)) {
+            mkdir($path, 0755, true);
+        }
+        
+        $fileName = time() . '-' . $nameInvoice . '.pdf';
+        $pdf->save($path . '/' . $fileName);
+
+        $pdfPath = public_path('pdf/' . $fileName);
+        return response()->download($pdfPath);
     }
 
     public function print_invoice($id)

@@ -120,6 +120,7 @@
             $costo_trackings = getValue($data, 'costo_trackings', '0.00');
             $gastos_extras = getValue($data, 'gastos_extras', '0.00');
             $total_usd = getValue($data, 'total_usd', '0.00');
+            $total_cajas_recibidas = getValue($data, 'total_cajas_recibidas', 0);
             
             // Calcular total VES
             $total_ves = '0.00';
@@ -384,7 +385,7 @@
                         <span class="me-2">Recibes Caja/Cajas:</span>
                         <span style="max-width: 80px;">
                             <span disabled style="padding: 0.4375rem 5px; text-align: end;">
-                                <strong>{{ count($warehouses) }}</strong>
+                                <strong>{{ $total_cajas_recibidas }}</strong>
                             </span>
                         </span>
                     </div>

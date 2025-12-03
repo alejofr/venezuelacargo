@@ -49,20 +49,27 @@ class FacturaProcessorController {
         $cost_reempaque = $result['cost_reempaque'];
         $gastos_extras = $result['gastos_extras'];
         
-        $monto_tc = $tasa['monto_tc'];
-        $fecha_tc = $tasa['fecha_tc'];
+        // Manejar tasa de cambio (puede venir de la factura o de la tasa actual)
+        $monto_tc = !empty($tasa) && isset($tasa['monto_tc']) ? $tasa['monto_tc'] : ($result['monto_tc'] ?? '0.00');
+        $fecha_tc = !empty($tasa) && isset($tasa['fecha_tc']) ? $tasa['fecha_tc'] : ($result['fecha_tc'] ?? date('Y-m-d'));
         
-        // Configurar detalles
+        // Configurar detalles (siguiendo la lógica del componente LayoutFormFacturar.vue)
         $this->details['tipo_envio'] = $tipo_envio;
         $this->details['tarifa'] = $this->formatPrice($tarifa_envio, ',', '.');
         $this->details['nro_factura'] = $nro_factura;
         $this->details['nro_container'] = $nro_container;
-        $this->details['monto_tc'] = !empty($pago) ? $result['monto_tc'] : $monto_tc;
-        $this->details['fecha_tc'] = !empty($pago) ? $result['fecha_tc'] : $fecha_tc;
+        // Si hay pago, usar la tasa de la factura, sino usar la tasa actual
+        $this->details['monto_tc'] = !empty($pago) && is_array($pago) && count($pago) > 0 
+            ? $this->formatPrice($result['monto_tc'] ?? $monto_tc, '.', ',') 
+            : $this->formatPrice($monto_tc, '.', ',');
+        $this->details['fecha_tc'] = !empty($pago) && is_array($pago) && count($pago) > 0 
+            ? ($result['fecha_tc'] ?? $fecha_tc) 
+            : $fecha_tc;
         $this->details['id_factura'] = $id_factura;
         
         $client = $cliente;
-        $envio = 'directo'; // Puedes cambiar esto según tu lógica
+        // Determinar tipo de envío basándose en el campo reempaque de la factura
+        $envio = (isset($result['reempaque']) && $result['reempaque'] == 'si') ? 'reempaque' : 'directo';
         
         // Procesar warehouses
         $warehousesResult = $this->warehouses_data($warehouses, $envio);
@@ -96,11 +103,25 @@ class FacturaProcessorController {
         $costo_reempaque = null;
         
         if ($envio === 'reempaque') {
-            $costo_reempaque = $cost_reempaque;
+            $costo_reempaque = $this->formatPrice($cost_reempaque, ',', '.');
         }
         
         $gastos_extras_formatted = $this->formatPrice($gastos_extras, ',', '.');
         $total_usd_formatted = $this->formatPrice($total_usd, ',', '.');
+        
+        // Calcular total VES (siguiendo la lógica del componente)
+        $total_ves = $this->calc_total_ves($total_usd_formatted, $this->details['monto_tc']);
+        
+        // Formatear fecha de factura
+        $this->details['fecha_factura'] = !empty($result['fecha_creado']) 
+            ? date('d-m-Y', strtotime($result['fecha_creado'])) 
+            : '';
+        
+        // Calcular total de cajas recibidas
+        // Lógica: contar los items de dataContent que tienen warehouse no vacío
+        // Esto replica: dataContent.filter(item => item.warehouse && item.warehouse !== '').length
+        // Y también replica la lógica de print_invoice: contar contents con id_factura_tracking !== null
+        $total_cajas_recibidas = $this->calc_total_cajas_recibidas($dataContent);
         
         // Retornar todos los datos procesados
         return [
@@ -114,7 +135,10 @@ class FacturaProcessorController {
             'costo_trackings' => $costo_trackings,
             'costo_reempaque' => $costo_reempaque,
             'gastos_extras' => $gastos_extras_formatted,
-            'total_usd' => $total_usd_formatted
+            'total_usd' => $total_usd_formatted,
+            'total_ves' => $total_ves,
+            'envio' => $envio,
+            'total_cajas_recibidas' => $total_cajas_recibidas
         ];
     }
     
@@ -191,6 +215,9 @@ class FacturaProcessorController {
             $vol = $this->parseNum($volumen);
             $secure = $this->desctPrice($seguro, ',');
             $secure = $this->parseNum($secure);
+            
+            // Calcular costo de envío: pie_cubico * tarifa
+            $cost_env = $ft * $costo_envio;
             
             $sub_total = $cost_env + $secure;
             $cost_env = $this->formatPrice(number_format($cost_env, 2), ',', '.');
@@ -412,6 +439,49 @@ class FacturaProcessorController {
         }
         
         return $result;
+    }
+    
+    /**
+     * Equivalente a calc_total_ves de JavaScript
+     * Calcula el total en VES basándose en el total USD y la tasa de cambio
+     */
+    private function calc_total_ves($total_usd, $tasa) {
+        $total_usd_num = $this->parseNum($this->desctPrice($total_usd, ','));
+        $tasa_ves = $this->desctPrice($tasa, '.');
+        $tasa_ves = str_replace(',', '.', $tasa_ves);
+        $tasa_ves = $this->parseNum($tasa_ves);
+        
+        $total_ves = $total_usd_num * $tasa_ves;
+        $total_ves = number_format($total_ves, 2, '.', '');
+        $total_ves = str_replace('.', ',', $total_ves);
+        
+        return $this->formatPrice($total_ves, '.', ',');
+    }
+    
+    /**
+     * Calcula el total de cajas recibidas basándose en dataContent
+     * 
+     * Replica la lógica del componente Vue:
+     * dataContent.filter(item => item.warehouse && item.warehouse !== '').length
+     * 
+     * Y también replica la lógica de print_invoice:
+     * contar los contents con id_factura_tracking !== null
+     * 
+     * @param array $dataContent Array de contenido de la factura
+     * @return int Total de cajas recibidas
+     */
+    private function calc_total_cajas_recibidas($dataContent = []) {
+        $total = 0;
+        
+        foreach ($dataContent as $item) {
+            // Contar items que tienen warehouse no vacío
+            // Esto indica que están vinculados a un warehouse (caja recibida)
+            if (isset($item['warehouse']) && $item['warehouse'] !== '' && $item['warehouse'] !== null) {
+                $total++;
+            }
+        }
+        
+        return $total;
     }
     
     /**
