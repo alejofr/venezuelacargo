@@ -130,6 +130,16 @@
                                     ><strong>{{ dataContent.filter(item => item.warehouse && item.warehouse !== '').length }}</strong></span> 
                                 </span>
                             </div>
+                            <div class="d-flex align-items-center mb-3 justify-content-end">
+                                                <span class="me-2">
+                                                    Costo Por WH: 
+                                                </span>
+                                                <span style="max-width: 80px;">
+                                                    <!--<input v-if="type_form === 'new' || type_form === 'edit'" type="text" class="form-control" v-model="costo_trackings" name="costo_trackings" style="padding: 0.4375rem 5px;text-align: end;" @keyup="keyUpPrecio($event)" @change="changePrecio($event)">-->
+                                                    <span style="padding: 0.4375rem 5px;text-align: end;"
+                                                    ><strong>{{ costo_trackings }}</strong></span> 
+                                                </span>
+                                            </div>
                             <div class="d-flex align-items-center mb-3 justify-content-end" v-if="envio === 'reempaque'">
                                 <span class="me-2">
                                     Total WH Reemp.

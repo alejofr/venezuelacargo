@@ -749,6 +749,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //componentes de primer plano, para factura
 
 
@@ -15000,6 +15010,48 @@ var render = function () {
                                                         }
                                                       ).length
                                                     )
+                                                  ),
+                                                ]),
+                                              ]
+                                            ),
+                                          ]
+                                        ),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "d-flex align-items-center mb-3 justify-content-end",
+                                      },
+                                      [
+                                        _c("span", { staticClass: "me-2" }, [
+                                          _vm._v(
+                                            "\r\n                                                    Costo Por WH: \r\n                                                "
+                                          ),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          {
+                                            staticStyle: {
+                                              "max-width": "80px",
+                                            },
+                                          },
+                                          [
+                                            _c(
+                                              "span",
+                                              {
+                                                staticStyle: {
+                                                  padding: "0.4375rem 5px",
+                                                  "text-align": "end",
+                                                },
+                                              },
+                                              [
+                                                _c("strong", [
+                                                  _vm._v(
+                                                    _vm._s(_vm.costo_trackings)
                                                   ),
                                                 ]),
                                               ]

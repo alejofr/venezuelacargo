@@ -365,7 +365,7 @@
                     </div>
                     <div class="form-floating mb-3 w-100">
                         <div class="d-flex flex-column">
-                            <span class="me-2">Costo por Trackings</span>
+                            <span class="me-2">Costo Por WH</span>
                             <span><strong>{{ $costo_trackings }} USD</strong></span>
                         </div>
                     </div>
